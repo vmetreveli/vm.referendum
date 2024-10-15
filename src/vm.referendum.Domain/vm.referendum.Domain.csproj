@@ -13,14 +13,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\Framework\Framework.Infrastructure\Framework.Infrastructure.csproj" />
+      <Folder Include="Events\" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Entities\" />
-      <Folder Include="Events\" />
-      <Folder Include="Exception\" />
-      <Folder Include="Repository\" />
+      <ProjectReference Include="..\..\..\Framework\Framework.Infrastructure\Framework.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

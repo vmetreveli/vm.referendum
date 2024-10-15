@@ -1,54 +1,46 @@
-using Asp.Versioning;
-using Microsoft.Extensions.Options;
+using Framework.Infrastructure.Exceptions;
 using Serilog;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using Framework.Infrastructure;
-using vm.referendum.Api.Middleware;
-using vm.referendum.Api.Swagger;
 using vm.referendum.Api;
-using vm.referendum.AsynchronousAdapter;
+using vm.referendum.Api.Constants;
+using vm.referendum.Api.Options;
+using vm.referendum.Api.Policies;
 using vm.referendum.Application;
 using vm.referendum.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.AddPolicy(PolicyNames.AuthenticatedUserPolicy, AuthenticatedUserPolicy.Instance);
+});
+
+// Added cache policy
+builder.Services.AddOutputCache(opts =>
+{
+    opts.AddPolicy(PolicyNames.TwentySecondsCachePolicy, policyBuilder =>
+        policyBuilder.Expire(TimeSpan.FromSeconds(20)));
+});
+//builder.Services.AddFramework(builder.Configuration, typeof(Program).Assembly);
 builder.Services.AddApplication(builder.Configuration);
-builder.Services.AddCatalogIntegration(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddSerilogServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 
-builder.Services.AddApiVersioning(options =>
-    {
-        options.DefaultApiVersion = new ApiVersion(2, 0);
-        options.AssumeDefaultVersionWhenUnspecified = true;
-        options.ReportApiVersions = true;
-    })
-    .AddApiExplorer(options =>
-    {
-        options.GroupNameFormat = "'v'VVV";
-        options.SubstituteApiVersionInUrl = true;
-    });
+builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 
-builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-builder.Services.AddSwaggerGen(options =>
-{
-    options.EnableAnnotations();
-    // Add a custom operation filter which sets default values
-    options.OperationFilter<SwaggerDefaultValues>();
-});
-
-builder.Services.AddSingleton<ExceptionHandlingMiddleware>();
+//builder.Services.AddTransient<ExceptionMiddleware>();
+//builder.Services.AddTransient<RequestResponseLoggingMiddleware>();
 
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 
 builder.Logging.AddSerilog();
 var app = builder.Build();
 //app.MapHealthChecks("_health");
-
 // Apply the CORS policy globally
 
 app.UseCors(options =>
@@ -59,36 +51,44 @@ app.UseCors(options =>
 });
 
 if (app.Environment.IsDevelopment())
-    //app.ApplyMigration();
-    app.UseDeveloperExceptionPage();
-
-app.UseSwagger();
-app.UseSwaggerUI(options =>
 {
-    var descriptions = app.DescribeApiVersions();
-
-    // Build a swagger endpoint for each discovered API version
-    foreach (var description in descriptions)
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
     {
-        var url = $"/swagger/{description.GroupName}/swagger.json";
-        var name = description.GroupName.ToUpperInvariant();
-        options.SwaggerEndpoint(url, name);
-    }
-});
+        foreach (var description in app.DescribeApiVersions())
+        {
+            var url = $"/swagger/{description.GroupName}/swagger.json";
+            var name = description.GroupName.ToUpperInvariant();
+            options.SwaggerEndpoint(url, name);
+        }
+    });
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
-app.UseErrorHandling();
+    // app.ApplyMigration();
+    app.UseDeveloperExceptionPage();
+}
 
+// app.UseSwagger();
+//
+// app.UseSwaggerUI(swaggerUiOptions =>
+//     swaggerUiOptions.SwaggerEndpoint("/swagger/v1/swagger.json", "Referendum API"));
+
+
+app.UseMiddlewares();
+// app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
 app.UseHttpsRedirection();
 
+app.UseRateLimiter();
+
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
+// Grouping routes
+// app.MapGroup(ApiRoutes.BaseRoute)
+//     .RequireRateLimiting(PolicyNames.AuthenticatedUserPolicy); // Requiring the AuthenticatedUserPolicy
 
-});
+app.UseEndpoints(endpoints => endpoints.MapControllers());
 
 
 app.Run();

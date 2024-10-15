@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace  vm.referendum.Api;
+namespace vm.referendum.Api;
 
 public static class RegisterSerilogServices
 {

@@ -6,12 +6,15 @@ namespace vm.referendum.Application;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApplication(
-        this IServiceCollection services,
-        IConfiguration configuration)
+    public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddAutoMapper(typeof(DependencyInjection).Assembly);
         services.AddFramework(configuration, typeof(DependencyInjection).Assembly);
+        services.AddAutoMapper(typeof(DependencyInjection).Assembly);
+
+
+      //  services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly, includeInternalTypes: true);
+
+        // services.AddTransient(typeof(IPipelineBehavior<,>),
 
         return services;
     }

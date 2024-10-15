@@ -1,0 +1,47 @@
+POST https://localhost:7059/api/{{version}}/Authentication/login
+Content-Type: application/json
+
+{
+  "email": "blod@bk.ru",
+  "password": "Admin123!"
+}
+
+###
+< {%
+    request.variables.set("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OTU5OTIxYi0xOTBmLTQ0NjAtODk4ZC01N2I4YTU5OTVhMmQiLCJlbWFpbCI6ImJsb2RAYmsucnUiLCJuYW1lIjoic3RyaW5nIHN0cmluZyIsInBlcm1pc3Npb25zIjpbIlJlYWRNZW1iZXIiLCJVcGRhdGVNZW1iZXIiXSwiZXhwIjoxNjk3MTg5MjkzLCJpc3MiOiJSZWZlcmVuZHVtIiwiYXVkIjoicmVmZXJlbmR1bS5nZSJ9.jxij9wgDv9te4uyOQsrmy5ObXgpMpWfcsLBse6LTj4g")
+%}
+GET https://localhost:7059/api/{{version}}/Question
+Authorization: Bearer {{token}}
+
+###
+
+POST https://localhost:7059/api/{{version}}/Authentication/registration
+Content-Type: application/json
+
+{
+  "firstName": "string",
+  "lastName": "string",
+  "email": "blodbk.ru",
+  "password": "Admin123!"
+}
+
+###
+
+POST https://localhost:7059/api/{{version}}/Authentication/ForgotPassword
+Content-Type: application/json
+
+{
+  "Email": "blod@bk.ru"
+}
+
+
+
+###
+< {%
+    request.variables.set("token",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OTU5OTIxYi0xOTBmLTQ0NjAtODk4ZC01N2I4YTU5OTVhMmQiLCJlbWFpbCI6ImJsb2RAYmsucnUiLCJuYW1lIjoic3RyaW5nIHN0cmluZyIsInBlcm1pc3Npb25zIjpbIlJlYWRNZW1iZXIiLCJVcGRhdGVNZW1iZXIiXSwiZXhwIjoxNjk3MTg5OTc3LCJpc3MiOiJSZWZlcmVuZHVtIiwiYXVkIjoicmVmZXJlbmR1bS5nZSJ9.F81rO66xXB622npHJi_ji_HBTVcFnHmdPfXkjeYtwDM")
+%}
+GET https://localhost:7059/api/{{version}}/User/GetAllProfiles
+Authorization: Bearer {{token}}
+
+

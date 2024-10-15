@@ -10,8 +10,7 @@
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\..\Framework\Framework.Infrastructure\Framework.Infrastructure.csproj" />
-        <ProjectReference Include="..\..\vm.referendum.Application\vm.referendum.Application.csproj"/>
+         <ProjectReference Include="..\..\vm.referendum.Application\vm.referendum.Application.csproj"/>
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Common\"/>

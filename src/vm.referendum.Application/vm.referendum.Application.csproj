@@ -7,9 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\Framework\Framework.Infrastructure\Framework.Infrastructure.csproj"/>
         <ProjectReference Include="..\vm.referendum.Domain\vm.referendum.Domain.csproj"/>
         <ProjectReference Include="..\Infrastructure\vm.referendum.Infrastructure\vm.referendum.Infrastructure.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Abstractions\" />
     </ItemGroup>
 
 </Project>
