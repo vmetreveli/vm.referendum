@@ -8,6 +8,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vm.referendum.Domain", "src\vm.referendum.Domain\vm.referendum.Domain.csproj", "{4BB34025-DF97-4A57-B542-F960E1478064}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0DAA6B86-E733-43BE-A0A3-7E6D3824A944}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		src\docker-compose.yml = src\docker-compose.yml
+		src\docker-compose.override.yml = src\docker-compose.override.yml
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vm.referendum.Infrastructure", "src\Infrastructure\vm.referendum.Infrastructure\vm.referendum.Infrastructure.csproj", "{A970B741-B8DD-47C7-AB60-4A516B26F37E}"
 EndProject
@@ -19,13 +24,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{59F7AED2-D59B-4194-B440-CC4BE5E55373}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vm.referendum.AsynchronousAdapter", "src\Integration\AsynchronousAdapter\vm.referendum.AsynchronousAdapter.csproj", "{33F1963C-DD24-4322-918E-FECF698E4B05}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{870594EE-CBD3-436A-9811-A261F76EF837}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Infrastructure", "..\Framework\Framework.Infrastructure\Framework.Infrastructure.csproj", "{BEAA3499-3874-4BBA-8B33-B7E2092B2851}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Infrastructure", "src\Framework\Framework.Infrastructure\Framework.Infrastructure.csproj", "{BEAA3499-3874-4BBA-8B33-B7E2092B2851}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Abstractions", "..\Framework\Framework.Abstractions\Framework.Abstractions.csproj", "{F88864F0-44F8-4FDE-8602-EE329A2AD434}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Abstractions", "src\Framework\Framework.Abstractions\Framework.Abstractions.csproj", "{F88864F0-44F8-4FDE-8602-EE329A2AD434}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +52,6 @@ Global
 		{EEF03970-3470-4454-BF09-A48D6428DAEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEF03970-3470-4454-BF09-A48D6428DAEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEF03970-3470-4454-BF09-A48D6428DAEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33F1963C-DD24-4322-918E-FECF698E4B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33F1963C-DD24-4322-918E-FECF698E4B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33F1963C-DD24-4322-918E-FECF698E4B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33F1963C-DD24-4322-918E-FECF698E4B05}.Release|Any CPU.Build.0 = Release|Any CPU
 		{92BB0A36-4A52-4C12-AED1-F04255809922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92BB0A36-4A52-4C12-AED1-F04255809922}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92BB0A36-4A52-4C12-AED1-F04255809922}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -76,7 +75,6 @@ Global
 		{EEF03970-3470-4454-BF09-A48D6428DAEE} = {0DAA6B86-E733-43BE-A0A3-7E6D3824A944}
 		{3D3205F5-0278-470E-BC29-C2C7615A24DF} = {0DAA6B86-E733-43BE-A0A3-7E6D3824A944}
 		{59F7AED2-D59B-4194-B440-CC4BE5E55373} = {0DAA6B86-E733-43BE-A0A3-7E6D3824A944}
-		{33F1963C-DD24-4322-918E-FECF698E4B05} = {59F7AED2-D59B-4194-B440-CC4BE5E55373}
 		{92BB0A36-4A52-4C12-AED1-F04255809922} = {870594EE-CBD3-436A-9811-A261F76EF837}
 		{870594EE-CBD3-436A-9811-A261F76EF837} = {0DAA6B86-E733-43BE-A0A3-7E6D3824A944}
 		{BEAA3499-3874-4BBA-8B33-B7E2092B2851} = {3D3205F5-0278-470E-BC29-C2C7615A24DF}

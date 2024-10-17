@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/vm.referendum.Api.props" />
+</Project>

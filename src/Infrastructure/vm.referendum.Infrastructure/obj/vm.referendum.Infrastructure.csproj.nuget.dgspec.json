@@ -4,14 +4,14 @@
     "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructure.csproj": {}
   },
   "projects": {
-    "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Abstractions/Framework.Abstractions.csproj": {
+    "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Abstractions/Framework.Abstractions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Abstractions/Framework.Abstractions.csproj",
+        "projectUniqueName": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Abstractions/Framework.Abstractions.csproj",
         "projectName": "Framework.Abstractions",
-        "projectPath": "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Abstractions/Framework.Abstractions.csproj",
+        "projectPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Abstractions/Framework.Abstractions.csproj",
         "packagesPath": "/Users/vakhushtimetreveli/.nuget/packages/",
-        "outputPath": "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Abstractions/obj/",
+        "outputPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Abstractions/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/vakhushtimetreveli/.nuget/NuGet/NuGet.Config"
@@ -134,14 +134,14 @@
         }
       }
     },
-    "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj": {
+    "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj": {
       "version": "1.0.1",
       "restore": {
-        "projectUniqueName": "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj",
+        "projectUniqueName": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj",
         "projectName": "FrameworkVM",
-        "projectPath": "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj",
+        "projectPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj",
         "packagesPath": "/Users/vakhushtimetreveli/.nuget/packages/",
-        "outputPath": "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Infrastructure/obj/",
+        "outputPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/vakhushtimetreveli/.nuget/NuGet/NuGet.Config"
@@ -156,8 +156,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Abstractions/Framework.Abstractions.csproj": {
-                "projectPath": "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Abstractions/Framework.Abstractions.csproj"
+              "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Abstractions/Framework.Abstractions.csproj": {
+                "projectPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Abstractions/Framework.Abstractions.csproj"
               }
             }
           }
@@ -241,94 +241,6 @@
         }
       }
     },
-    "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/vm.referendum.Infrastructure.ExternalServices.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/vm.referendum.Infrastructure.ExternalServices.csproj",
-        "projectName": "vm.referendum.Infrastructure.ExternalServices",
-        "projectPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/vm.referendum.Infrastructure.ExternalServices.csproj",
-        "packagesPath": "/Users/vakhushtimetreveli/.nuget/packages/",
-        "outputPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/Users/vakhushtimetreveli/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net8.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        }
-      },
-      "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.Http.Abstractions": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.Extensions.DependencyInjection.Abstractions": {
-              "target": "Package",
-              "version": "[8.0.2, )"
-            },
-            "Microsoft.Extensions.Hosting.Abstractions": {
-              "target": "Package",
-              "version": "[8.0.1, )"
-            },
-            "NSwag.AspNetCore": {
-              "target": "Package",
-              "version": "[14.1.0, )"
-            },
-            "Refit": {
-              "target": "Package",
-              "version": "[7.2.1, )"
-            },
-            "Refit.HttpClientFactory": {
-              "target": "Package",
-              "version": "[7.2.1, )"
-            },
-            "Throw": {
-              "target": "Package",
-              "version": "[1.4.0, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.403/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -351,9 +263,6 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/vm.referendum.Infrastructure.ExternalServices.csproj": {
-                "projectPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/vm.referendum.Infrastructure.ExternalServices.csproj"
-              },
               "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/vm.referendum.Domain/vm.referendum.Domain.csproj": {
                 "projectPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/vm.referendum.Domain/vm.referendum.Domain.csproj"
               }
@@ -460,8 +369,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj": {
-                "projectPath": "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj"
+              "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj": {
+                "projectPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj"
               }
             }
           }

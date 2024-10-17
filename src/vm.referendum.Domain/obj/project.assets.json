@@ -2713,13 +2713,13 @@
     },
     "Framework.Abstractions/1.0.0": {
       "type": "project",
-      "path": "../../../Framework/Framework.Abstractions/Framework.Abstractions.csproj",
-      "msbuildProject": "../../../Framework/Framework.Abstractions/Framework.Abstractions.csproj"
+      "path": "../Framework/Framework.Abstractions/Framework.Abstractions.csproj",
+      "msbuildProject": "../Framework/Framework.Abstractions/Framework.Abstractions.csproj"
     },
     "FrameworkVM/1.0.1": {
       "type": "project",
-      "path": "../../../Framework/Framework.Infrastructure/Framework.Infrastructure.csproj",
-      "msbuildProject": "../../../Framework/Framework.Infrastructure/Framework.Infrastructure.csproj"
+      "path": "../Framework/Framework.Infrastructure/Framework.Infrastructure.csproj",
+      "msbuildProject": "../Framework/Framework.Infrastructure/Framework.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2755,8 +2755,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj": {
-              "projectPath": "/Users/vakhushtimetreveli/RiderProjects/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj"
+            "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj": {
+              "projectPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj"
             }
           }
         }

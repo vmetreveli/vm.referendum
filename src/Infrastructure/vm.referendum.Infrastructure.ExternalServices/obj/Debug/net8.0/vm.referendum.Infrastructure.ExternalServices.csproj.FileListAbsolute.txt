@@ -1,0 +1,13 @@
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/bin/Debug/net8.0/vm.referendum.Infrastructure.ExternalServices.deps.json
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/bin/Debug/net8.0/vm.referendum.Infrastructure.ExternalServices.dll
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/bin/Debug/net8.0/vm.referendum.Infrastructure.ExternalServices.pdb
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/Debug/net8.0/vm.referendum.Infrastructure.ExternalServices.csproj.AssemblyReference.cache
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/Debug/net8.0/vm.referendum.Infrastructure.ExternalServices.GeneratedMSBuildEditorConfig.editorconfig
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/Debug/net8.0/vm.referendum.Infrastructure.ExternalServices.AssemblyInfoInputs.cache
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/Debug/net8.0/vm.referendum.Infrastructure.ExternalServices.AssemblyInfo.cs
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/Debug/net8.0/vm.referendum.Infrastructure.ExternalServices.csproj.CoreCompileInputs.cache
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/Debug/net8.0/vm.referendum.Infrastructure.ExternalServices.sourcelink.json
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/Debug/net8.0/vm.referendum.Infrastructure.ExternalServices.dll
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/Debug/net8.0/refint/vm.referendum.Infrastructure.ExternalServices.dll
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/Debug/net8.0/vm.referendum.Infrastructure.ExternalServices.pdb
+/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/Debug/net8.0/ref/vm.referendum.Infrastructure.ExternalServices.dll

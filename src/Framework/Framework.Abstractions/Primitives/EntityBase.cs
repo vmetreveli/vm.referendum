@@ -4,7 +4,7 @@ namespace Framework.Abstractions.Primitives;
 ///     Represents the base class for all entities in the system.
 /// </summary>
 /// <typeparam name="TId">The type of the entity's identifier.</typeparam>
-public abstract class EntityBase<TId> : IEqualityComparer<EntityBase<TId>>
+public abstract class EntityBase<TId> : IEquatable<EntityBase<TId>>
     where TId : notnull
 {
     /// <summary>
@@ -33,12 +33,31 @@ public abstract class EntityBase<TId> : IEqualityComparer<EntityBase<TId>>
     public bool Equals(EntityBase<TId>? other)
     {
         if (other is null) return false;
-        if (ReferenceEquals(this, other)) return true;
         if (other.GetType() != GetType()) return false;
         return Id.Equals(other.Id);
     }
 
+    /// <summary>
+    ///     Determines whether two <see cref="EntityBase{TId}" /> instances are equal.
+    /// </summary>
+    /// <param name="first">The first <see cref="EntityBase{TId}" /> instance.</param>
+    /// <param name="second">The second <see cref="EntityBase{TId}" /> instance.</param>
+    /// <returns>true if the two instances are equal; otherwise, false.</returns>
+    public static bool operator ==(EntityBase<TId> first, EntityBase<TId> second)
+    {
+        return first is not null && second is not null && first.Equals(second);
+    }
 
+    /// <summary>
+    ///     Determines whether two <see cref="EntityBase{TId}" /> instances are not equal.
+    /// </summary>
+    /// <param name="first">The first <see cref="EntityBase{TId}" /> instance.</param>
+    /// <param name="second">The second <see cref="EntityBase{TId}" /> instance.</param>
+    /// <returns>true if the two instances are not equal; otherwise, false.</returns>
+    public static bool operator !=(EntityBase<TId> first, EntityBase<TId> second)
+    {
+        return !(first == second);
+    }
 
     /// <summary>
     ///     Determines whether the specified object is equal to the current <see cref="EntityBase{TId}" />.
@@ -47,7 +66,10 @@ public abstract class EntityBase<TId> : IEqualityComparer<EntityBase<TId>>
     /// <returns>true if the specified object is equal to the current <see cref="EntityBase{TId}" />; otherwise, false.</returns>
     public override bool Equals(object? obj)
     {
-        return Equals(obj as EntityBase<TId>);
+        if (obj is null) return false;
+        if (obj.GetType() != GetType()) return false;
+        if (obj is not EntityBase<TId> entity) return false;
+        return Id.Equals(entity.Id);
     }
 
     /// <summary>
@@ -57,28 +79,5 @@ public abstract class EntityBase<TId> : IEqualityComparer<EntityBase<TId>>
     public override int GetHashCode()
     {
         return Id.GetHashCode() * 41;
-    }
-
-    /// <summary>
-    ///     Determines whether two <see cref="EntityBase{TId}" /> instances are equal using IEqualityComparer.
-    /// </summary>
-    /// <param name="x">The first instance.</param>
-    /// <param name="y">The second instance.</param>
-    /// <returns>true if the two instances are equal; otherwise, false.</returns>
-    public bool Equals(EntityBase<TId>? x, EntityBase<TId>? y)
-    {
-        if (x is null && y is null) return true;
-        if (x is null || y is null) return false;
-        return x.Equals(y);
-    }
-
-    /// <summary>
-    ///     Returns a hash code for the given <see cref="EntityBase{TId}" /> instance.
-    /// </summary>
-    /// <param name="obj">The instance.</param>
-    /// <returns>A hash code for the specified instance.</returns>
-    public int GetHashCode(EntityBase<TId> obj)
-    {
-        return obj.Id.GetHashCode();
     }
 }

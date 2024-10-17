@@ -1,0 +1,24 @@
+services:
+  referendumdb:
+    image: postgres
+  
+  referendum-seq:
+    image: datalust/seq:latest
+
+  #  rabbitmq:
+  #    image: rabbitmq:3-management-alpine
+
+  referendum.api:
+    image: ${DOCKER_REGISTRY-}referendum
+    build:
+      context: .
+      dockerfile: src/Referendum.Api/Dockerfile
+
+
+volumes:
+  postgres_data:
+
+
+
+#docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+#docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build

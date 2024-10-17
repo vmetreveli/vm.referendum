@@ -1,10 +1,15 @@
 ﻿namespace Framework.Abstractions.Kernel.Types;
 
-public class AggregateId<T>(T value) : IEquatable<AggregateId<T>>
+public class AggregateId<T> : IEquatable<AggregateId<T>>
 {
-    public T Value { get; } = value;
+    public AggregateId(T value)
+    {
+        Value = value;
+    }
 
-    public bool Equals(AggregateId<T>? other)
+    public T Value { get; }
+
+    public bool Equals(AggregateId<T> other)
     {
         if (ReferenceEquals(null, other)) return false;
         if (ReferenceEquals(this, other)) return true;
@@ -25,9 +30,13 @@ public class AggregateId<T>(T value) : IEquatable<AggregateId<T>>
     }
 }
 
-public class AggregateId(Guid value) : AggregateId<Guid>(value)
+public class AggregateId : AggregateId<Guid>
 {
     public AggregateId() : this(Guid.NewGuid())
+    {
+    }
+
+    public AggregateId(Guid value) : base(value)
     {
     }
 

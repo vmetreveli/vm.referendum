@@ -1,0 +1,43 @@
+services:
+  referendumdb:
+    container_name: referendumdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=ReferendumDb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  
+  referendum-seq:
+    container_name: Referendum.Seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5341:5341"
+      - "8080:80"
+  
+  
+  #  rabbitmq:
+  #    container_name: rabbitmq
+  #    restart: always
+  #    environment:
+  #      RABBITMQ_DEFAULT_USER: guest
+  #      RABBITMQ_DEFAULT_PASS: guest
+  #    ports:
+  #      - "5672:5672"
+  #      - "15672:15672"
+
+  referendum.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:DefaultConnection=Server=referendumdb;Port=5432;Database=ReferendumDb;User Id=admin;Password=admin1234;"
+      - "MessageBroker:HostAddress=amqp://guest:guest@rabbitmq:5672"
+    depends_on:
+      - referendumdb
+    #      - rabbitmq
+    ports:
+      - "7059:7059"
+      - "5059:5059"

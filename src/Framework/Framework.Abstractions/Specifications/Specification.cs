@@ -55,7 +55,7 @@ public abstract class Specification<TEntity, TId>
     ///     Adds an include expression to the specification for eager loading of related entities.
     /// </summary>
     /// <param name="includeExpression">The include expression to add.</param>
-    public void AddInclude(Expression<Func<TEntity, object>> includeExpression)
+    protected void AddInclude(Expression<Func<TEntity, object>> includeExpression)
     {
         IncludeExpressions.Add(includeExpression);
     }
@@ -64,7 +64,7 @@ public abstract class Specification<TEntity, TId>
     ///     Sets the expression for ordering entities in ascending order.
     /// </summary>
     /// <param name="orderByExpression">The ordering expression to set.</param>
-    public void AddOrderBy(Expression<Func<TEntity, object>> orderByExpression)
+    protected void AddOrderBy(Expression<Func<TEntity, object>> orderByExpression)
     {
         OrderByExpression = orderByExpression;
     }
@@ -73,7 +73,7 @@ public abstract class Specification<TEntity, TId>
     ///     Sets the expression for ordering entities in descending order.
     /// </summary>
     /// <param name="orderByDescendingExpression">The ordering expression to set.</param>
-    public void AddOrderByDescending(Expression<Func<TEntity, object>> orderByDescendingExpression)
+    protected void AddOrderByDescending(Expression<Func<TEntity, object>> orderByDescendingExpression)
     {
         OrderByDescendingExpression = orderByDescendingExpression;
     }
