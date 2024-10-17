@@ -5,8 +5,8 @@ services:
 #  referendum-seq:
 #    image: datalust/seq:latest
 
-  #  rabbitmq:
-  #    image: rabbitmq:3-management-alpine
+  rabbitmq:
+      image: rabbitmq:3-management-alpine
 
   referendum.api:
     image: ${DOCKER_REGISTRY-}referendum

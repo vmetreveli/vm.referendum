@@ -2,8 +2,8 @@
 services:
   referendum.api:
     build:
-      context: "/Users/vakhushtimetreveli/RiderProjects/vm.referendum"
-      dockerfile: "./src/vm.referendum.Api/Dockerfile"
+      context: "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src"
+      dockerfile: "./vm.referendum.Api/Dockerfile"
       target: "base"
     command: []
     entrypoint:
