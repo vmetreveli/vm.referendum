@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Framework For DDD")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.1+c6b9f5dd17dd1b2c590ff5ff7f5a9ab17f3097e3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.1+8818496267673319285555043be33d57b56d63f7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Framework.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Framework.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.1.0")]

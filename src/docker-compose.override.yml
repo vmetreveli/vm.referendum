@@ -33,11 +33,11 @@ services:
   referendum.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:DefaultConnection=Server=localhost;Port=5432;Database=Referendum;User Id=admin;Password=admin1234;"
+      - "ConnectionStrings:DefaultConnection=Server=referendumdb;Port=5432;Database=Referendum;User Id=admin;Password=admin1234;"
       - "MessageBroker:HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
       - referendumdb
     #      - rabbitmq
     ports:
-      - "7059:7059"
-      - "5059:5059"
+      - "80:8080"
+      - "443:443"

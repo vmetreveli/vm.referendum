@@ -9,7 +9,7 @@ services:
       image: rabbitmq:3-management-alpine
 
   referendum.api:
-    image: ${DOCKER_REGISTRY-}referendum
+    image: referendum
     build:
       context: .
       dockerfile: ./vm.referendum.Api/Dockerfile
