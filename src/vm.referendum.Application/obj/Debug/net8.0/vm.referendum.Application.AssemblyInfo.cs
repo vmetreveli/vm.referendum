@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("vm.referendum.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8818496267673319285555043be33d57b56d63f7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62413009c0d7b067e2b562b04e3dd78ab5aa724e")]
 [assembly: System.Reflection.AssemblyProductAttribute("vm.referendum.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("vm.referendum.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
