@@ -22,7 +22,7 @@ jobs:
         run: dotnet restore ./src/vm.referendum.Api/vm.referendum.Api.csproj
 
       - name: Build
-        run: dotnet build ./src/vm.referendum.Api/vm.referendum.Api.sln --configuration Release --no-restore
+        run: dotnet build ./src/vm.referendum.Api/vm.referendum.Api.sln --configuration Development --no-restore
 
       - name: Publish
-        run: dotnet publish ./src/vm.referendum.Api/vm.referendum.Api.sln --configuration Release --no-build --output ./publish
+        run: dotnet publish ./src/vm.referendum.Api/vm.referendum.Api.sln --configuration Development --no-build --output ./publish
