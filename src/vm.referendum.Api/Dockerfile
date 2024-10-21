@@ -11,8 +11,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Development
 WORKDIR /src
 COPY ["src/vm.referendum.Api/vm.referendum.Api.csproj", "src/vm.referendum.Api/"]
-COPY ["../Framework/Framework.Infrastructure/Framework.Infrastructure.csproj", "src/Framework/Framework.Infrastructure/"]
-COPY ["../Framework/Framework.Abstractions/Framework.Abstractions.csproj", "src/Framework/Framework.Abstractions/"]
+COPY ["src/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj", "src/Framework/Framework.Infrastructure/"]
+COPY ["src/Framework/Framework.Abstractions/Framework.Abstractions.csproj", "src/Framework/Framework.Abstractions/"]
 COPY ["src/vm.referendum.Application/vm.referendum.Application.csproj", "src/vm.referendum.Application/"]
 COPY ["src/vm.referendum.Domain/vm.referendum.Domain.csproj", "src/vm.referendum.Domain/"]
 COPY ["src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructure.csproj", "src/Infrastructure/vm.referendum.Infrastructure/"]
