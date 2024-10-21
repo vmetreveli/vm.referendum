@@ -19,11 +19,11 @@ COPY ["src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastruct
 RUN dotnet restore "src/vm.referendum.Api/vm.referendum.Api.csproj"
 COPY . .
 WORKDIR /src/vm.referendum.Api
-RUN dotnet build "vm.referendum.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "vm.referendum.Api/vm.referendum.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Development
-RUN dotnet publish "vm.referendum.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "vm.referendum.Api/vm.referendum.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
