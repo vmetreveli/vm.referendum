@@ -23,15 +23,15 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_86b01c4a3c2049e6b005469d56356eef }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_0babe7605f53469990409a7cf22667dd }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_8fd443d93e134d7d9e9561772b044f15 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_648ddaa53e194e5681aa41d4a137480a }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_86b01c4a3c2049e6b005469d56356eef }}/vmetreveli/referendum:${{ github.sha }}
-        file: '$(Build.SourcesDirectory)/src/vm.referendum.Api/Dockerfile'
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_8fd443d93e134d7d9e9561772b044f15 }}/referendum:${{ github.sha }}
+        file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'referendumapi'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_90747d223bea461f80e4825e69968406 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_86b01c4a3c2049e6b005469d56356eef }}/vmetreveli/referendum:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d1311bb5867a482a967e8eac31cc02d2 }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_8fd443d93e134d7d9e9561772b044f15 }}/referendum:${{ github.sha }}'
