@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 # Expose the port the app will run on
-EXPOSE 8080
+EXPOSE 80
 EXPOSE 443
 
 
