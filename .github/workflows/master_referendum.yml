@@ -45,7 +45,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'referendum'
+        app-name: 'referendumapi'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_0877b52a1de74afca0f042941d518039 }}
         images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_63fc7f11a1b24e879408db514d788d8c }}/vmetreveli/referendum:${{ github.sha }}'
