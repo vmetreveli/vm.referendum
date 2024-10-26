@@ -14,9 +14,9 @@ COPY ["/vm.referendum.Domain/vm.referendum.Domain.csproj", "/vm.referendum.Domai
 COPY ["/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj", "/Framework/Framework.Infrastructure/"]
 COPY ["/Framework/Framework.Abstractions/Framework.Abstractions.csproj", "/Framework/Framework.Abstractions/"]
 COPY ["/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructure.csproj", "/Infrastructure/vm.referendum.Infrastructure/"]
-RUN dotnet restore "vm.referendum.Api/vm.referendum.Api.csproj"
+RUN dotnet restore "/vm.referendum.Api/vm.referendum.Api.csproj"
 COPY . .
-WORKDIR "/src/vm.referendum.Api"
+WORKDIR /src/vm.referendum.Api
 RUN dotnet build "vm.referendum.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
