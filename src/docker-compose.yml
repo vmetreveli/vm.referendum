@@ -1,24 +1,91 @@
 services:
-  referendumdb:
+  referendum:
     image: postgres
+    container_name: referendum
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=Referendum
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
   
-#  referendum-seq:
-#    image: datalust/seq:latest
+  #  referendum-seq:
+  #    image: datalust/seq:latest
+  #    container_name: Referendum.Seq
+  #    environment:
+  #      - ACCEPT_EULA=Y
+  #    ports:
+  #      - "5341:5341"
+  #      - "8080:80"
 
   rabbitmq:
-      image: rabbitmq:3-management-alpine
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 
   referendum.api:
-    image: referendum
+    image: vmetreveli/referendum:latest
     build:
       context: .
       dockerfile: ./vm.referendum.Api/Dockerfile
-
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:DefaultConnection=Server=referendum;Port=5432;Database=Referendum;User Id=admin;Password=admin1234;"
+      
+      # Serilog configuration
+      - Serilog__Using__0=Serilog.Sinks.Console
+      - Serilog__Using__1=Serilog.Sinks.Seq
+      - Serilog__MinimumLevel=Debug
+      - Serilog__Enrich__0=FromLogContext
+      - Serilog__Enrich__1=WithMachineName
+      - Serilog__Enrich__2=WithThreadId
+      - Serilog__WriteTo__0__Name=Console
+      - Serilog__WriteTo__1__Name=Seq
+      - Serilog__WriteTo__1__Args__serverUrl=http://localhost:5341
+      
+      # JWT Configuration
+      - Jwt__Issuer=Referendum
+      - Jwt__Audience=referendum.ge
+      - Jwt__SecurityKey=secret-key-that-also-needs-to-be-at-least-16-characters-long
+      - Jwt__TokenExpirationInMinutes=60
+      
+      # Email Configuration
+      - EmailConfiguration__Port=465
+      - EmailConfiguration__Host=smtp.gmail.com
+      - EmailConfiguration__Password=ryjk kkxr sahc uugn
+      - EmailConfiguration__From=referendumgeo@gmail.com
+      
+      # Outbox configuration
+      - Outbox__IntervalInSeconds=10
+      - Outbox__BatchSize=10
+      
+      # AppConfiguration (RabbitMQ and Quartz)
+      - AppConfiguration__RabbitMQ__Host=rabbitmq
+      - AppConfiguration__RabbitMQ__VirtualHost=dev
+      - AppConfiguration__RabbitMQ__Username=guest
+      - AppConfiguration__RabbitMQ__Password=guest
+      - AppConfiguration__Quartz__OutboxJob=0/3 * * * * ?
+    
+    depends_on:
+      - referendum
+      - rabbitmq
+    ports:
+      - "80:8080"
+      - "443:443"
 
 volumes:
   postgres_data:
 
 
 
-#docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
-#docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build
+#docker-compose -f docker-compose.yml up -d
+#docker-compose -f docker-compose.yml up --build
