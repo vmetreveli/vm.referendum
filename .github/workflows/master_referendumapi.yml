@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_52737e4bce994e5f92ccb279f271d7ec }}/vmetreveli/vm.referendum@sha256:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./src/vm.referendum.Api/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
