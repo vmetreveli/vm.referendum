@@ -8,6 +8,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
+RUN ls -la
+RUN uname -a
 COPY ["/vm.referendum.Api/vm.referendum.Api.csproj", "/vm.referendum.Api/"]
 COPY ["/vm.referendum.Application/vm.referendum.Application.csproj", "/vm.referendum.Application/"]
 COPY ["/vm.referendum.Domain/vm.referendum.Domain.csproj", "/vm.referendum.Domain/"]
