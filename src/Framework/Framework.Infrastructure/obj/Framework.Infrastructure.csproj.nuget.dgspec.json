@@ -61,7 +61,7 @@
             },
             "MassTransit": {
               "target": "Package",
-              "version": "[8.2.5, )"
+              "version": "[8.3.0, )"
             },
             "MassTransit.AspNetCore": {
               "target": "Package",
@@ -73,7 +73,7 @@
             },
             "MassTransit.RabbitMQ": {
               "target": "Package",
-              "version": "[8.2.5, )"
+              "version": "[8.3.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -211,7 +211,7 @@
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
             },
             "Quartz.Extensions.Hosting": {
               "target": "Package",

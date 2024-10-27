@@ -8,15 +8,15 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-COPY ["../vm.referendum.Api/vm.referendum.Api.csproj", "vm.referendum.Api/"]
-COPY ["../vm.referendum.Application/vm.referendum.Application.csproj", "vm.referendum.Application/"]
-COPY ["../vm.referendum.Domain/vm.referendum.Domain.csproj", "vm.referendum.Domain/"]
-COPY ["../Framework/Framework.Infrastructure/Framework.Infrastructure.csproj", "Framework/Framework.Infrastructure/"]
-COPY ["../Framework/Framework.Abstractions/Framework.Abstractions.csproj", "Framework/Framework.Abstractions/"]
-COPY ["../Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructure.csproj", "Infrastructure/vm.referendum.Infrastructure/"]
-RUN dotnet restore "vm.referendum.Api/vm.referendum.Api.csproj"
+COPY ["src/vm.referendum.Api/vm.referendum.Api.csproj", "vm.referendum.Api/"]
+COPY ["src/vm.referendum.Application/vm.referendum.Application.csproj", "vm.referendum.Application/"]
+COPY ["src/vm.referendum.Domain/vm.referendum.Domain.csproj", "vm.referendum.Domain/"]
+COPY ["src/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj", "Framework/Framework.Infrastructure/"]
+COPY ["src/Framework/Framework.Abstractions/Framework.Abstractions.csproj", "Framework/Framework.Abstractions/"]
+COPY ["src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructure.csproj", "Infrastructure/vm.referendum.Infrastructure/"]
+RUN dotnet restore "/src/vm.referendum.Api/vm.referendum.Api.csproj"
 COPY . .
-WORKDIR "/src/vm.referendum.Api"
+WORKDIR "src/vm.referendum.Api"
 RUN dotnet build "vm.referendum.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

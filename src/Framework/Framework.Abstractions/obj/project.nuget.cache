@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "P//mGuakCa8=",
+  "dgSpecHash": "H5OirbRnwzk=",
   "success": true,
   "projectFilePath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Framework/Framework.Abstractions/Framework.Abstractions.csproj",
   "expectedPackageFiles": [
@@ -9,11 +9,11 @@
     "/Users/vakhushtimetreveli/.nuget/packages/efcore.namingconventions/8.0.3/efcore.namingconventions.8.0.3.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/fluentvalidation/11.10.0/fluentvalidation.11.10.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/masstransit/8.2.5/masstransit.8.2.5.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/masstransit.abstractions/8.2.5/masstransit.abstractions.8.2.5.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/masstransit/8.3.0/masstransit.8.3.0.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/masstransit.abstractions/8.3.0/masstransit.abstractions.8.3.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/masstransit.aspnetcore/7.3.1/masstransit.aspnetcore.7.3.1.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/masstransit.extensions.dependencyinjection/7.3.1/masstransit.extensions.dependencyinjection.7.3.1.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/masstransit.rabbitmq/8.2.5/masstransit.rabbitmq.8.2.5.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/masstransit.rabbitmq/8.3.0/masstransit.rabbitmq.8.3.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.codeanalysis.analyzers/3.3.3/microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.codeanalysis.common/4.5.0/microsoft.codeanalysis.common.4.5.0.nupkg.sha512",
