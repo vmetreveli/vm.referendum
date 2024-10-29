@@ -1,3 +1,4 @@
+using Framework.Infrastructure;
 using Framework.Infrastructure.Exceptions;
 using Serilog;
 using vm.referendum.Api;
@@ -62,8 +63,8 @@ if (app.Environment.IsDevelopment())
             options.SwaggerEndpoint(url, name);
         }
     });
-
-    // app.ApplyMigration();
+    
+    app.ApplyMigration();
     app.UseDeveloperExceptionPage();
 }
 

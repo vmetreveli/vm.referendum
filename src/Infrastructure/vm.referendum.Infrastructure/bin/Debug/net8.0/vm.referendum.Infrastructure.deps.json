@@ -140,9 +140,9 @@
           }
         }
       },
-      "MassTransit/8.2.5": {
+      "MassTransit/8.3.0": {
         "dependencies": {
-          "MassTransit.Abstractions": "8.2.5",
+          "MassTransit.Abstractions": "8.3.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "8.0.1",
@@ -151,22 +151,22 @@
         },
         "runtime": {
           "lib/net8.0/MassTransit.dll": {
-            "assemblyVersion": "8.2.5.0",
-            "fileVersion": "8.2.5.0"
+            "assemblyVersion": "8.3.0.0",
+            "fileVersion": "8.3.0.0"
           }
         }
       },
-      "MassTransit.Abstractions/8.2.5": {
+      "MassTransit.Abstractions/8.3.0": {
         "runtime": {
           "lib/net8.0/MassTransit.Abstractions.dll": {
-            "assemblyVersion": "8.2.5.0",
-            "fileVersion": "8.2.5.0"
+            "assemblyVersion": "8.3.0.0",
+            "fileVersion": "8.3.0.0"
           }
         }
       },
       "MassTransit.AspNetCore/7.3.1": {
         "dependencies": {
-          "MassTransit": "8.2.5",
+          "MassTransit": "8.3.0",
           "MassTransit.Extensions.DependencyInjection": "7.3.1",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "8.0.1"
@@ -180,7 +180,7 @@
       },
       "MassTransit.Extensions.DependencyInjection/7.3.1": {
         "dependencies": {
-          "MassTransit": "8.2.5",
+          "MassTransit": "8.3.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
         },
         "runtime": {
@@ -190,15 +190,15 @@
           }
         }
       },
-      "MassTransit.RabbitMQ/8.2.5": {
+      "MassTransit.RabbitMQ/8.3.0": {
         "dependencies": {
-          "MassTransit": "8.2.5",
+          "MassTransit": "8.3.0",
           "RabbitMQ.Client": "6.8.1"
         },
         "runtime": {
           "lib/net8.0/MassTransit.RabbitMqTransport.dll": {
-            "assemblyVersion": "8.2.5.0",
-            "fileVersion": "8.2.5.0"
+            "assemblyVersion": "8.3.0.0",
+            "fileVersion": "8.3.0.0"
           }
         }
       },
@@ -953,28 +953,28 @@
           }
         }
       },
-      "Npgsql/8.0.4": {
+      "Npgsql/8.0.5": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2"
         },
         "runtime": {
           "lib/net8.0/Npgsql.dll": {
-            "assemblyVersion": "8.0.4.0",
-            "fileVersion": "8.0.4.0"
+            "assemblyVersion": "8.0.5.0",
+            "fileVersion": "8.0.5.0"
           }
         }
       },
-      "Npgsql.EntityFrameworkCore.PostgreSQL/8.0.8": {
+      "Npgsql.EntityFrameworkCore.PostgreSQL/8.0.10": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore.Abstractions": "8.0.10",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.10",
-          "Npgsql": "8.0.4"
+          "Npgsql": "8.0.5"
         },
         "runtime": {
           "lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
-            "assemblyVersion": "8.0.8.0",
-            "fileVersion": "8.0.8.0"
+            "assemblyVersion": "8.0.10.0",
+            "fileVersion": "8.0.10.0"
           }
         }
       },
@@ -1189,10 +1189,10 @@
           "AutoMapper.Extensions.ExpressionMapping": "7.0.2",
           "EFCore.NamingConventions": "8.0.3",
           "FluentValidation": "11.10.0",
-          "MassTransit": "8.2.5",
+          "MassTransit": "8.3.0",
           "MassTransit.AspNetCore": "7.3.1",
           "MassTransit.Extensions.DependencyInjection": "7.3.1",
-          "MassTransit.RabbitMQ": "8.2.5",
+          "MassTransit.RabbitMQ": "8.3.0",
           "Microsoft.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore.InMemory": "8.0.10",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.10",
@@ -1220,7 +1220,7 @@
           "Microsoft.Extensions.DependencyInjection": "8.0.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
           "Microsoft.Extensions.Hosting": "8.0.1",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.8",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.10",
           "Quartz.Extensions.Hosting": "3.13.0"
         },
         "runtime": {
@@ -1337,19 +1337,19 @@
       "path": "mailkit/4.8.0",
       "hashPath": "mailkit.4.8.0.nupkg.sha512"
     },
-    "MassTransit/8.2.5": {
+    "MassTransit/8.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-b/gNaT6IxX+BZnLCLTzjqia5iQJxpmIGOjPiLnD6SLBRX9tyIsYVNKPAqQ6txNe2ztOOaW4ntef84VxSvA0IEA==",
-      "path": "masstransit/8.2.5",
-      "hashPath": "masstransit.8.2.5.nupkg.sha512"
+      "sha512": "sha512-LZbHqGeP+enkeidjyLeAFQjOFyc5eCJmc5Wru/9Xv1dtcfI2wT+Ga5OQqUCJsqIQzcV1yfumRtbMnAVxwxB/4g==",
+      "path": "masstransit/8.3.0",
+      "hashPath": "masstransit.8.3.0.nupkg.sha512"
     },
-    "MassTransit.Abstractions/8.2.5": {
+    "MassTransit.Abstractions/8.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TcAV7ZEdXTrw6D74g55mlEYLBBQvsifNrdfwt0UCps7mZVBoXoS3fvMHCQguRgj+6k1Q1qEV9kZa0aUOT7GcPQ==",
-      "path": "masstransit.abstractions/8.2.5",
-      "hashPath": "masstransit.abstractions.8.2.5.nupkg.sha512"
+      "sha512": "sha512-smYAGbCnHXl927Xvr2nzxtQAhfJfRSnVZAcIHGMI3QQq/aK3KvsCqgail1bw7acw0NkEhw8yv7cnKBGYKKFXPQ==",
+      "path": "masstransit.abstractions/8.3.0",
+      "hashPath": "masstransit.abstractions.8.3.0.nupkg.sha512"
     },
     "MassTransit.AspNetCore/7.3.1": {
       "type": "package",
@@ -1365,12 +1365,12 @@
       "path": "masstransit.extensions.dependencyinjection/7.3.1",
       "hashPath": "masstransit.extensions.dependencyinjection.7.3.1.nupkg.sha512"
     },
-    "MassTransit.RabbitMQ/8.2.5": {
+    "MassTransit.RabbitMQ/8.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gIBF5plL/BZo5/SNDo0C6BjOZoGqJu5YdqoDm0MI6A7kJad9H/5qfWdB4AK1A97vpK7At3i3uXTuriqx5+UKMg==",
-      "path": "masstransit.rabbitmq/8.2.5",
-      "hashPath": "masstransit.rabbitmq.8.2.5.nupkg.sha512"
+      "sha512": "sha512-P8bUlGKWFS+7VNPGlanVK44/I8sDVARvpyfk3lDOI9vAIDytLNIgi8evMT2YmXxeyjFDIzLEM/VSJO4L+jIddw==",
+      "path": "masstransit.rabbitmq/8.3.0",
+      "hashPath": "masstransit.rabbitmq.8.3.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.10": {
       "type": "package",
@@ -1764,19 +1764,19 @@
       "path": "newtonsoft.json/13.0.3",
       "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
     },
-    "Npgsql/8.0.4": {
+    "Npgsql/8.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vaYEUlF/pB9m8bs21wQv3Da0kMHT4A9USe47VfY/L2BO97xz5KfIxhEu22QS9d68ZrLxvtL3wQDfDLPr2OjbjA==",
-      "path": "npgsql/8.0.4",
-      "hashPath": "npgsql.8.0.4.nupkg.sha512"
+      "sha512": "sha512-zRG5V8cyeZLpzJlKzFKjEwkRMYIYnHWJvEor2lWXeccS2E1G2nIWYYhnukB51iz5XsWSVEtqg3AxTWM0QJ6vfg==",
+      "path": "npgsql/8.0.5",
+      "hashPath": "npgsql.8.0.5.nupkg.sha512"
     },
-    "Npgsql.EntityFrameworkCore.PostgreSQL/8.0.8": {
+    "Npgsql.EntityFrameworkCore.PostgreSQL/8.0.10": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-D5WWJZJTgZYUmGv66BARXbTlinp2a5f5RueJqGYoHuWJw02J0i2va/RA+8N4A5hLORK5YKMRqXhFWtKsZdrksw==",
-      "path": "npgsql.entityframeworkcore.postgresql/8.0.8",
-      "hashPath": "npgsql.entityframeworkcore.postgresql.8.0.8.nupkg.sha512"
+      "sha512": "sha512-gFPl9Dmxih7Yi4tZ3bITzZFzbxFMBx04gqTqcjoL2r5VEW+O2TA5UVw/wm/XW26NAJ7sg59Je0+9QrwiZt6MPQ==",
+      "path": "npgsql.entityframeworkcore.postgresql/8.0.10",
+      "hashPath": "npgsql.entityframeworkcore.postgresql.8.0.10.nupkg.sha512"
     },
     "OneOf/3.0.216": {
       "type": "package",

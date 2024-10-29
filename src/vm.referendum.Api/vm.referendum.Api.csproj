@@ -45,17 +45,20 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Properties\launchSettings.json" />
       <None Remove="Properties\serviceDependencies.json" />
       <None Remove="Properties\serviceDependencies.Referendum - Web Deploy.json" />
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Extensions\" />
       <Folder Include="Middleware\" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Update="appsettings.Development.json">
+        <DependentUpon>appsettings.json</DependentUpon>
+      </Content>
+      <Content Update="appsettings.Release.json">
         <DependentUpon>appsettings.json</DependentUpon>
       </Content>
     </ItemGroup>

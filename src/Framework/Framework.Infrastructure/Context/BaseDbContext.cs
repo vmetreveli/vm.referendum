@@ -1,10 +1,12 @@
-﻿namespace Framework.Infrastructure.Context;
+﻿using Framework.Abstractions;
+
+namespace Framework.Infrastructure.Context;
 
 /// <summary>
 ///     BaseDbContext is the base database context class used to interact with the database.
 ///     It inherits from <see cref="DbContext" /> and provides configurations and DbSet definitions for entities.
 /// </summary>
-public class BaseDbContext(DbContextOptions<BaseDbContext> options) : DbContext(options)
+public class BaseDbContext(DbContextOptions<BaseDbContext> options) : DbContext(options),IDbContext
 {
     #region Entities
 

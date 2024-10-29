@@ -1,9 +1,10 @@
 ﻿using System.Reflection;
+using Framework.Abstractions;
 using vm.referendum.Domain.Entities;
 
 namespace vm.referendum.Infrastructure.Context;
 
-public sealed class DataContext(DbContextOptions options) : DbContext(options)
+public sealed class DataContext(DbContextOptions options) : DbContext(options),IDbContext
 {
     /// <inheritdoc />
     protected override void OnModelCreating(ModelBuilder modelBuilder)
