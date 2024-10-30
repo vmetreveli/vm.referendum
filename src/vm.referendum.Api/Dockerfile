@@ -14,7 +14,7 @@ ENV ASPNETCORE_URLS=http://+:80
 EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
+ARG BUILD_CONFIGURATION=Development
 WORKDIR /src
 
 COPY ["src/vm.referendum.Api/vm.referendum.Api.csproj", "vm.referendum.Api/"]
