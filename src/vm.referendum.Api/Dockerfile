@@ -2,8 +2,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 # Set environment variables to listen on both HTTP and HTTPS
 ENV ASPNETCORE_HTTP_PORTS=80
-ENV ASPNETCORE_HTTPS_PORTS=443
-ENV ASPNETCORE_URLS=http://+:80;https://+:443
+
+ENV ASPNETCORE_URLS=http://+:80
 
 # Copy SSL certificate if you have one (uncomment if you have a certificate)
 # COPY ["path/to/certificate.pfx", "/https/aspnetapp.pfx"]
@@ -12,7 +12,6 @@ ENV ASPNETCORE_URLS=http://+:80;https://+:443
 
 # Expose ports for HTTP and HTTPS
 EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release

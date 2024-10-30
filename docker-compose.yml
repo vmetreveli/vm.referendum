@@ -79,8 +79,7 @@ services:
       - referendum
       - rabbitmq
     ports:
-      - "80:5059"
-      - "443:7059"
+      - "80:80"
 
 volumes:
   postgres_data:
