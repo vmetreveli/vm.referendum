@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
+
+ENV ASPNETCORE_ENVIRONMENT=Development
 # Set environment variables to listen on both HTTP and HTTPS
 ENV ASPNETCORE_HTTP_PORTS=80
 
