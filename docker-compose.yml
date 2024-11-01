@@ -1,7 +1,7 @@
 services:
-  referendum:
+  referendumdb:
     image: postgres
-    container_name: referendum
+    container_name: referendumdb
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin1234
@@ -11,15 +11,6 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-  
-  #  referendum-seq:
-  #    image: datalust/seq:latest
-  #    container_name: Referendum.Seq
-  #    environment:
-  #      - ACCEPT_EULA=Y
-  #    ports:
-  #      - "5341:5341"
-  #      - "8080:80"
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -39,7 +30,7 @@ services:
       dockerfile: ./src/vm.referendum.Api/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:DefaultConnection=Server=referendum;Port=5432;Database=Referendum;User Id=admin;Password=admin1234;"
+      - "ConnectionStrings:DefaultConnection=Server=referendumdb;Port=5432;Database=Referendum;User Id=admin;Password=admin1234;"
       
       # Serilog configuration
       - Serilog__Using__0=Serilog.Sinks.Console
@@ -76,15 +67,10 @@ services:
       - AppConfiguration__Quartz__OutboxJob=0/3 * * * * ?
     
     depends_on:
-      - referendum
+      - referendumdb
       - rabbitmq
     ports:
       - "80:80"
 
 volumes:
   postgres_data:
-
-
-
-#docker-compose -f docker-compose.yml up -d
-#docker-compose -f docker-compose.yml up --build

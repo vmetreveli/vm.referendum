@@ -15,10 +15,10 @@ public static class MigrationExtensions
         //  ILogger<Program> logger = services.GetRequiredService<ILogger<Program>>();
 
         // Get all DbContext types from the assembly
-        var dbContextTypes = Assembly.GetExecutingAssembly().GetTypes()
-            .Where(t => typeof(DbContext).IsAssignableFrom(t) && !t.IsAbstract);
+        // var dbContextTypes = Assembly.GetExecutingAssembly().GetTypes()
+        //     .Where(t => typeof(DbContext).IsAssignableFrom(t) && !t.IsAbstract);
 
-        foreach (var dbContextType in dbContextTypes)
+        foreach (var dbContextType in dbContexts)
         {
             try
             {
