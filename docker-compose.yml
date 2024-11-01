@@ -33,7 +33,7 @@ services:
       - "15672:15672"
 
   referendum.api:
-    image: referendum
+    image: vmetreveli/vm.referendum:latest
     build:
       context: .
       dockerfile: ./src/vm.referendum.Api/Dockerfile
