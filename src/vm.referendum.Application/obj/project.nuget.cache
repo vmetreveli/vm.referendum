@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ePSfAxLY/MU=",
+  "dgSpecHash": "zWhZdQ74w8w=",
   "success": true,
   "projectFilePath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/vm.referendum.Application/vm.referendum.Application.csproj",
   "expectedPackageFiles": [
@@ -69,9 +69,9 @@
     "/Users/vakhushtimetreveli/.nuget/packages/npgsql/8.0.5/npgsql.8.0.5.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/npgsql.entityframeworkcore.postgresql/8.0.10/npgsql.entityframeworkcore.postgresql.8.0.10.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/oneof/3.0.216/oneof.3.0.216.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/quartz/3.13.0/quartz.3.13.0.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/quartz.extensions.dependencyinjection/3.13.0/quartz.extensions.dependencyinjection.3.13.0.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/quartz.extensions.hosting/3.13.0/quartz.extensions.hosting.3.13.0.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/quartz/3.13.1/quartz.3.13.1.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/quartz.extensions.dependencyinjection/3.13.1/quartz.extensions.dependencyinjection.3.13.1.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/quartz.extensions.hosting/3.13.1/quartz.extensions.hosting.3.13.1.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/rabbitmq.client/6.8.1/rabbitmq.client.6.8.1.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/restease/1.6.4/restease.1.6.4.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/system.diagnostics.eventlog/8.0.1/system.diagnostics.eventlog.8.0.1.nupkg.sha512",

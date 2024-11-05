@@ -949,7 +949,7 @@
           }
         }
       },
-      "Quartz/3.13.0": {
+      "Quartz/3.13.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "2.1.1"
@@ -965,12 +965,12 @@
           }
         }
       },
-      "Quartz.Extensions.DependencyInjection/3.13.0": {
+      "Quartz.Extensions.DependencyInjection/3.13.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
           "Microsoft.Extensions.Options": "8.0.0",
-          "Quartz": "3.13.0"
+          "Quartz": "3.13.1"
         },
         "compile": {
           "lib/net8.0/Quartz.Extensions.DependencyInjection.dll": {
@@ -983,11 +983,11 @@
           }
         }
       },
-      "Quartz.Extensions.Hosting/3.13.0": {
+      "Quartz.Extensions.Hosting/3.13.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
-          "Quartz.Extensions.DependencyInjection": "3.13.0"
+          "Quartz.Extensions.DependencyInjection": "3.13.1"
         },
         "compile": {
           "lib/net8.0/Quartz.Extensions.Hosting.dll": {
@@ -2441,10 +2441,10 @@
         "postgresql.png"
       ]
     },
-    "Quartz/3.13.0": {
-      "sha512": "ddD1CPjWcDMbKdAhzuna3Ng23Sdv1YtuHbFMdAAFw0eBEj9jnadYkDWiKGo/c7BMnbI/ruuyd370sKVgdMCkDA==",
+    "Quartz/3.13.1": {
+      "sha512": "0S4/gYb/FRQfek65OPAmszbdEmtc4Fq/jSeA5XFnvMIjYL9Zr8g9jWoKneEFzAFJGlESjFULtaUFzValHvqu4A==",
       "type": "package",
-      "path": "quartz/3.13.0",
+      "path": "quartz/3.13.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2457,15 +2457,15 @@
         "lib/netstandard2.0/Quartz.dll",
         "lib/netstandard2.0/Quartz.xml",
         "quartz-logo-small.png",
-        "quartz.3.13.0.nupkg.sha512",
+        "quartz.3.13.1.nupkg.sha512",
         "quartz.nuspec",
         "quick-start.md"
       ]
     },
-    "Quartz.Extensions.DependencyInjection/3.13.0": {
-      "sha512": "H9+hAnJI/TNKF+Po++jEzLRNXOfqpr3N0CZzVsDcS1apGQ4ELU+6OdWoNVN2l+Se4yW8HApBb3NHDQL4mf4E9A==",
+    "Quartz.Extensions.DependencyInjection/3.13.1": {
+      "sha512": "I3uXVIYMEo00TrEzzHG3koWNTGdinPGjvgBWse7SqMt3ZW7qlKBXB4a5bJsxkKSMjAs4i2Ykx2cJSi/r6zhiCw==",
       "type": "package",
-      "path": "quartz.extensions.dependencyinjection/3.13.0",
+      "path": "quartz.extensions.dependencyinjection/3.13.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2477,14 +2477,14 @@
         "lib/netstandard2.0/Quartz.Extensions.DependencyInjection.xml",
         "microsoft-di-integration.md",
         "quartz-logo-small.png",
-        "quartz.extensions.dependencyinjection.3.13.0.nupkg.sha512",
+        "quartz.extensions.dependencyinjection.3.13.1.nupkg.sha512",
         "quartz.extensions.dependencyinjection.nuspec"
       ]
     },
-    "Quartz.Extensions.Hosting/3.13.0": {
-      "sha512": "IEVjySmI5Jj3kcUUe4z+DXYJK0KggtQfHymwAps7W8qsb1adg6KpAgutBNz0OdD9WKjUf2dRiOM74pVXKj0hkQ==",
+    "Quartz.Extensions.Hosting/3.13.1": {
+      "sha512": "pwGofFs0VoIwq8JFXBEeEKFrA/6wJDFekLzQA5oev7+Ow0+lqBlZlzBpPd10hkgVAItL+uZ2SEjP8Ual3QZTww==",
       "type": "package",
-      "path": "quartz.extensions.hosting/3.13.0",
+      "path": "quartz.extensions.hosting/3.13.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2496,7 +2496,7 @@
         "lib/netstandard2.0/Quartz.Extensions.Hosting.dll",
         "lib/netstandard2.0/Quartz.Extensions.Hosting.xml",
         "quartz-logo-small.png",
-        "quartz.extensions.hosting.3.13.0.nupkg.sha512",
+        "quartz.extensions.hosting.3.13.1.nupkg.sha512",
         "quartz.extensions.hosting.nuspec"
       ]
     },
@@ -2649,7 +2649,7 @@
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 8.0.2",
       "Microsoft.Extensions.Hosting >= 8.0.1",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.10",
-      "Quartz.Extensions.Hosting >= 3.13.0"
+      "Quartz.Extensions.Hosting >= 3.13.1"
     ]
   },
   "packageFolders": {
@@ -2736,7 +2736,7 @@
           },
           "Quartz.Extensions.Hosting": {
             "target": "Package",
-            "version": "[3.13.0, )"
+            "version": "[3.13.1, )"
           }
         },
         "imports": [

@@ -13,7 +13,7 @@
     <SourceRoot Include="/Users/vakhushtimetreveli/.nuget/packages/" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)refit/7.2.1/buildTransitive/netstandard2.0/refit.props" Condition="Exists('$(NuGetPackageRoot)refit/7.2.1/buildTransitive/netstandard2.0/refit.props')" />
+    <Import Project="$(NuGetPackageRoot)refit/8.0.0/buildTransitive/netstandard2.0/refit.props" Condition="Exists('$(NuGetPackageRoot)refit/8.0.0/buildTransitive/netstandard2.0/refit.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.apidescription.server/6.0.3/build/Microsoft.Extensions.ApiDescription.Server.props" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.apidescription.server/6.0.3/build/Microsoft.Extensions.ApiDescription.Server.props')" />
     <Import Project="$(NuGetPackageRoot)nswag.aspnetcore/14.1.0/build/NSwag.AspNetCore.props" Condition="Exists('$(NuGetPackageRoot)nswag.aspnetcore/14.1.0/build/NSwag.AspNetCore.props')" />
   </ImportGroup>
