@@ -1,4 +1,5 @@
 using vm.referendum.Domain.Exception;
+using vm.referendum.Domain.Exception.FirstNameErrors;
 
 namespace vm.referendum.Domain.ValueObjects;
 
@@ -18,7 +19,7 @@ public sealed class FirstName : ValueObject
     public static FirstName Create(string? firstName)
     {
         if (string.IsNullOrWhiteSpace(firstName))
-            throw new NullOrEmptyException("The first name is required.");
+            throw new FirstNameException(FirstNameErrors.NullOrEmpty.Code, FirstNameErrors.NullOrEmpty.Name);
 
         return new FirstName(firstName);
     }

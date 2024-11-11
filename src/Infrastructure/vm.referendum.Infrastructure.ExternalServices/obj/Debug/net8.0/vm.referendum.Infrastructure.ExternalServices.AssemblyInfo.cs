@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("vm.referendum.Infrastructure.ExternalServices")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb61c4580e9f0271198224439c0d0af97f0823f3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f6eb12d151c5c4fcadb08f2db64ec158a8a067e")]
 [assembly: System.Reflection.AssemblyProductAttribute("vm.referendum.Infrastructure.ExternalServices")]
 [assembly: System.Reflection.AssemblyTitleAttribute("vm.referendum.Infrastructure.ExternalServices")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
