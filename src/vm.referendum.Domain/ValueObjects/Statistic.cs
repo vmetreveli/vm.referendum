@@ -25,7 +25,7 @@ public sealed class Statistic : ValueObject
     public int Value { get; private set; } = 1;
 
 
-    public static Result<Statistic> Create(Answer answer, Question question)
+    public static Statistic Create(Answer answer, Question question)
     {
         return new Statistic(answer, question);
     }

@@ -7,4 +7,4 @@ namespace vm.referendum.Application.Features.User.Commands.DeleteUser;
 /// </summary>
 public sealed record DeleteUserCommand(
     string Email
-) : ICommand<Result>;
+) : ICommand;

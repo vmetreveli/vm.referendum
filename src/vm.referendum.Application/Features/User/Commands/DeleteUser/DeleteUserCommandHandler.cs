@@ -5,10 +5,10 @@ using vm.referendum.Domain.ValueObjects;
 namespace vm.referendum.Application.Features.User.Commands.DeleteUser;
 
 internal sealed class DeleteUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
-    : ICommandHandler<DeleteUserCommand, Result>
+    : ICommandHandler<DeleteUserCommand>
 {
     /// <inheritdoc />
-    public async Task<Result> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
         var emailResult = Email.Create(request.Email);
         var user = await userRepository.GetByEmailAsync(emailResult, cancellationToken);
@@ -18,7 +18,5 @@ internal sealed class DeleteUserCommandHandler(IUserRepository userRepository, I
             userRepository.Remove(user);
             await unitOfWork.CompleteAsync(cancellationToken);
         }
-
-        return Result.Success();
     }
 }

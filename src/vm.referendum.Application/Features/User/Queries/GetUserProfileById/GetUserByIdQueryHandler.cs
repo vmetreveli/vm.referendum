@@ -1,29 +1,20 @@
-﻿using vm.referendum.Application.Contracts;
-using vm.referendum.Domain.Abstractions;
-using vm.referendum.Domain.Errors;
+﻿using Framework.Infrastructure.Exceptions;
+using vm.referendum.Application.Contracts;
 using vm.referendum.Domain.Repository;
 
 namespace vm.referendum.Application.Features.User.Queries.GetUserProfileById;
 
-public sealed class GetUserByIdQueryHandler
-    : IQueryHandler<GetUserByIdQuery, Result<UserResponse>>
+public sealed class GetUserByIdQueryHandler(IUserRepository userRepository, IMapper mapper)
+    : IQueryHandler<GetUserByIdQuery, UserResponse>
 {
-    private readonly IMapper _mapper;
-    private readonly IUserRepository _userRepository;
-
-    public GetUserByIdQueryHandler(IUserRepository userRepository)
-    {
-        _userRepository = userRepository;
-    }
-
-    public async Task<Result<UserResponse>> Handle(GetUserByIdQuery request,
+    public async Task<UserResponse> Handle(GetUserByIdQuery request,
         CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetByIdAsync(request.UserId, cancellationToken);
+        var user = await userRepository.GetByIdAsync(request.UserId, cancellationToken);
 
         if (user is null)
-            return Result.Failure<UserResponse>(UserErrors.NotFound(request.UserId));
+            throw new ObjectNotFoundException(nameof(Domain.Entities.User), request.UserId.ToString());
 
-        return _mapper.Map<UserResponse>(user);
+        return mapper.Map<UserResponse>(user);
     }
 }

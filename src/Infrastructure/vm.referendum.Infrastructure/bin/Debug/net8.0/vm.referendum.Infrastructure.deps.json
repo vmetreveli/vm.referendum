@@ -986,39 +986,39 @@
           }
         }
       },
-      "Quartz/3.13.0": {
+      "Quartz/3.13.1": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2"
         },
         "runtime": {
           "lib/net6.0/Quartz.dll": {
-            "assemblyVersion": "3.13.0.0",
-            "fileVersion": "3.13.0.0"
+            "assemblyVersion": "3.13.1.0",
+            "fileVersion": "3.13.1.0"
           }
         }
       },
-      "Quartz.Extensions.DependencyInjection/3.13.0": {
+      "Quartz.Extensions.DependencyInjection/3.13.1": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
           "Microsoft.Extensions.Options": "8.0.2",
-          "Quartz": "3.13.0"
+          "Quartz": "3.13.1"
         },
         "runtime": {
           "lib/net8.0/Quartz.Extensions.DependencyInjection.dll": {
-            "assemblyVersion": "3.13.0.0",
-            "fileVersion": "3.13.0.0"
+            "assemblyVersion": "3.13.1.0",
+            "fileVersion": "3.13.1.0"
           }
         }
       },
-      "Quartz.Extensions.Hosting/3.13.0": {
+      "Quartz.Extensions.Hosting/3.13.1": {
         "dependencies": {
           "Microsoft.Extensions.Hosting.Abstractions": "8.0.1",
-          "Quartz.Extensions.DependencyInjection": "3.13.0"
+          "Quartz.Extensions.DependencyInjection": "3.13.1"
         },
         "runtime": {
           "lib/net8.0/Quartz.Extensions.Hosting.dll": {
-            "assemblyVersion": "3.13.0.0",
-            "fileVersion": "3.13.0.0"
+            "assemblyVersion": "3.13.1.0",
+            "fileVersion": "3.13.1.0"
           }
         }
       },
@@ -1221,7 +1221,7 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
           "Microsoft.Extensions.Hosting": "8.0.1",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.10",
-          "Quartz.Extensions.Hosting": "3.13.0"
+          "Quartz.Extensions.Hosting": "3.13.1"
         },
         "runtime": {
           "Framework.Infrastructure.dll": {
@@ -1785,26 +1785,26 @@
       "path": "oneof/3.0.216",
       "hashPath": "oneof.3.0.216.nupkg.sha512"
     },
-    "Quartz/3.13.0": {
+    "Quartz/3.13.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ddD1CPjWcDMbKdAhzuna3Ng23Sdv1YtuHbFMdAAFw0eBEj9jnadYkDWiKGo/c7BMnbI/ruuyd370sKVgdMCkDA==",
-      "path": "quartz/3.13.0",
-      "hashPath": "quartz.3.13.0.nupkg.sha512"
+      "sha512": "sha512-0S4/gYb/FRQfek65OPAmszbdEmtc4Fq/jSeA5XFnvMIjYL9Zr8g9jWoKneEFzAFJGlESjFULtaUFzValHvqu4A==",
+      "path": "quartz/3.13.1",
+      "hashPath": "quartz.3.13.1.nupkg.sha512"
     },
-    "Quartz.Extensions.DependencyInjection/3.13.0": {
+    "Quartz.Extensions.DependencyInjection/3.13.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-H9+hAnJI/TNKF+Po++jEzLRNXOfqpr3N0CZzVsDcS1apGQ4ELU+6OdWoNVN2l+Se4yW8HApBb3NHDQL4mf4E9A==",
-      "path": "quartz.extensions.dependencyinjection/3.13.0",
-      "hashPath": "quartz.extensions.dependencyinjection.3.13.0.nupkg.sha512"
+      "sha512": "sha512-I3uXVIYMEo00TrEzzHG3koWNTGdinPGjvgBWse7SqMt3ZW7qlKBXB4a5bJsxkKSMjAs4i2Ykx2cJSi/r6zhiCw==",
+      "path": "quartz.extensions.dependencyinjection/3.13.1",
+      "hashPath": "quartz.extensions.dependencyinjection.3.13.1.nupkg.sha512"
     },
-    "Quartz.Extensions.Hosting/3.13.0": {
+    "Quartz.Extensions.Hosting/3.13.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IEVjySmI5Jj3kcUUe4z+DXYJK0KggtQfHymwAps7W8qsb1adg6KpAgutBNz0OdD9WKjUf2dRiOM74pVXKj0hkQ==",
-      "path": "quartz.extensions.hosting/3.13.0",
-      "hashPath": "quartz.extensions.hosting.3.13.0.nupkg.sha512"
+      "sha512": "sha512-pwGofFs0VoIwq8JFXBEeEKFrA/6wJDFekLzQA5oev7+Ow0+lqBlZlzBpPd10hkgVAItL+uZ2SEjP8Ual3QZTww==",
+      "path": "quartz.extensions.hosting/3.13.1",
+      "hashPath": "quartz.extensions.hosting.3.13.1.nupkg.sha512"
     },
     "RabbitMQ.Client/6.8.1": {
       "type": "package",

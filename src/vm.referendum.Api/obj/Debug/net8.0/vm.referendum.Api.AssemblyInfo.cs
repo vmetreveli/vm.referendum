@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("vm.referendum.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3198abf7ece0c68a85ccb5a211236860ffcf4dab")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a2b9559d72b7b49aaca1975fbc20874d68a6300")]
 [assembly: System.Reflection.AssemblyProductAttribute("vm.referendum.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("vm.referendum.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

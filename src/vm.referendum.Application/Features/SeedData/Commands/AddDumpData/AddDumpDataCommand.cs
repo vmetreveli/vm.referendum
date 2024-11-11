@@ -2,6 +2,6 @@
 
 namespace vm.referendum.Application.Features.SeedData.Commands.AddDumpData;
 
-public sealed class AddDumpDataCommand : ICommand<Result>
+public sealed class AddDumpDataCommand : ICommand
 {
 }

@@ -24,7 +24,7 @@ public sealed class Vote : ValueObject
     public int Count { get; set; }
     public double Percentage { get; set; }
 
-    public static Result<Vote> Create(Answer answer, Question question)
+    public static Vote Create(Answer answer, Question question)
     {
         return new Vote(answer, question);
     }

@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
-using Framework.Infrastructure.Exceptions;
-using vm.referendum.Domain.Errors;
+using vm.referendum.Domain.Exception.Email;
+
 
 namespace vm.referendum.Domain.ValueObjects;
 
@@ -20,21 +20,18 @@ public sealed class Email : ValueObject
     public static Email Create(string? email)
     {
         if (string.IsNullOrWhiteSpace(email))
-            //   return Result.Failure<Email>(EmailErrors.NullOrEmpty);
-            throw new ObjectNotFoundException(typeof(Email).ToString(), EmailErrors.NullOrEmpty.Name);
+            throw new EmailException(EmailErrors.NullOrEmpty.Code, EmailErrors.NullOrEmpty.Name);
 
 
         var trimMail = email.Trim();
 
         if (trimMail.Length > 150)
-            //return Result.Failure<Email>(EmailErrors.LongerThanAllowed);
-            throw new ObjectNotFoundException(typeof(Email).ToString(), EmailErrors.LongerThanAllowed.Name);
+            throw new EmailException(EmailErrors.LongerThanAllowed.Code, EmailErrors.LongerThanAllowed.Name);
 
         var isValid = Regex.IsMatch(trimMail, @"^(.+)@(.+)$");
 
         if (!isValid)
-            // return Result.Failure<Email>(EmailErrors.InvalidFormat);
-            throw new ObjectNotFoundException(typeof(Email).ToString(), EmailErrors.InvalidFormat.Name);
+            throw new EmailException(EmailErrors.InvalidFormat.Code, EmailErrors.InvalidFormat.Name);
 
         return new Email(email);
     }

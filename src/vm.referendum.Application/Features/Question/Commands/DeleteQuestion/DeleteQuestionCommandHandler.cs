@@ -1,13 +1,14 @@
-﻿using vm.referendum.Domain.Abstractions;
+﻿using Framework.Abstractions.Exceptions;
+using vm.referendum.Domain.Abstractions;
 using vm.referendum.Domain.Errors;
 using vm.referendum.Domain.Repository;
 
 namespace vm.referendum.Application.Features.Question.Commands.DeleteQuestion;
 
 public class DeleteQuestionCommandHandler(IQuestionRepository questionRepository, IUnitOfWork unitOfWork)
-    : ICommandHandler<DeleteQuestionCommand, Result>
+    : ICommandHandler<DeleteQuestionCommand>
 {
-    public async Task<Result> Handle(DeleteQuestionCommand request,
+    public async Task Handle(DeleteQuestionCommand request,
         CancellationToken cancellationToken = default)
     {
         //  var result = new OperationResult<Domain.Core.Entities.Question>();
@@ -15,15 +16,12 @@ public class DeleteQuestionCommandHandler(IQuestionRepository questionRepository
         var question = await questionRepository.GetByIdAsync(request.QuestionId, cancellationToken);
 
         if (question is null)
-            return Result.Failure(QuestionErrors.NotFound(request.QuestionId));
+           throw new InflowException("Question not found");
 
         if (question.UserId != request.UserId)
-            // result.AddError(ErrorCode.QuestionDeleteNotPossible, QuestionsErrorMessage.QuestionDeleteNotPossible);
-            return Result.Failure(UserErrors.InvalidPermissions);
+           throw new UnauthorizedAccessException("You are not authorized to delete this question");
 
         questionRepository.Remove(question);
         await unitOfWork.CompleteAsync(cancellationToken);
-
-        return Result.Success();
-    }
+ }
 }

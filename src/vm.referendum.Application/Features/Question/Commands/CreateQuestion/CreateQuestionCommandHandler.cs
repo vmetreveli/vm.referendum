@@ -1,4 +1,5 @@
-﻿using vm.referendum.Application.Contracts;
+﻿using Framework.Abstractions.Exceptions;
+using vm.referendum.Application.Contracts;
 using vm.referendum.Domain.Abstractions;
 using vm.referendum.Domain.Errors;
 using vm.referendum.Domain.Repository;
@@ -11,24 +12,24 @@ internal class CreateQuestionCommandHandler(
     IQuestionRepository questionRepository,
     IUnitOfWork unitOfWork,
     IMapper mapper)
-    : ICommandHandler<CreateQuestionCommand, Result<QuestionResponse>>
+    : ICommandHandler<CreateQuestionCommand, QuestionResponse>
 {
-    public async Task<Result<QuestionResponse>> Handle(
+    public async Task<QuestionResponse> Handle(
         CreateQuestionCommand request,
         CancellationToken cancellationToken = default)
     {
-        if (!TryParse(request.UserId, out var userId)) Result.Failure<QuestionResponse>(UserErrors.NotFound());
+        if (!TryParse(request.UserId, out var userId)) throw new InflowException("Invalid user id.");
 
 
         var user = await userRepository
             .GetByIdAsync(userId, cancellationToken);
-        if (user is null) return Result.Failure<QuestionResponse>(UserErrors.NotFound(userId));
+        if (user is null) throw new InflowException("Invalid user id.");
 
 
         var checkQuestion =
             await questionRepository
                 .FindAsync(i => i.TextContent == request.TextContent, cancellationToken);
-        if (checkQuestion.Any()) return Result.Failure<QuestionResponse>(QuestionErrors.Validation());
+        if (checkQuestion.Any()) throw new InflowException("Question already exists.");
 
 
         var question = Domain.Entities.Question.CreateQuestion(

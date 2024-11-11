@@ -1,30 +1,25 @@
-﻿using vm.referendum.Domain.Abstractions;
-using vm.referendum.Domain.Errors;
+﻿using Framework.Abstractions.Exceptions;
 using vm.referendum.Domain.Repository;
 
 namespace vm.referendum.Application.Features.Answer.Commands.RemoveAnswer;
 
 public class RemoveAnswerCommandHandler(IQuestionRepository questionRepository, IUnitOfWork unitOfWork)
-    : ICommandHandler<RemoveAnswerCommand, Result>
+    : ICommandHandler<RemoveAnswerCommand>
 {
-    public async Task<Result> Handle(RemoveAnswerCommand request, CancellationToken cancellationToken)
+    public async Task Handle(RemoveAnswerCommand request, CancellationToken cancellationToken)
     {
         var question = await questionRepository.GetByIdWithAnswersAsync(request.QuestionId, cancellationToken);
 
         if (question == null)
-            return Result.Failure(QuestionErrors.NotFound());
+            throw new InflowException("Question not found");
 
         var answer = question.Answers.FirstOrDefault(a => a.Id == request.AnswerId);
         if (answer == null)
-            return Result.Failure(AnswerErrors.NotFound());
+            throw new InflowException("Answer not found");
 
-        var res = question.RemoveAnswer(answer);
-        if (!res.IsFailure)
-        {
-            await questionRepository.AddAsync(question, cancellationToken);
-            await unitOfWork.CompleteAsync(cancellationToken);
-        }
+        question.RemoveAnswer(answer);
 
-        return Result.Success();
+        await questionRepository.AddAsync(question, cancellationToken);
+        await unitOfWork.CompleteAsync(cancellationToken);
     }
 }

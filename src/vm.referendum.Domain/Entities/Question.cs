@@ -1,4 +1,5 @@
-﻿using vm.referendum.Domain.Abstractions;
+﻿using Framework.Abstractions.Exceptions;
+using vm.referendum.Domain.Abstractions;
 using vm.referendum.Domain.Errors;
 
 namespace vm.referendum.Domain.Entities;
@@ -41,11 +42,11 @@ public sealed class Question : AggregateRoot<Guid>, IAuditableEntity, IDeletable
     }
 
 
-    public Result UpdateQuestionText(string newText, Guid userId)
+    public void UpdateQuestionText(string newText, Guid userId)
     {
-        if (UserId != userId) return Result.Failure(UserErrors.InvalidPermissions);
+        if (UserId != userId)
+            throw new InflowException("You cannot change the question text because users are not the same.");
         TextContent = newText;
-        return Result.Success();
     }
 
     public void AddAnswer(Answer newAnswer)
@@ -53,16 +54,12 @@ public sealed class Question : AggregateRoot<Guid>, IAuditableEntity, IDeletable
         _answers.Add(newAnswer);
     }
 
-    public Result RemoveAnswer(Answer toRemove)
+    public void RemoveAnswer(Answer toRemove)
     {
         if (toRemove.UserId != UserId)
-            return Result.Failure(
-                new Error("Question.Remove",
-                    "Cannot remove answer from question as you are not its author"));
-
+            throw new InflowException("You cannot remove the answer because users are not the same.");
 
         _answers.Remove(toRemove);
-        return Result.Success();
     }
 
     public void UpdateAnswer(Guid answerId, string updatedAnswer)

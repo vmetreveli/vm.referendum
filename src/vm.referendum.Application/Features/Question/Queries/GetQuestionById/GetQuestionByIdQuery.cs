@@ -3,7 +3,7 @@ using vm.referendum.Domain.Abstractions;
 
 namespace vm.referendum.Application.Features.Question.Queries.GetQuestionById;
 
-public sealed class GetQuestionByIdQuery : IQuery<Result<QuestionResponse>>
+public sealed class GetQuestionByIdQuery : IQuery<QuestionResponse>
 {
     public Guid QuestionId { get; set; }
 }

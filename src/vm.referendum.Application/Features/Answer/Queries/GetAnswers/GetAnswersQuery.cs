@@ -5,4 +5,4 @@ namespace vm.referendum.Application.Features.Answer.Queries.GetAnswers;
 
 public sealed record GetAnswersQuery(
     Guid QuestionId
-) : IQuery<Result<IReadOnlyList<AnswerResponse>>>;
+) : IQuery<IReadOnlyList<AnswerResponse>>;

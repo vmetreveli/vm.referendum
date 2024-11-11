@@ -12,9 +12,9 @@ public sealed class AddDumpDataCommandHandler(
     ICategoryRepository categoryRepository,
     IUnitOfWork unitOfWork,
     IPasswordHasher passwordHasher)
-    : ICommandHandler<AddDumpDataCommand, Result>
+    : ICommandHandler<AddDumpDataCommand>
 {
-    public async Task<Result> Handle(AddDumpDataCommand request, CancellationToken cancellationToken = default)
+    public async Task Handle(AddDumpDataCommand request, CancellationToken cancellationToken = default)
     {
         var resUserProfile = await userRepository.GetAllAsync(cancellationToken);
 
@@ -80,6 +80,5 @@ public sealed class AddDumpDataCommandHandler(
 
         await unitOfWork.CompleteAsync(cancellationToken);
 
-        return Result.Success();
-    }
+     }
 }

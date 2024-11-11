@@ -7,4 +7,4 @@ public sealed record UpdateAnswerCommand(
     Guid QuestionId,
     Guid AnswerId,
     string Text
-) : ICommand<Result>;
+) : ICommand;

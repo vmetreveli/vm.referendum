@@ -1,19 +1,7 @@
 namespace vm.referendum.Domain.Abstractions;
 
-public record Error
+public record Error(string Code, string Name)
 {
-    public static readonly Error None = new();
-
-    public static readonly Error NullValue = new("Error.NullValue", "Null value was provided");
-
-    public Error()
-    {
-    }
-
-    public Error(string Code, string Name)
-    {
-    }
-
-    public string Code { get; init; }
-    public string Name { get; init; }
+    public string Code { get;  } = Code ?? throw new ArgumentNullException(nameof(Code));
+    public string Name { get;  } = Name ?? throw new ArgumentNullException(nameof(Name));
 }

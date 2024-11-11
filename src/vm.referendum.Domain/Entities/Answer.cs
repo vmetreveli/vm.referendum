@@ -1,4 +1,5 @@
-﻿using vm.referendum.Domain.Abstractions;
+﻿using Framework.Abstractions.Exceptions;
+using vm.referendum.Domain.Abstractions;
 using vm.referendum.Domain.ValueObjects;
 
 namespace vm.referendum.Domain.Entities;
@@ -28,13 +29,12 @@ public sealed class Answer : AggregateRoot<Guid>, IAuditableEntity, IDeletableEn
     public DateTime? DeletedOn { get; }
 
 
-    public Result SetAnswer(Question question)
+    public void SetAnswer(Question question)
     {
         IsSelected = true;
         var res = Statistic.Create(this, question);
-        if (res.IsFailure) return res;
-        Statistic = res.Value;
-        return Result.Success();
+        Statistic = res ?? throw new InflowException("The answer has already been selected.");
+       
     }
 
     public static Answer CreateAnswer(Guid questionId, string text, Guid userId)

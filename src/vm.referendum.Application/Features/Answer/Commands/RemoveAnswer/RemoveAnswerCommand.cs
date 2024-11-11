@@ -6,4 +6,4 @@ public sealed record RemoveAnswerCommand(
     Guid UserId,
     Guid QuestionId,
     Guid AnswerId
-) : ICommand<Result>;
+) : ICommand;

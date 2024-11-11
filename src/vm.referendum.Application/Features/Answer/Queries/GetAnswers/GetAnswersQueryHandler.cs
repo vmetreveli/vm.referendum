@@ -5,9 +5,9 @@ using vm.referendum.Domain.Repository;
 namespace vm.referendum.Application.Features.Answer.Queries.GetAnswers;
 
 public sealed class GetAnswersQueryHandler(IAnswerRepository answerRepository, IMapper mapper)
-    : IQueryHandler<GetAnswersQuery, Result<IReadOnlyList<AnswerResponse>>>
+    : IQueryHandler<GetAnswersQuery, IReadOnlyList<AnswerResponse>>
 {
-    public async Task<Result<IReadOnlyList<AnswerResponse>>> Handle(GetAnswersQuery request,
+    public async Task<IReadOnlyList<AnswerResponse>> Handle(GetAnswersQuery request,
         CancellationToken cancellationToken)
     {
         throw new NotImplementedException();

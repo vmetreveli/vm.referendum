@@ -7,4 +7,4 @@ public sealed record AddAnswerCommand(
     Guid QuestionId,
     Guid UserProfileId,
     string Text
-) : ICommand<Result<AnswerResponse>>;
+) : ICommand<AnswerResponse>;

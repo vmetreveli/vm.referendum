@@ -118,7 +118,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
         var query = new GetAnswersQuery(questionId);
         var result = await Dispatcher.QueryAsync(query, cancellationToken);
 
-        return Ok(result.Value);
+        return Ok(result);
     }
 
 
@@ -140,7 +140,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
 
         var result = await Dispatcher.SendAsync(command, cancellationToken);
 
-        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+        return Ok(result);
     }
 
 

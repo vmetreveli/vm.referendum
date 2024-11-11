@@ -9,9 +9,9 @@ public sealed class GetQuestionByIdQueryHandler(
     IMapper mapper,
     IQuestionRepository questionRepository,
     IUnitOfWork unitOfWork)
-    : IQueryHandler<GetQuestionByIdQuery, Result<QuestionResponse>>
+    : IQueryHandler<GetQuestionByIdQuery, QuestionResponse>
 {
-    public async Task<Result<QuestionResponse>> Handle(GetQuestionByIdQuery request,
+    public async Task<QuestionResponse> Handle(GetQuestionByIdQuery request,
         CancellationToken cancellationToken = default)
     {
         var question =
