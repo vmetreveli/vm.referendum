@@ -1,8 +1,8 @@
 using vm.referendum.Domain.Abstractions;
 
-namespace vm.referendum.Domain.Errors;
+namespace vm.referendum.Domain.Exception.FirstNameErrors;
 
-public static class NameErrors
+public static class FirstNameErrors
 {
     public static Error NullOrEmpty => new("Name.NullOrEmpty", "The name is required.");
 
