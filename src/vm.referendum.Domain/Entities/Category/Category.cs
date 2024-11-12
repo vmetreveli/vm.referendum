@@ -1,6 +1,6 @@
 using vm.referendum.Domain.ValueObjects;
 
-namespace vm.referendum.Domain.Entities;
+namespace vm.referendum.Domain.Entities.Category;
 
 public sealed class Category : AggregateRoot<Guid>, IAuditableEntity, IDeletableEntity
 {

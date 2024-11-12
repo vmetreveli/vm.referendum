@@ -1,4 +1,4 @@
-namespace vm.referendum.Domain.Entities;
+namespace vm.referendum.Domain.Entities.Permission;
 
 public sealed class Permission : AggregateRoot<int>, IAuditableEntity, IDeletableEntity
 {

@@ -1,11 +1,11 @@
 ﻿using vm.referendum.Domain.Abstractions;
 
-namespace vm.referendum.Domain.Errors;
+namespace vm.referendum.Domain.Exception.Question;
 
 /// <summary>
 ///     Contains the domain errors.
 /// </summary>
-public static class AnswerErrors
+public static class QuestionErrors
 {
     public static Error InvalidPermissions => new
     (
@@ -21,11 +21,16 @@ public static class AnswerErrors
 
     public static Error NotFound(Guid id)
     {
-        return new Error("Answer.NotFound", $"No Answer found with ID = {id}");
+        return new Error("User.NotFound", $"No Question found with ID = {id}");
     }
 
     public static Error NotFound()
     {
-        return new Error("Answer.NotFound", "No Answer found");
+        return new Error("User.NotFound", "No Question found");
+    }
+
+    public static Error Validation()
+    {
+        return new Error("Question.Validation", "Question Exist");
     }
 }

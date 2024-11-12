@@ -1,5 +1,4 @@
 ﻿using vm.referendum.Application.Contracts;
-using vm.referendum.Domain.Abstractions;
 
 namespace vm.referendum.Application.Features.Answer.Commands.AddAnswer;
 

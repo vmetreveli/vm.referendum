@@ -14,9 +14,9 @@ public sealed class AddAnswerHandler(IUnitOfWork unitOfWork, IMapper mapper, IQu
                 .GetByIdAsync(request.QuestionId, cancellationToken);
 
         if (question is null)
-            throw new QuestionNotFoundExceoption(request.QuestionId.ToString());
+            throw new QuestionNotFoundException(request.QuestionId.ToString());
 
-        var answer = Domain.Entities.Answer.CreateAnswer(request.QuestionId, request.Text, request.UserProfileId);
+        var answer = Domain.Entities.Answer.Answer.CreateAnswer(request.QuestionId, request.Text, request.UserProfileId);
 
         question.AddAnswer(answer);
 

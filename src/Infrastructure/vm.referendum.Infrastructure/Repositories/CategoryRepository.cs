@@ -1,5 +1,6 @@
 using Framework.Infrastructure.Repository;
 using vm.referendum.Domain.Entities;
+using vm.referendum.Domain.Entities.Category;
 using vm.referendum.Domain.Repository;
 
 namespace vm.referendum.Infrastructure.Repositories;

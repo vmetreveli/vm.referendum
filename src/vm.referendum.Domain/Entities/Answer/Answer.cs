@@ -1,8 +1,7 @@
 ﻿using Framework.Abstractions.Exceptions;
-using vm.referendum.Domain.Abstractions;
 using vm.referendum.Domain.ValueObjects;
 
-namespace vm.referendum.Domain.Entities;
+namespace vm.referendum.Domain.Entities.Answer;
 
 public sealed class Answer : AggregateRoot<Guid>, IAuditableEntity, IDeletableEntity
 {
@@ -18,7 +17,7 @@ public sealed class Answer : AggregateRoot<Guid>, IAuditableEntity, IDeletableEn
 
     public bool IsSelected { get; private set; }
     public Guid QuestionId { get; private set; }
-    public Question? Question { get; }
+    public Question.Question? Question { get; }
 
     public Statistic? Statistic { get; private set; }
     public string Text { get; private set; }
@@ -29,7 +28,7 @@ public sealed class Answer : AggregateRoot<Guid>, IAuditableEntity, IDeletableEn
     public DateTime? DeletedOn { get; }
 
 
-    public void SetAnswer(Question question)
+    public void SetAnswer(Question.Question question)
     {
         IsSelected = true;
         var res = Statistic.Create(this, question);

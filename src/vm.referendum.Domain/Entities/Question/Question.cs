@@ -1,12 +1,10 @@
 ﻿using Framework.Abstractions.Exceptions;
-using vm.referendum.Domain.Abstractions;
-using vm.referendum.Domain.Errors;
 
-namespace vm.referendum.Domain.Entities;
+namespace vm.referendum.Domain.Entities.Question;
 
 public sealed class Question : AggregateRoot<Guid>, IAuditableEntity, IDeletableEntity
 {
-    private readonly List<Answer> _answers = new();
+    private readonly List<Answer.Answer> _answers = new();
 
     private Question(Guid id) : base(id)
     {
@@ -17,13 +15,13 @@ public sealed class Question : AggregateRoot<Guid>, IAuditableEntity, IDeletable
         TextContent = textContent;
     }
 
-    public IEnumerable<Answer> Answers => _answers;
+    public IEnumerable<Answer.Answer> Answers => _answers;
     public string TextContent { get; private set; }
 
     public Guid? CategoryId { get; }
     // public Category? Category { get; private set; }
 
-    public User User { get; }
+    public User.User User { get; }
     public Guid UserId { get; private set; }
 
     public DateTime CreatedOn { get; }
@@ -49,12 +47,12 @@ public sealed class Question : AggregateRoot<Guid>, IAuditableEntity, IDeletable
         TextContent = newText;
     }
 
-    public void AddAnswer(Answer newAnswer)
+    public void AddAnswer(Answer.Answer newAnswer)
     {
         _answers.Add(newAnswer);
     }
 
-    public void RemoveAnswer(Answer toRemove)
+    public void RemoveAnswer(Answer.Answer toRemove)
     {
         if (toRemove.UserId != UserId)
             throw new InflowException("You cannot remove the answer because users are not the same.");

@@ -1,4 +1,4 @@
-namespace vm.referendum.Domain.Entities;
+namespace vm.referendum.Domain.Entities.UserRole;
 
 public sealed class UserRole : AggregateRoot<Guid>, IAuditableEntity, IDeletableEntity
 {
@@ -17,6 +17,6 @@ public sealed class UserRole : AggregateRoot<Guid>, IAuditableEntity, IDeletable
 
     public static UserRole Create(Guid userId)
     {
-        return new UserRole(userId, Role.Basic.Value);
+        return new UserRole(userId, Role.Role.Basic.Value);
     }
 }

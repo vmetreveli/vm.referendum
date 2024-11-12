@@ -1,4 +1,6 @@
 ﻿using vm.referendum.Domain.Entities;
+using vm.referendum.Domain.Entities.Role;
+using vm.referendum.Domain.Entities.RolePermission;
 
 namespace vm.referendum.Infrastructure.Context.Configurations;
 

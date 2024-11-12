@@ -1,4 +1,5 @@
-﻿using Framework.Abstractions.Exceptions;
+﻿using vm.referendum.Domain.Exception.Answer;
+using vm.referendum.Domain.Exception.Question;
 using vm.referendum.Domain.Repository;
 
 namespace vm.referendum.Application.Features.Answer.Commands.RemoveAnswer;
@@ -10,12 +11,12 @@ public class RemoveAnswerCommandHandler(IQuestionRepository questionRepository, 
     {
         var question = await questionRepository.GetByIdWithAnswersAsync(request.QuestionId, cancellationToken);
 
-        if (question == null)
-            throw new InflowException("Question not found");
+        if (question is null)
+            throw new QuestionNotFoundException(request.QuestionId.ToString());
 
         var answer = question.Answers.FirstOrDefault(a => a.Id == request.AnswerId);
-        if (answer == null)
-            throw new InflowException("Answer not found");
+        if (answer is null)
+            throw new AnswerNotFoundException(request.AnswerId.ToString());
 
         question.RemoveAnswer(answer);
 

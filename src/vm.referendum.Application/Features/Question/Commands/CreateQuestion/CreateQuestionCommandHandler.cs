@@ -1,7 +1,6 @@
 ﻿using Framework.Abstractions.Exceptions;
 using vm.referendum.Application.Contracts;
 using vm.referendum.Domain.Abstractions;
-using vm.referendum.Domain.Errors;
 using vm.referendum.Domain.Repository;
 using static System.Guid;
 
@@ -32,7 +31,7 @@ internal class CreateQuestionCommandHandler(
         if (checkQuestion.Any()) throw new InflowException("Question already exists.");
 
 
-        var question = Domain.Entities.Question.CreateQuestion(
+        var question = Domain.Entities.Question.Question.CreateQuestion(
             userId,
             request.CategoryId,
             request.TextContent);

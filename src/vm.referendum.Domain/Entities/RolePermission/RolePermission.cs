@@ -1,4 +1,4 @@
-namespace vm.referendum.Domain.Entities;
+namespace vm.referendum.Domain.Entities.RolePermission;
 
 public sealed class RolePermission : AggregateRoot<Guid>
 {

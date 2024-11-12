@@ -24,9 +24,9 @@ public sealed class AddDumpDataCommandHandler(
             var hash = passwordHasher.HashPassword("123");
 
             await userRepository
-                .AddRangeAsync(new List<Domain.Entities.User>
+                .AddRangeAsync(new List<Domain.Entities.User.User>
                 {
-                    Domain.Entities.User.Create(
+                    Domain.Entities.User.User.Create(
                         FirstName.Create("f"),
                         LastName.Create("l"),
                         Email.Create("test@mail.com"),
@@ -38,7 +38,7 @@ public sealed class AddDumpDataCommandHandler(
         var resQuestion = await questionRepository.GetAllAsync(cancellationToken);
         if (!resQuestion.Any())
             await questionRepository
-                .AddRangeAsync(new List<Domain.Entities.Question>
+                .AddRangeAsync(new List<Domain.Entities.Question.Question>
                 {
                     new(Guid.Parse("17dbd29b-0fca-444e-ba20-f3f5a35dc59d"), "BMW"),
                     new(Guid.Parse("f55f2fdf-23e3-43e9-a424-f6c7c71b5607"), "Audi"),
@@ -49,7 +49,7 @@ public sealed class AddDumpDataCommandHandler(
         var resAnswer = await answerRepository.GetAllAsync(cancellationToken);
         if (!resAnswer.Any())
             await answerRepository
-                .AddRangeAsync(new List<Domain.Entities.Answer>
+                .AddRangeAsync(new List<Domain.Entities.Answer.Answer>
                 {
                     new("Yes", Guid.Parse("17dbd29b-0fca-444e-ba20-f3f5a35dc59d")),
                     new("No", Guid.Parse("17dbd29b-0fca-444e-ba20-f3f5a35dc59d"))
@@ -70,11 +70,11 @@ public sealed class AddDumpDataCommandHandler(
         var resCategory = await categoryRepository.GetAllAsync(cancellationToken);
         if (!resCategory.Any())
             await categoryRepository
-                .AddRangeAsync(new List<Domain.Entities.Category>
+                .AddRangeAsync(new List<Domain.Entities.Category.Category>
                 {
-                    Domain.Entities.Category.CreateCategory(Name.Create("Category1")),
-                    Domain.Entities.Category.CreateCategory(Name.Create("Category2")),
-                    Domain.Entities.Category.CreateCategory(Name.Create("Category3"))
+                    Domain.Entities.Category.Category.CreateCategory(Name.Create("Category1")),
+                    Domain.Entities.Category.Category.CreateCategory(Name.Create("Category2")),
+                    Domain.Entities.Category.Category.CreateCategory(Name.Create("Category3"))
                 }, cancellationToken);
 
 

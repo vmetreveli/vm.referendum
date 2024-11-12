@@ -1,7 +1,7 @@
 using System.Collections;
 using vm.referendum.Domain.Primitives;
 
-namespace vm.referendum.Domain.Entities;
+namespace vm.referendum.Domain.Entities.Role;
 
 public sealed class Role : Enumeration<Role>, IEnumerable<Role>
 {
@@ -20,7 +20,7 @@ public sealed class Role : Enumeration<Role>, IEnumerable<Role>
     }
 
 
-    public IEnumerable<Permission>? Permissions { get; set; }
+    public IEnumerable<Permission.Permission>? Permissions { get; set; }
     //   public IEnumerable<User>? Members { get; set; }
 
 
