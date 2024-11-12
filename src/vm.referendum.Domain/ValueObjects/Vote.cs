@@ -1,5 +1,7 @@
 using vm.referendum.Domain.Abstractions;
 using vm.referendum.Domain.Entities;
+using vm.referendum.Domain.Entities.Answer;
+using vm.referendum.Domain.Entities.Question;
 
 namespace vm.referendum.Domain.ValueObjects;
 

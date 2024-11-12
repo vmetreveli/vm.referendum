@@ -11,7 +11,7 @@ public class CreateCategoryCommandHandler(ICategoryRepository categoryRepository
     {
         var categoryName = Name.Create(request.Name);
 
-        var category = Domain.Entities.Category.CreateCategory(categoryName);
+        var category = Domain.Entities.Category.Category.CreateCategory(categoryName);
 
         await categoryRepository.AddAsync(category, cancellationToken);
 

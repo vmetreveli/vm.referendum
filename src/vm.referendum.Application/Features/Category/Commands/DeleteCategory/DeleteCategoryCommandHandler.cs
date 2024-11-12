@@ -11,7 +11,7 @@ public sealed class DeleteCategoryCommandHandler(ICategoryRepository categoryRep
         var category = await categoryRepository.GetByIdAsync(request.CategoryId, cancellationToken);
 
         if (category is null)
-            throw new ObjectNotFoundException(typeof(Domain.Entities.Category).ToString(),
+            throw new ObjectNotFoundException(typeof(Domain.Entities.Category.Category).ToString(),
                 request.CategoryId.ToString());
 
         categoryRepository.Remove(category);

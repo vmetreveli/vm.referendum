@@ -1,9 +1,9 @@
-using vm.referendum.Domain.Exception.UserErrors;
+using vm.referendum.Domain.Exception.User;
 using vm.referendum.Domain.Primitives;
 using vm.referendum.Domain.Services;
 using vm.referendum.Domain.ValueObjects;
 
-namespace vm.referendum.Domain.Entities;
+namespace vm.referendum.Domain.Entities.User;
 
 public sealed class User : AggregateRoot<Guid>, IAuditableEntity, IDeletableEntity
 {
@@ -18,7 +18,7 @@ public sealed class User : AggregateRoot<Guid>, IAuditableEntity, IDeletableEnti
         LastName = lastName;
         Email = email;
         _passwordHash = passwordHash;
-        RoleId = Role.Basic.Value;
+        RoleId = Entities.Role.Role.Basic.Value;
 
         //AddDomainEvent(new UserCreatedDomainEvent(this));
     }
@@ -36,7 +36,7 @@ public sealed class User : AggregateRoot<Guid>, IAuditableEntity, IDeletableEnti
 
     public Email Email { get; }
 
-    public Role? Role { get; }
+    public Role.Role? Role { get; }
     public Guid RoleId { get; private set; }
 
     // public void AddAccount(Account account)

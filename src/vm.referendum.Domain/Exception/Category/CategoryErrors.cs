@@ -1,6 +1,6 @@
 ﻿using vm.referendum.Domain.Abstractions;
 
-namespace vm.referendum.Domain.Errors;
+namespace vm.referendum.Domain.Exception.Category;
 
 /// <summary>
 ///     Contains the domain errors.

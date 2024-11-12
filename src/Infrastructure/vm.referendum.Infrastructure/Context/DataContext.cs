@@ -1,6 +1,13 @@
 ﻿using System.Reflection;
 using Framework.Abstractions;
 using vm.referendum.Domain.Entities;
+using vm.referendum.Domain.Entities.Answer;
+using vm.referendum.Domain.Entities.Category;
+using vm.referendum.Domain.Entities.Permission;
+using vm.referendum.Domain.Entities.Question;
+using vm.referendum.Domain.Entities.Role;
+using vm.referendum.Domain.Entities.User;
+using vm.referendum.Domain.Entities.UserRole;
 
 namespace vm.referendum.Infrastructure.Context;
 

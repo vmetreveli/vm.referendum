@@ -1,4 +1,4 @@
-﻿using vm.referendum.Domain.Exception.UserErrors;
+﻿using vm.referendum.Domain.Exception.User;
 using vm.referendum.Domain.Repository;
 using vm.referendum.Domain.ValueObjects;
 using vm.referendum.Infrastructure.Authentication.Cryptography;
@@ -28,7 +28,7 @@ internal sealed class CreateUserCommandHandler(
 
         var passwordHash = passwordHasher.HashPassword(passwordResult);
 
-        var user = Domain.Entities.User.Create(
+        var user = Domain.Entities.User.User.Create(
             firstNameResult,
             lastNameResult,
             emailResult,

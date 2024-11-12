@@ -1,5 +1,6 @@
 ﻿using vm.referendum.Application.Contracts.Common.Mappings;
 using vm.referendum.Domain.Entities;
+using vm.referendum.Domain.Entities.User;
 
 namespace vm.referendum.Application.Contracts;
 

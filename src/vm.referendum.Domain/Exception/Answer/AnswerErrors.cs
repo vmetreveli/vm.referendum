@@ -1,11 +1,11 @@
 ﻿using vm.referendum.Domain.Abstractions;
 
-namespace vm.referendum.Domain.Errors;
+namespace vm.referendum.Domain.Exception.Answer;
 
 /// <summary>
 ///     Contains the domain errors.
 /// </summary>
-public static class QuestionErrors
+public static class AnswerErrors
 {
     public static Error InvalidPermissions => new
     (
@@ -19,18 +19,14 @@ public static class QuestionErrors
     ("User.CannotChangePassword",
         "The password cannot be changed to the specified password.");
 
+
     public static Error NotFound(Guid id)
     {
-        return new Error("User.NotFound", $"No Question found with ID = {id}");
+        return new Error("Answer.NotFound", $"No Answer found with ID = {id}");
     }
 
     public static Error NotFound()
     {
-        return new Error("User.NotFound", "No Question found");
-    }
-
-    public static Error Validation()
-    {
-        return new Error("Question.Validation", "Question Exist");
+        return new Error("Answer.NotFound", "No Answer found");
     }
 }

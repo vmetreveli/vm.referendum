@@ -13,7 +13,7 @@ public sealed class GetUserByIdQueryHandler(IUserRepository userRepository, IMap
         var user = await userRepository.GetByIdAsync(request.UserId, cancellationToken);
 
         if (user is null)
-            throw new ObjectNotFoundException(nameof(Domain.Entities.User), request.UserId.ToString());
+            throw new ObjectNotFoundException(nameof(Domain.Entities.User.User), request.UserId.ToString());
 
         return mapper.Map<UserResponse>(user);
     }

@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using vm.referendum.Domain.Entities;
+using vm.referendum.Domain.Entities.User;
 using vm.referendum.Infrastructure.Authentication.Authentication;
 using vm.referendum.Infrastructure.Authentication.Settings;
 

@@ -13,7 +13,7 @@ public sealed class GetAllCategoryQueryHandler(ICategoryRepository categoryRepos
         var result = await categoryRepository.GetAllAsync(cancellationToken);
 
         if (!result.Any())
-            throw new ObjectNotFoundException(typeof(Domain.Entities.Category).ToString(), string.Empty);
+            throw new ObjectNotFoundException(typeof(Domain.Entities.Category.Category).ToString(), string.Empty);
         var categories = result.Select(i => new CategoryResponse
             {
                 Name = i.Name!

@@ -1,4 +1,7 @@
 using vm.referendum.Domain.Entities;
+using vm.referendum.Domain.Entities.Answer;
+using vm.referendum.Domain.Entities.Category;
+using vm.referendum.Domain.Entities.Question;
 
 namespace vm.referendum.Infrastructure.Context.Configurations;
 
