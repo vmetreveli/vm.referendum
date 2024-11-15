@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bKt8wL22Rok=",
+  "dgSpecHash": "EbUkBbbx1cs=",
   "success": true,
   "projectFilePath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/vm.referendum.Infrastructure.ExternalServices.csproj",
   "expectedPackageFiles": [
@@ -9,21 +9,21 @@
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.csharp/4.3.0/microsoft.csharp.4.3.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.apidescription.server/6.0.3/microsoft.extensions.apidescription.server.6.0.3.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.configuration/8.0.0/microsoft.extensions.configuration.8.0.0.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.configuration.abstractions/9.0.0/microsoft.extensions.configuration.abstractions.9.0.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.configuration.binder/8.0.0/microsoft.extensions.configuration.binder.8.0.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.1/microsoft.extensions.dependencyinjection.8.0.1.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.2/microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.0/microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.diagnostics/8.0.1/microsoft.extensions.diagnostics.8.0.1.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.diagnostics.abstractions/8.0.1/microsoft.extensions.diagnostics.abstractions.8.0.1.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.fileproviders.abstractions/8.0.0/microsoft.extensions.fileproviders.abstractions.8.0.0.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.diagnostics.abstractions/9.0.0/microsoft.extensions.diagnostics.abstractions.9.0.0.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.fileproviders.abstractions/9.0.0/microsoft.extensions.fileproviders.abstractions.9.0.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.fileproviders.embedded/8.0.0/microsoft.extensions.fileproviders.embedded.8.0.0.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.hosting.abstractions/8.0.1/microsoft.extensions.hosting.abstractions.8.0.1.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.hosting.abstractions/9.0.0/microsoft.extensions.hosting.abstractions.9.0.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.http/8.0.1/microsoft.extensions.http.8.0.1.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.logging/8.0.1/microsoft.extensions.logging.8.0.1.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.2/microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.options/8.0.2/microsoft.extensions.options.8.0.2.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.logging.abstractions/9.0.0/microsoft.extensions.logging.abstractions.9.0.0.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.options/9.0.0/microsoft.extensions.options.9.0.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.options.configurationextensions/8.0.0/microsoft.extensions.options.configurationextensions.8.0.0.nupkg.sha512",
-    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "/Users/vakhushtimetreveli/.nuget/packages/microsoft.extensions.primitives/9.0.0/microsoft.extensions.primitives.9.0.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/namotion.reflection/3.1.1/namotion.reflection.3.1.1.nupkg.sha512",
@@ -68,5 +68,16 @@
     "/Users/vakhushtimetreveli/.nuget/packages/throw/1.4.0/throw.1.4.0.nupkg.sha512",
     "/Users/vakhushtimetreveli/.nuget/packages/yamldotnet/15.1.4/yamldotnet.15.1.4.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1904",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Text.Encodings.Web' 4.5.0 has a known critical severity vulnerability, https://github.com/advisories/GHSA-ghhp-997w-qr28",
+      "libraryId": "System.Text.Encodings.Web",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }
