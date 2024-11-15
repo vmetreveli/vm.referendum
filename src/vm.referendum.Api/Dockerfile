@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
 
 ENV ASPNETCORE_ENVIRONMENT=Development
@@ -15,7 +15,7 @@ ENV ASPNETCORE_URLS=http://+:80
 # Expose ports for HTTP and HTTPS
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Development
 WORKDIR /src
 
