@@ -48,7 +48,7 @@
           "lib/net8.0/EFCore.NamingConventions.dll": {}
         }
       },
-      "FluentValidation/11.10.0": {
+      "FluentValidation/11.11.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/FluentValidation.dll": {
@@ -217,13 +217,13 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/9.0.0": {
+      "Microsoft.EntityFrameworkCore.Relational/9.0.0-rc.2.24474.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "9.0.0",
-          "Microsoft.Extensions.Caching.Memory": "9.0.0",
-          "Microsoft.Extensions.Configuration.Abstractions": "9.0.0",
-          "Microsoft.Extensions.Logging": "9.0.0"
+          "Microsoft.EntityFrameworkCore": "9.0.0-rc.2.24474.1",
+          "Microsoft.Extensions.Caching.Memory": "9.0.0-rc.2.24473.5",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.0-rc.2.24473.5",
+          "Microsoft.Extensions.Logging": "9.0.0-rc.2.24473.5"
         },
         "compile": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.dll": {
@@ -671,6 +671,25 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "Microsoft.Extensions.Localization/9.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0",
+          "Microsoft.Extensions.Localization.Abstractions": "9.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.0",
+          "Microsoft.Extensions.Options": "9.0.0"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.Extensions.Localization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Localization.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Localization.Abstractions/9.0.0": {
         "type": "package",
         "compile": {
@@ -928,12 +947,11 @@
           }
         }
       },
-      "Npgsql.EntityFrameworkCore.PostgreSQL/8.0.10": {
+      "Npgsql.EntityFrameworkCore.PostgreSQL/9.0.0-rc.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "8.0.10",
-          "Microsoft.EntityFrameworkCore.Abstractions": "8.0.10",
-          "Microsoft.EntityFrameworkCore.Relational": "8.0.10",
+          "Microsoft.EntityFrameworkCore": "[9.0.0-rc.2.24474.1]",
+          "Microsoft.EntityFrameworkCore.Relational": "[9.0.0-rc.2.24474.1]",
           "Npgsql": "8.0.5"
         },
         "compile": {
@@ -1089,14 +1107,15 @@
           "AutoMapper": "13.0.1",
           "AutoMapper.Extensions.ExpressionMapping": "7.0.2",
           "EFCore.NamingConventions": "8.0.3",
-          "FluentValidation": "11.10.0",
+          "FluentValidation": "11.11.0",
           "MassTransit": "8.3.1",
           "MassTransit.AspNetCore": "7.3.1",
           "MassTransit.Extensions.DependencyInjection": "7.3.1",
           "MassTransit.RabbitMQ": "8.3.1",
-          "Microsoft.EntityFrameworkCore": "9.0.0",
-          "Microsoft.EntityFrameworkCore.InMemory": "9.0.0",
-          "Microsoft.EntityFrameworkCore.Relational": "9.0.0",
+          "Microsoft.EntityFrameworkCore": "9.0.0-rc.2.24474.1",
+          "Microsoft.EntityFrameworkCore.InMemory": "9.0.0-rc.2.24474.1",
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.0-rc.2.24474.1",
+          "Microsoft.Extensions.Localization": "9.0.0",
           "Microsoft.Extensions.Localization.Abstractions": "9.0.0",
           "Microsoft.Extensions.Logging": "9.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.0",
@@ -1154,16 +1173,16 @@
         "lib/net8.0/EFCore.NamingConventions.dll"
       ]
     },
-    "FluentValidation/11.10.0": {
-      "sha512": "qsJGSJDdZ8qiG+lVJ70PZfJHcEdq8UQZ/tZDXoj78/iHKG6lVKtMJsD11zyyv/IPc7rwqGqnFoFLTNzpo3IPYg==",
+    "FluentValidation/11.11.0": {
+      "sha512": "cyIVdQBwSipxWG8MA3Rqox7iNbUNUTK5bfJi9tIdm4CAfH71Oo5ABLP4/QyrUwuakqpUEPGtE43BDddvEehuYw==",
       "type": "package",
-      "path": "fluentvalidation/11.10.0",
+      "path": "fluentvalidation/11.11.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "fluent-validation-icon.png",
-        "fluentvalidation.11.10.0.nupkg.sha512",
+        "fluentvalidation.11.11.0.nupkg.sha512",
         "fluentvalidation.nuspec",
         "lib/net5.0/FluentValidation.dll",
         "lib/net5.0/FluentValidation.xml",
@@ -1348,10 +1367,10 @@
         "microsoft.entityframeworkcore.inmemory.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Relational/9.0.0": {
-      "sha512": "j+msw6fWgAE9M3Q/5B9Uhv7pdAdAQUvFPJAiBJmoy+OXvehVbfbCE8ftMAa51Uo2ZeiqVnHShhnv4Y4UJJmUzA==",
+    "Microsoft.EntityFrameworkCore.Relational/9.0.0-rc.2.24474.1": {
+      "sha512": "Rj80UExgku8FuA5FHazj6mWTAuXnaNXiSZKhta+fChOYe5y+l/ZbBC6J1+jXS27WHCFzOwuRKTl34xF/SKcZJg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational/9.0.0",
+      "path": "microsoft.entityframeworkcore.relational/9.0.0-rc.2.24474.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1359,7 +1378,7 @@
         "PACKAGE.md",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.xml",
-        "microsoft.entityframeworkcore.relational.9.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.9.0.0-rc.2.24474.1.nupkg.sha512",
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
@@ -1956,6 +1975,25 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.Extensions.Localization/9.0.0": {
+      "sha512": "Up8Juy8Bh+vL+fXmMWsoSg/G6rszmLFiF44aI2tpOMJE7Ln4D9s37YxOOm81am4Z+V7g8Am3AgVwHYJzi+cL/g==",
+      "type": "package",
+      "path": "microsoft.extensions.localization/9.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.Extensions.Localization.dll",
+        "lib/net462/Microsoft.Extensions.Localization.xml",
+        "lib/net9.0/Microsoft.Extensions.Localization.dll",
+        "lib/net9.0/Microsoft.Extensions.Localization.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Localization.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Localization.xml",
+        "microsoft.extensions.localization.9.0.0.nupkg.sha512",
+        "microsoft.extensions.localization.nuspec"
+      ]
+    },
     "Microsoft.Extensions.Localization.Abstractions/9.0.0": {
       "sha512": "wc7PaRhPOnio5Csj80b3UgBWA5l6bp28EhGem7gtfpVopcwbkfPb2Sk8Cu6eBnIW3ZNf1YUgYJzwtjzZEM8+iw==",
       "type": "package",
@@ -2367,17 +2405,17 @@
         "postgresql.png"
       ]
     },
-    "Npgsql.EntityFrameworkCore.PostgreSQL/8.0.10": {
-      "sha512": "gFPl9Dmxih7Yi4tZ3bITzZFzbxFMBx04gqTqcjoL2r5VEW+O2TA5UVw/wm/XW26NAJ7sg59Je0+9QrwiZt6MPQ==",
+    "Npgsql.EntityFrameworkCore.PostgreSQL/9.0.0-rc.2": {
+      "sha512": "25aObiOmb/nG146o7MbGbZAn+NFaCVK6XJr/t5SuHhKM85lMZ+HzjBiOGI6k0KKc3oWLIglE92iS336aQMPo6w==",
       "type": "package",
-      "path": "npgsql.entityframeworkcore.postgresql/8.0.10",
+      "path": "npgsql.entityframeworkcore.postgresql/9.0.0-rc.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll",
         "lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.xml",
-        "npgsql.entityframeworkcore.postgresql.8.0.10.nupkg.sha512",
+        "npgsql.entityframeworkcore.postgresql.9.0.0-rc.2.nupkg.sha512",
         "npgsql.entityframeworkcore.postgresql.nuspec",
         "postgresql.png"
       ]
@@ -2584,7 +2622,7 @@
       "Microsoft.Extensions.DependencyInjection >= 9.0.0",
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 9.0.0",
       "Microsoft.Extensions.Hosting >= 9.0.0",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.10",
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.0-rc.2",
       "Quartz.Extensions.Hosting >= 3.13.1"
     ]
   },
@@ -2669,7 +2707,7 @@
           },
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
-            "version": "[8.0.10, )"
+            "version": "[9.0.0-rc.2, )"
           },
           "Quartz.Extensions.Hosting": {
             "target": "Package",
@@ -2704,7 +2742,7 @@
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: EFCore.NamingConventions 8.0.3 requires Microsoft.EntityFrameworkCore (>= 8.0.0 && < 9.0.0) but version Microsoft.EntityFrameworkCore 9.0.0 was resolved.",
+      "message": "Detected package version outside of dependency constraint: Npgsql.EntityFrameworkCore.PostgreSQL 9.0.0-rc.2 requires Microsoft.EntityFrameworkCore (= 9.0.0-rc.2.24474.1) but version Microsoft.EntityFrameworkCore 9.0.0 was resolved.",
       "libraryId": "Microsoft.EntityFrameworkCore",
       "targetGraphs": [
         "net9.0"
@@ -2714,8 +2752,8 @@
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: EFCore.NamingConventions 8.0.3 requires Microsoft.EntityFrameworkCore.Relational (>= 8.0.0 && < 9.0.0) but version Microsoft.EntityFrameworkCore.Relational 9.0.0 was resolved.",
-      "libraryId": "Microsoft.EntityFrameworkCore.Relational",
+      "message": "Detected package version outside of dependency constraint: EFCore.NamingConventions 8.0.3 requires Microsoft.EntityFrameworkCore (>= 8.0.0 && < 9.0.0) but version Microsoft.EntityFrameworkCore 9.0.0 was resolved.",
+      "libraryId": "Microsoft.EntityFrameworkCore",
       "targetGraphs": [
         "net9.0"
       ]
