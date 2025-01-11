@@ -1,6 +1,0 @@
-<Project>
-    <PropertyGroup>
-        <ServerGarbageCollection>true</ServerGarbageCollection>
-        <GarbageCollectionAdaptationMode>1</GarbageCollectionAdaptationMode>
-    </PropertyGroup>
-</Project>
