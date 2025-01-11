@@ -17,6 +17,8 @@ namespace Framework.Infrastructure.Repository;
 public class OutboxRepository(BaseDbContext context)
     : RepositoryBase<BaseDbContext, OutboxMessage, Guid>(context), IOutboxRepository
 {
+    private readonly BaseDbContext _context = context;
+
     /// <summary>
     ///     Creates a new outbox message if a message with the same <see cref="OutboxMessage.EventId" /> doesn't already exist.
     /// </summary>
@@ -24,13 +26,13 @@ public class OutboxRepository(BaseDbContext context)
     public async void CreateOutboxMessage(OutboxMessage outboxMessage)
     {
         // Check if an outbox message with the same EventId already exists
-        var message = await context
+        var message = await _context
             .OutboxMessages
             .FirstOrDefaultAsync(x =>
                 x.EventId == outboxMessage.EventId);
 
         // If no message exists, add the new outbox message to the context
-        if (message is null) context.OutboxMessages.Add(outboxMessage);
+        if (message is null) _context.OutboxMessages.Add(outboxMessage);
     }
 
     /// <summary>
@@ -41,7 +43,7 @@ public class OutboxRepository(BaseDbContext context)
     public async Task UpdateOutboxMessageState(Guid eventId, OutboxMessageState state)
     {
         // Find the outbox message by its event ID
-        var outbox = await context.OutboxMessages
+        var outbox = await _context.OutboxMessages
             .FirstOrDefaultAsync(m => m.EventId == eventId);
 
         // If the outbox message exists, change its state
@@ -55,7 +57,7 @@ public class OutboxRepository(BaseDbContext context)
     /// <returns>A list of outbox messages that are ready to be sent.</returns>
     public Task<List<OutboxMessage>> GetAllReadyToSend()
     {
-        return context.OutboxMessages
+        return _context.OutboxMessages
             .Where(m =>
                 m.State == OutboxMessageState.ReadyToSend)
             .ToListAsync();
@@ -67,6 +69,6 @@ public class OutboxRepository(BaseDbContext context)
     /// <returns>A task representing the asynchronous save operation.</returns>
     public Task SaveChange()
     {
-        return context.SaveChangesAsync();
+        return _context.SaveChangesAsync();
     }
 }

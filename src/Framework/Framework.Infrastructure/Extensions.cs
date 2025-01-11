@@ -1,5 +1,4 @@
-﻿using AutoMapper.Extensions.ExpressionMapping;
-using Framework.Abstractions.Events;
+﻿using Framework.Abstractions.Events;
 using Framework.Abstractions.Exceptions;
 using Framework.Abstractions.Repository;
 using Framework.Infrastructure.Context;
@@ -30,12 +29,12 @@ public static class Extensions
     {
         services.AddCommands(assembly);
         services.AddQueries(assembly);
-        services.AddEvents(assembly);
-        services.AddEventBus(configuration);
+        // services.AddEvents(assembly);
+        // services.AddEventBus(configuration);
         services.AddScoped<IDispatcher, Dispatcher>();
         services.AddErrorHandling();
 
-        services.AddScoped<IOutboxRepository, OutboxRepository>();
+       // services.AddScoped<IOutboxRepository, OutboxRepository>();
 
         // Configure the database context with PostgreSQL settings
         services
@@ -46,12 +45,6 @@ public static class Extensions
                     .EnableSensitiveDataLogging()
                     .EnableDetailedErrors();
             });
-
-        services
-            .AddAutoMapper(cfg =>
-                    cfg.AddExpressionMapping(),
-                Assembly.GetExecutingAssembly());
-
         return services;
     }
 

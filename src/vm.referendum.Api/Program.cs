@@ -22,7 +22,7 @@ builder.Services.AddOutputCache(opts =>
     opts.AddPolicy(PolicyNames.TwentySecondsCachePolicy, policyBuilder =>
         policyBuilder.Expire(TimeSpan.FromSeconds(20)));
 });
-//builder.Services.AddFramework(builder.Configuration, typeof(Program).Assembly);
+
 builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddSerilogServices(builder.Configuration);
@@ -31,9 +31,6 @@ builder.Services.AddControllers();
 
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
-
-//builder.Services.AddTransient<ExceptionMiddleware>();
-//builder.Services.AddTransient<RequestResponseLoggingMiddleware>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -51,7 +48,7 @@ app.UseCors(options =>
         .AllowAnyMethod();
 });
 
-//if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
@@ -63,19 +60,14 @@ app.UseCors(options =>
             options.SwaggerEndpoint(url, name);
         }
     });
+  
+
     
     app.ApplyMigration();
     app.UseDeveloperExceptionPage();
 }
 
-// app.UseSwagger();
-//
-// app.UseSwaggerUI(swaggerUiOptions =>
-//     swaggerUiOptions.SwaggerEndpoint("/swagger/v1/swagger.json", "Referendum API"));
-
-
-app.UseMiddlewares();
-// app.UseMiddleware<RequestResponseLoggingMiddleware>();
+app.UseErrorHandling();
 
 app.UseHttpsRedirection();
 

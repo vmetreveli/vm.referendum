@@ -6,7 +6,7 @@ namespace Framework.Infrastructure.Context;
 ///     BaseDbContext is the base database context class used to interact with the database.
 ///     It inherits from <see cref="DbContext" /> and provides configurations and DbSet definitions for entities.
 /// </summary>
-public class BaseDbContext(DbContextOptions<BaseDbContext> options) : DbContext(options),IDbContext
+public class BaseDbContext(DbContextOptions<BaseDbContext> options) : DbContext(options), IDbContext
 {
     #region Entities
 
@@ -29,4 +29,11 @@ public class BaseDbContext(DbContextOptions<BaseDbContext> options) : DbContext(
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(modelBuilder);
     }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        // Existing configuration
+      //  optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+    }
 }
+

@@ -1,12 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace Referendum.Infrastructure.Migrations
+namespace vm.referendum.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration
@@ -51,17 +50,12 @@ namespace Referendum.Infrastructure.Migrations
                 name: "permissions",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "text", nullable: false),
-                    created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    modified_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    is_deleted = table.Column<bool>(type: "boolean", nullable: false),
-                    deleted_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    value = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_permissions", x => x.id);
+                    table.PrimaryKey("Id", x => x.value);
                 });
 
             migrationBuilder.CreateTable(
@@ -98,7 +92,7 @@ namespace Referendum.Infrastructure.Migrations
                 columns: table => new
                 {
                     role_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    permission_id = table.Column<int>(type: "integer", nullable: false),
+                    permission_id = table.Column<Guid>(type: "uuid", nullable: false),
                     id = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
@@ -108,7 +102,7 @@ namespace Referendum.Infrastructure.Migrations
                         name: "fk_role_permission_permissions_permission_id",
                         column: x => x.permission_id,
                         principalTable: "permissions",
-                        principalColumn: "id",
+                        principalColumn: "value",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "fk_role_permission_roles_role_id",
@@ -131,6 +125,7 @@ namespace Referendum.Infrastructure.Migrations
                     modified_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     is_deleted = table.Column<bool>(type: "boolean", nullable: false),
                     deleted_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    role_value = table.Column<Guid>(type: "uuid", nullable: true),
                     password_hash = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -142,6 +137,11 @@ namespace Referendum.Infrastructure.Migrations
                         principalTable: "roles",
                         principalColumn: "value",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "fk_users_roles_role_value",
+                        column: x => x.role_value,
+                        principalTable: "roles",
+                        principalColumn: "value");
                 });
 
             migrationBuilder.CreateTable(
@@ -196,6 +196,16 @@ namespace Referendum.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "permissions",
+                columns: new[] { "value", "name" },
+                values: new object[,]
+                {
+                    { new Guid("80a0d8c0-8a64-426a-9331-71c4bbbe0547"), "ReadMember" },
+                    { new Guid("8f22e919-4c82-4bdc-a04a-b29a901e1f1a"), "WriteMember" },
+                    { new Guid("bd7f8542-13b7-4e20-8651-d8ea4f25d8a3"), "UpdateMember" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "roles",
                 columns: new[] { "value", "name" },
                 values: new object[,]
@@ -230,6 +240,11 @@ namespace Referendum.Infrastructure.Migrations
                 name: "ix_users_role_id",
                 table: "users",
                 column: "role_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_users_role_value",
+                table: "users",
+                column: "role_value");
 
             migrationBuilder.AddForeignKey(
                 name: "fk_answers_questions_question_id",

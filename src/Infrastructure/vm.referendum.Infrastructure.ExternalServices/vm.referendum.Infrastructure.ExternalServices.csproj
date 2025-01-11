@@ -11,7 +11,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0"/>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.0" />
-        <PackageReference Include="NSwag.AspNetCore" Version="14.1.0"/>
+        <PackageReference Include="NSwag.AspNetCore" Version="14.2.0" />
         <PackageReference Include="Refit" Version="8.0.0" />
         <PackageReference Include="Refit.HttpClientFactory" Version="8.0.0" />
         <PackageReference Include="Throw" Version="1.4.0"/>

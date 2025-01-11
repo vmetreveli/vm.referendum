@@ -1,7 +1,6 @@
-﻿using vm.referendum.Domain.Entities;
+﻿using vm.referendum.Domain.Entities.Permission;
 using vm.referendum.Domain.Entities.Role;
 using vm.referendum.Domain.Entities.RolePermission;
-using Permission = vm.referendum.Domain.Enums.Permission;
 
 namespace vm.referendum.Infrastructure.Context.Configurations;
 
@@ -23,7 +22,7 @@ internal sealed class RolePermissionConfig : IEntityTypeConfiguration<RolePermis
         return new RolePermission
         {
             RoleId = role.Value,
-            PermissionId = (int)permission
+            PermissionId = (Guid)permission.Value
         };
     }
 }

@@ -33,6 +33,6 @@ public sealed class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDi
             throw new InvalidOperationException($"Query handler for '{typeof(TResult).Name}' is invalid.");
 
         // Invoke the Handle method on the query handler to process the query and return the result.
-        return await (Task<TResult>)method.Invoke(handler, new object[] { query, cancellationToken });
+        return await ((Task<TResult>)method.Invoke(handler, new object[] { query, cancellationToken })!)!;
     }
 }

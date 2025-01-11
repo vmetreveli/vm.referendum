@@ -9,10 +9,10 @@ using vm.referendum.Infrastructure.Context;
 
 #nullable disable
 
-namespace Referendum.Infrastructure.Migrations
+namespace vm.referendum.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241014084135_Initial")]
+    [Migration("20241209123724_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Referendum.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -64,7 +64,7 @@ namespace Referendum.Infrastructure.Migrations
                     b.ToTable("outbox_message", (string)null);
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.Answer", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.Answer.Answer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,7 +113,7 @@ namespace Referendum.Infrastructure.Migrations
                     b.ToTable("answers", (string)null);
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.Category", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.Category.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -142,43 +142,43 @@ namespace Referendum.Infrastructure.Migrations
                     b.ToTable("categories", (string)null);
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.Permission", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.Permission.Permission", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Value")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("deleted_on");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_deleted");
-
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("modified_on");
+                        .HasColumnType("uuid")
+                        .HasColumnName("value");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
                         .HasColumnName("name");
 
-                    b.HasKey("Id")
-                        .HasName("pk_permissions");
+                    b.HasKey("Value")
+                        .HasName("Id");
 
                     b.ToTable("permissions", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Value = new Guid("80a0d8c0-8a64-426a-9331-71c4bbbe0547"),
+                            Name = "ReadMember"
+                        },
+                        new
+                        {
+                            Value = new Guid("8f22e919-4c82-4bdc-a04a-b29a901e1f1a"),
+                            Name = "WriteMember"
+                        },
+                        new
+                        {
+                            Value = new Guid("bd7f8542-13b7-4e20-8651-d8ea4f25d8a3"),
+                            Name = "UpdateMember"
+                        });
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.Question", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.Question.Question", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -230,7 +230,7 @@ namespace Referendum.Infrastructure.Migrations
                     b.ToTable("questions", (string)null);
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.Role", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.Role.Role", b =>
                 {
                     b.Property<Guid>("Value")
                         .ValueGeneratedOnAdd()
@@ -270,14 +270,14 @@ namespace Referendum.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.RolePermission", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.RolePermission.RolePermission", b =>
                 {
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uuid")
                         .HasColumnName("role_id");
 
-                    b.Property<int>("PermissionId")
-                        .HasColumnType("integer")
+                    b.Property<Guid>("PermissionId")
+                        .HasColumnType("uuid")
                         .HasColumnName("permission_id");
 
                     b.Property<Guid>("Id")
@@ -293,7 +293,7 @@ namespace Referendum.Infrastructure.Migrations
                     b.ToTable("role_permission", (string)null);
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.User", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.User.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -320,6 +320,10 @@ namespace Referendum.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("role_id");
 
+                    b.Property<Guid?>("RoleValue")
+                        .HasColumnType("uuid")
+                        .HasColumnName("role_value");
+
                     b.Property<string>("_passwordHash")
                         .IsRequired()
                         .HasColumnType("text")
@@ -331,10 +335,13 @@ namespace Referendum.Infrastructure.Migrations
                     b.HasIndex("RoleId")
                         .HasDatabaseName("ix_users_role_id");
 
+                    b.HasIndex("RoleValue")
+                        .HasDatabaseName("ix_users_role_value");
+
                     b.ToTable("users", (string)null);
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.UserRole", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.UserRole.UserRole", b =>
                 {
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uuid")
@@ -370,16 +377,16 @@ namespace Referendum.Infrastructure.Migrations
                     b.ToTable("user_roles", (string)null);
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.Answer", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.Answer.Answer", b =>
                 {
-                    b.HasOne("Referendum.Domain.Entities.Question", "Question")
+                    b.HasOne("vm.referendum.Domain.Entities.Question.Question", "Question")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_answers_questions_question_id");
 
-                    b.OwnsOne("Referendum.Domain.ValueObjects.Statistic", "Statistic", b1 =>
+                    b.OwnsOne("vm.referendum.Domain.ValueObjects.Statistic", "Statistic", b1 =>
                         {
                             b1.Property<Guid>("AnswerId")
                                 .HasColumnType("uuid")
@@ -407,9 +414,9 @@ namespace Referendum.Infrastructure.Migrations
                     b.Navigation("Statistic");
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.Category", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.Category.Category", b =>
                 {
-                    b.OwnsOne("Referendum.Domain.ValueObjects.Name", "Name", b1 =>
+                    b.OwnsOne("vm.referendum.Domain.ValueObjects.Name", "Name", b1 =>
                         {
                             b1.Property<Guid>("CategoryId")
                                 .HasColumnType("uuid")
@@ -433,30 +440,30 @@ namespace Referendum.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.Question", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.Question.Question", b =>
                 {
-                    b.HasOne("Referendum.Domain.Entities.Answer", null)
+                    b.HasOne("vm.referendum.Domain.Entities.Answer.Answer", null)
                         .WithMany()
                         .HasForeignKey("AnswerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("fk_questions_answers_answer_id");
 
-                    b.HasOne("Referendum.Domain.Entities.Category", null)
+                    b.HasOne("vm.referendum.Domain.Entities.Category.Category", null)
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("fk_questions_categories_category_id");
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.RolePermission", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.RolePermission.RolePermission", b =>
                 {
-                    b.HasOne("Referendum.Domain.Entities.Permission", null)
+                    b.HasOne("vm.referendum.Domain.Entities.Permission.Permission", null)
                         .WithMany()
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_role_permission_permissions_permission_id");
 
-                    b.HasOne("Referendum.Domain.Entities.Role", null)
+                    b.HasOne("vm.referendum.Domain.Entities.Role.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -464,16 +471,21 @@ namespace Referendum.Infrastructure.Migrations
                         .HasConstraintName("fk_role_permission_roles_role_id");
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.User", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.User.User", b =>
                 {
-                    b.HasOne("Referendum.Domain.Entities.Role", "Role")
+                    b.HasOne("vm.referendum.Domain.Entities.Role.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_users_roles_role_id");
 
-                    b.OwnsOne("Referendum.Domain.ValueObjects.Email", "Email", b1 =>
+                    b.HasOne("vm.referendum.Domain.Entities.Role.Role", null)
+                        .WithMany("Members")
+                        .HasForeignKey("RoleValue")
+                        .HasConstraintName("fk_users_roles_role_value");
+
+                    b.OwnsOne("vm.referendum.Domain.ValueObjects.Email", "Email", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid")
@@ -493,7 +505,7 @@ namespace Referendum.Infrastructure.Migrations
                                 .HasConstraintName("fk_users_users_id");
                         });
 
-                    b.OwnsOne("Referendum.Domain.ValueObjects.FirstName", "FirstName", b1 =>
+                    b.OwnsOne("vm.referendum.Domain.ValueObjects.FirstName", "FirstName", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid")
@@ -514,7 +526,7 @@ namespace Referendum.Infrastructure.Migrations
                                 .HasConstraintName("fk_users_users_id");
                         });
 
-                    b.OwnsOne("Referendum.Domain.ValueObjects.LastName", "LastName", b1 =>
+                    b.OwnsOne("vm.referendum.Domain.ValueObjects.LastName", "LastName", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid")
@@ -547,9 +559,14 @@ namespace Referendum.Infrastructure.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("Referendum.Domain.Entities.Question", b =>
+            modelBuilder.Entity("vm.referendum.Domain.Entities.Question.Question", b =>
                 {
                     b.Navigation("Answers");
+                });
+
+            modelBuilder.Entity("vm.referendum.Domain.Entities.Role.Role", b =>
+                {
+                    b.Navigation("Members");
                 });
 #pragma warning restore 612, 618
         }

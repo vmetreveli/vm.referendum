@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Localization;
 
 namespace Framework.Abstractions.Exceptions;
 
@@ -44,7 +44,7 @@ public class InflowException : Exception
     {
     }
 
-    public InflowException(string code, string title, string message, Exception innerException, LogLevel logLevel)
+    public InflowException(string? code, string? title, string? message, Exception innerException, LogLevel logLevel)
         : base(message ?? title ?? code, innerException)
     {
         Code = code;
