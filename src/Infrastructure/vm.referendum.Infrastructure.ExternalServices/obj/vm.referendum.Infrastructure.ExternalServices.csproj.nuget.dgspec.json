@@ -13,7 +13,6 @@
         "packagesPath": "/Users/vakhushtimetreveli/.nuget/packages/",
         "outputPath": "/Users/vakhushtimetreveli/RiderProjects/vm.referendum/src/Infrastructure/vm.referendum.Infrastructure.ExternalServices/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/vakhushtimetreveli/.nuget/NuGet/NuGet.Config"
         ],
@@ -38,7 +37,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "all"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -58,7 +58,7 @@
             },
             "NSwag.AspNetCore": {
               "target": "Package",
-              "version": "[14.1.0, )"
+              "version": "[14.2.0, )"
             },
             "Refit": {
               "target": "Package",

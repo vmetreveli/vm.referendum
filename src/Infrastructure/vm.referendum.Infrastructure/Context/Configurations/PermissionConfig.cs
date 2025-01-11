@@ -7,22 +7,26 @@ internal sealed class PermissionConfig : IEntityTypeConfiguration<Permission>
 {
     public void Configure(EntityTypeBuilder<Permission> builder)
     {
-        builder.HasKey(p => p.Id);
-        builder.Property(p => p.Id)
+        builder.HasKey(p => p.Value)
+            .HasName("Id");
+        
+        builder.Property(p => p.Value)
             .ValueGeneratedOnAdd();
 
-        // // Explicitly provide Ids for seed data
+        // Explicitly provide Ids for seed data
         // var permissions = Enum.GetValues<Domain.Enums.Permission>()
         //     .Select((p, index) =>
         //         new Permission(index + 1, p.ToString())); // Ensure unique Ids starting from 1
-        //
-        //
-        // builder.HasData(permissions);
+       
+        
+        builder.HasData(Permission.GetValues());
 
-        builder.Property(p => p.Name).IsRequired();
-        builder.Property(c => c.CreatedOn).IsRequired();
-        builder.Property(c => c.ModifiedOn);
-        builder.Property(c => c.DeletedOn);
-        builder.Property(c => c.IsDeleted).IsRequired();
+        builder.Property(p => p.Name)
+            .HasMaxLength(50)
+            .IsRequired();
+        // builder.Property(c => c.CreatedOn).IsRequired();
+        // builder.Property(c => c.ModifiedOn);
+        // builder.Property(c => c.DeletedOn);
+        // builder.Property(c => c.IsDeleted).IsRequired();
     }
 }

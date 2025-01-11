@@ -21,7 +21,7 @@ public sealed class Role : Enumeration<Role>, IEnumerable<Role>
 
 
     public IEnumerable<Permission.Permission>? Permissions { get; set; }
-    //   public IEnumerable<User>? Members { get; set; }
+    public IEnumerable<User.User>? Members { get; set; }
 
 
     public IEnumerator<Role> GetEnumerator()

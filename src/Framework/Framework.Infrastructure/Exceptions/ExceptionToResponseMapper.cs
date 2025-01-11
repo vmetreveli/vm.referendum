@@ -26,7 +26,7 @@ internal sealed class ExceptionToResponseMapper : IExceptionToResponseMapper
         {
             // Map custom InflowException to a 400 Bad Request response.
             InflowException ex => new ExceptionResponse(
-                new ErrorsResponse(new Error(GetErrorCode(ex), ex.Message)), HttpStatusCode.BadRequest),
+                new ErrorsResponse(new Error(ex.Code, ex.Message)), HttpStatusCode.BadRequest),
 
             // Map all other exceptions to a 500 Internal Server Error response.
             Exception ex => new ExceptionResponse(

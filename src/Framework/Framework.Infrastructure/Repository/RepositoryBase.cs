@@ -43,8 +43,7 @@ public abstract class RepositoryBase<TDbContext, TEntity, TId>(TDbContext contex
     /// <param name="predicate">The predicate to filter entities.</param>
     /// <param name="cancellationToken">A token to cancel the asynchronous operation.</param>
     /// <returns>The first entity that matches the predicate; otherwise, null.</returns>
-    public virtual async Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate,
-        CancellationToken cancellationToken = default)
+    public virtual async Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
         return await context
             .Set<TEntity>()
@@ -57,8 +56,7 @@ public abstract class RepositoryBase<TDbContext, TEntity, TId>(TDbContext contex
     /// <param name="specification">The specification to filter entities.</param>
     /// <param name="cancellationToken">A token to cancel the asynchronous operation.</param>
     /// <returns>The first entity that satisfies the specification; otherwise, null.</returns>
-    public async Task<TEntity?> FirstOrDefaultAsync(Specification<TEntity, TId> specification,
-        CancellationToken cancellationToken = default)
+    public async Task<TEntity?> FirstOrDefaultAsync(Specification<TEntity, TId> specification, CancellationToken cancellationToken = default)
     {
         return await ApplySpecification(specification)
             .FirstOrDefaultAsync(cancellationToken);
@@ -117,8 +115,7 @@ public abstract class RepositoryBase<TDbContext, TEntity, TId>(TDbContext contex
     /// <param name="predicate">The predicate to filter entities.</param>
     /// <param name="cancellationToken">A token to cancel the asynchronous operation.</param>
     /// <returns>A list of entities.</returns>
-    public virtual async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate,
-        CancellationToken cancellationToken = default)
+    public virtual async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
         return await context
             .Set<TEntity>()
@@ -132,8 +129,7 @@ public abstract class RepositoryBase<TDbContext, TEntity, TId>(TDbContext contex
     /// <param name="specification">The specification to filter entities.</param>
     /// <param name="cancellationToken">A token to cancel the asynchronous operation.</param>
     /// <returns>A list of entities.</returns>
-    public async Task<IEnumerable<TEntity>> FindAsync(Specification<TEntity, TId> specification,
-        CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<TEntity>> FindAsync(Specification<TEntity, TId> specification, CancellationToken cancellationToken = default)
     {
         return await ApplySpecification(specification)
             .ToListAsync(cancellationToken);
@@ -184,8 +180,7 @@ public abstract class RepositoryBase<TDbContext, TEntity, TId>(TDbContext contex
     /// <param name="predicate">The predicate to filter entities.</param>
     /// <param name="cancellationToken">A token to cancel the asynchronous operation.</param>
     /// <returns>True if any entities match the predicate; otherwise, false.</returns>
-    public async Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate,
-        CancellationToken cancellationToken = default)
+    public async Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
         return await context
             .Set<TEntity>()

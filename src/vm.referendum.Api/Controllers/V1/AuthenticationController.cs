@@ -6,6 +6,7 @@ using vm.referendum.Api.Infrastructure;
 using vm.referendum.Application.Features.User.Commands.CreateUser;
 using vm.referendum.Application.Features.User.Commands.Login;
 using vm.referendum.Application.Features.User.Commands.PasswordReset;
+using vm.referendum.Domain.Entities.Permission;
 using vm.referendum.Domain.Enums;
 using vm.referendum.Infrastructure.Authentication;
 
@@ -43,7 +44,7 @@ public sealed class AuthenticationController(IDispatcher dispatcher) : ApiContro
     }
 
 
-    [HasPermission(Permission.UpdateMember)]
+    [HasPermission(nameof(Permission.UpdateMember))]
     [HttpDelete]
     [ApiSuccessResponse(StatusCodes.Status200OK)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]

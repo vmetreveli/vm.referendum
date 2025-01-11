@@ -12,6 +12,7 @@ using vm.referendum.Application.Features.Question.Commands.UpdateQuestion;
 using vm.referendum.Application.Features.Question.Queries.GetAllQuestions;
 using vm.referendum.Application.Features.Question.Queries.GetQuestionById;
 using vm.referendum.Application.Features.SeedData.Commands.AddDumpData;
+using vm.referendum.Domain.Entities.Permission;
 using vm.referendum.Domain.Enums;
 using vm.referendum.Infrastructure.Authentication;
 
@@ -22,7 +23,7 @@ namespace vm.referendum.Api.Controllers.V1;
 public sealed class QuestionController(IDispatcher dispatcher) : ApiController(dispatcher)
 {
     // [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.Unauthorized)]
-    // [HasPermission(Permission.ReadMember)]
+    [HasPermission(nameof(Permission.ReadMember))]
     [HttpGet]
     [Route(ApiRoutes.Questions.All_Question)]
     [ApiSuccessResponse(StatusCodes.Status200OK)]
@@ -50,7 +51,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
         return Ok(res);
     }
 
-    [HasPermission(Permission.UpdateMember)]
+    [HasPermission(nameof(Permission.UpdateMember))]
     [HttpPost]
     [ApiSuccessResponse(StatusCodes.Status204NoContent)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
@@ -68,7 +69,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
         return NoContent();
     }
 
-    [HasPermission(Permission.UpdateMember)]
+    [HasPermission(nameof(Permission.UpdateMember))]
     [HttpPut]
     [ApiSuccessResponse(StatusCodes.Status204NoContent)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]

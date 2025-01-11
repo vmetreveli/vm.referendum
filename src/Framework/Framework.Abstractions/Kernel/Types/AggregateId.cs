@@ -1,22 +1,17 @@
 ﻿namespace Framework.Abstractions.Kernel.Types;
 
-public class AggregateId<T> : IEquatable<AggregateId<T>>
+public class AggregateId<T>(T value) : IEquatable<AggregateId<T>>
 {
-    public AggregateId(T value)
-    {
-        Value = value;
-    }
+    public T Value { get; } = value;
 
-    public T Value { get; }
-
-    public bool Equals(AggregateId<T> other)
+    public bool Equals(AggregateId<T>? other)
     {
         if (ReferenceEquals(null, other)) return false;
         if (ReferenceEquals(this, other)) return true;
         return EqualityComparer<T>.Default.Equals(Value, other.Value);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
@@ -26,17 +21,13 @@ public class AggregateId<T> : IEquatable<AggregateId<T>>
 
     public override int GetHashCode()
     {
-        return EqualityComparer<T>.Default.GetHashCode(Value);
+        return EqualityComparer<T>.Default.GetHashCode(Value ?? throw new InvalidOperationException());
     }
 }
 
-public class AggregateId : AggregateId<Guid>
+public sealed class AggregateId(Guid value) : AggregateId<Guid>(value)
 {
     public AggregateId() : this(Guid.NewGuid())
-    {
-    }
-
-    public AggregateId(Guid value) : base(value)
     {
     }
 

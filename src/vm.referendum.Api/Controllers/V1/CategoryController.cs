@@ -5,6 +5,7 @@ using vm.referendum.Application.Features.Category.Commands.CreateCategory;
 using vm.referendum.Application.Features.Category.Commands.DeleteCategory;
 using vm.referendum.Application.Features.Category.Commands.UpdateCategory;
 using vm.referendum.Application.Features.Category.Queries.GetAllCategory;
+using vm.referendum.Domain.Entities.Permission;
 using vm.referendum.Domain.Enums;
 using vm.referendum.Infrastructure.Authentication;
 
@@ -18,7 +19,7 @@ public class CategoryController : ApiController
     {
     }
 
-    [HasPermission(Permission.UpdateMember)]
+    [HasPermission(nameof(Permission.ReadMember))]
     [HttpPost]
     [ApiSuccessResponse(StatusCodes.Status204NoContent)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
@@ -29,7 +30,7 @@ public class CategoryController : ApiController
         return NoContent();
     }
 
-    [HasPermission(Permission.UpdateMember)]
+    [HasPermission(nameof(Permission.ReadMember))]
     [HttpPut]
     [ApiSuccessResponse(StatusCodes.Status204NoContent)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
@@ -39,7 +40,7 @@ public class CategoryController : ApiController
         return NoContent();
     }
 
-    [HasPermission(Permission.UpdateMember)]
+    [HasPermission(nameof(Permission.ReadMember))]
     [HttpDelete]
     [ApiSuccessResponse(StatusCodes.Status204NoContent)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
@@ -49,7 +50,7 @@ public class CategoryController : ApiController
         return NoContent();
     }
 
-    [HasPermission(Permission.ReadMember)]
+    [HasPermission(nameof(Permission.ReadMember))]
     [HttpGet]
     [ApiSuccessResponse(StatusCodes.Status200OK)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]

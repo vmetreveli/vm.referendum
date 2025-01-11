@@ -9,7 +9,7 @@ namespace Framework.Infrastructure.Exceptions;
 ///     Middleware to handle exceptions during the request pipeline.
 ///     It catches exceptions thrown in the application, logs them, and maps them to an appropriate HTTP response.
 /// </summary>
-internal sealed class ErrorHandlerMiddleware(
+public sealed class ErrorHandlerMiddleware(
     IExceptionCompositionRoot exceptionCompositionRoot,
     ILogger<ErrorHandlerMiddleware> logger) : IMiddleware
 {

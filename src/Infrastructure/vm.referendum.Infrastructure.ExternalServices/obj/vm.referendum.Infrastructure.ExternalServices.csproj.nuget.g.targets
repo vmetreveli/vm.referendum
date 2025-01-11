@@ -6,6 +6,6 @@
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.configuration.binder/8.0.0/buildTransitive/netstandard2.0/Microsoft.Extensions.Configuration.Binder.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.configuration.binder/8.0.0/buildTransitive/netstandard2.0/Microsoft.Extensions.Configuration.Binder.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.logging.abstractions/9.0.0/buildTransitive/net8.0/Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.logging.abstractions/9.0.0/buildTransitive/net8.0/Microsoft.Extensions.Logging.Abstractions.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.apidescription.server/6.0.3/build/Microsoft.Extensions.ApiDescription.Server.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.apidescription.server/6.0.3/build/Microsoft.Extensions.ApiDescription.Server.targets')" />
-    <Import Project="$(NuGetPackageRoot)nswag.aspnetcore/14.1.0/build/NSwag.AspNetCore.targets" Condition="Exists('$(NuGetPackageRoot)nswag.aspnetcore/14.1.0/build/NSwag.AspNetCore.targets')" />
+    <Import Project="$(NuGetPackageRoot)nswag.aspnetcore/14.2.0/build/NSwag.AspNetCore.targets" Condition="Exists('$(NuGetPackageRoot)nswag.aspnetcore/14.2.0/build/NSwag.AspNetCore.targets')" />
   </ImportGroup>
 </Project>

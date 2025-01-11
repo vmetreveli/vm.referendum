@@ -6,6 +6,7 @@ using vm.referendum.Application.Features.User.Commands.PasswordChange;
 using vm.referendum.Application.Features.User.Commands.UpdateUser;
 using vm.referendum.Application.Features.User.Queries.GetAllUsers;
 using vm.referendum.Application.Features.User.Queries.GetUserById;
+using vm.referendum.Domain.Entities.Permission;
 using vm.referendum.Domain.Enums;
 using vm.referendum.Infrastructure.Authentication;
 
@@ -15,7 +16,7 @@ namespace vm.referendum.Api.Controllers.V1;
 [Route(ApiRoutes.BASE_ROUTE)]
 public class UserController(IDispatcher dispatcher) : ApiController(dispatcher)
 {
-    [HasPermission(Permission.ReadMember)]
+    [HasPermission(nameof(Permission.ReadMember))]
     [HttpGet]
     [ApiSuccessResponse(StatusCodes.Status200OK)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
@@ -27,7 +28,7 @@ public class UserController(IDispatcher dispatcher) : ApiController(dispatcher)
     }
 
 
-    [HasPermission(Permission.ReadMember)]
+    [HasPermission(nameof(Permission.ReadMember))]
     [Route(ApiRoutes.UserProfiles.ID_ROUTE)]
     [HttpGet]
     [ApiSuccessResponse(StatusCodes.Status200OK)]
@@ -40,7 +41,7 @@ public class UserController(IDispatcher dispatcher) : ApiController(dispatcher)
         return Ok(res);
     }
 
-    [HasPermission(Permission.UpdateMember)]
+    [HasPermission(nameof(Permission.UpdateMember))]
     [HttpPut]
     [Route(ApiRoutes.UserProfiles.ID_ROUTE)]
     [ApiSuccessResponse(StatusCodes.Status204NoContent)]
@@ -54,7 +55,7 @@ public class UserController(IDispatcher dispatcher) : ApiController(dispatcher)
         return NoContent();
     }
 
-    [HasPermission(Permission.UpdateMember)]
+    [HasPermission(nameof(Permission.UpdateMember))]
     [HttpPut("ChangePassword")]
     [ApiSuccessResponse(StatusCodes.Status204NoContent)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
@@ -67,7 +68,7 @@ public class UserController(IDispatcher dispatcher) : ApiController(dispatcher)
     }
 
 
-    [HasPermission(Permission.UpdateMember)]
+    [HasPermission(nameof(Permission.UpdateMember))]
     [HttpDelete("DeleteProfile")]
     [ApiSuccessResponse(StatusCodes.Status204NoContent)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
