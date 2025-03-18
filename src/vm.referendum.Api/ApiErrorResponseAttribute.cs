@@ -7,6 +7,5 @@ public class ApiErrorResponseAttribute(int statusCode, string description = null
     : SwaggerResponseAttribute(statusCode,
         $"<ul>{
             string.Join(string.Empty, description.
-                Select(description =>
-                    $"<li>{description}</li>"))
+                Select(description => $"<li>{description}</li>"))
         }<ul>", type);
