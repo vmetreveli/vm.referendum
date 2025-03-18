@@ -19,13 +19,13 @@ using vm.referendum.Infrastructure.Authentication;
 namespace vm.referendum.Api.Controllers.V1;
 
 [ApiVersion("1.0")]
-[Route(ApiRoutes.BASE_ROUTE)]
+[Route(ApiRoutes.BaseRoute)]
 public sealed class QuestionController(IDispatcher dispatcher) : ApiController(dispatcher)
 {
     // [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.Unauthorized)]
     [HasPermission(nameof(Permission.ReadMember))]
     [HttpGet]
-    [Route(ApiRoutes.Questions.All_Question)]
+    [Route(ApiRoutes.Questions.All)]
     [ApiSuccessResponse(StatusCodes.Status200OK)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
     public async Task<IActionResult> GetAllQuestions(CancellationToken cancellationToken)
@@ -40,7 +40,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
     }
 
     [HttpGet]
-    [Route(ApiRoutes.Questions.ID_ROUTE)]
+    [Route(ApiRoutes.Questions.Id)]
     [ApiSuccessResponse(StatusCodes.Status200OK)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
@@ -92,7 +92,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
 
 
     [HttpDelete]
-    [Route(ApiRoutes.Questions.ID_ROUTE)]
+    [Route(ApiRoutes.Questions.Id)]
     [ApiSuccessResponse(StatusCodes.Status204NoContent)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
     public async Task<IActionResult> DeleteQuestion(
@@ -109,7 +109,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
 
 
     [HttpGet]
-    [Route(ApiRoutes.Questions.ANSWERS)]
+    [Route(ApiRoutes.Questions.Answers)]
     [ApiSuccessResponse(StatusCodes.Status200OK)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
     public async Task<IActionResult> GetAnswersByQuestionId(
@@ -124,7 +124,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
 
 
     [HttpPost]
-    [Route(ApiRoutes.Questions.ANSWERS)]
+    [Route(ApiRoutes.Questions.Answers)]
     public async Task<IActionResult> AddAnswerToQuestion(
         Guid questionId,
         [FromBody] string answerText,
@@ -146,7 +146,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
 
 
     [HttpDelete]
-    [Route(ApiRoutes.Questions.ANSWER_BY_ID)]
+    [Route(ApiRoutes.Questions.AnswerById)]
     public async Task<IActionResult> RemoveAnswerFromQuestion(
         RemoveAnswerRequest request,
         CancellationToken cancellationToken)
@@ -163,7 +163,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
 
 
     [HttpPut]
-    [Route(ApiRoutes.Questions.ANSWER_BY_ID)]
+    [Route(ApiRoutes.Questions.AnswerById)]
     public async Task<IActionResult> UpdateAnswer(
         UpdateAnswerRequest request,
         CancellationToken cancellationToken)

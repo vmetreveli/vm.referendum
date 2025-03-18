@@ -2,32 +2,31 @@
 
 public static class ApiRoutes
 {
-    public const string BASE_ROUTE = "api/v{version:apiVersion}/[controller]";
+    public const string BaseRoute = "api/v{version:apiVersion}/[controller]";
 
     public static class UserProfiles
     {
-        public const string ID_ROUTE = "{id}";
+        public const string IdRoute = "{id}";
     }
 
     public static class Questions
     {
-        public const string All_Question = "all";
-        public const string ID_ROUTE = "{id}";
-        public const string ANSWERS = "{questionId}/answers";
-        public const string ANSWER_BY_ID = "{questionId}/answers/{answerId}";
+        public const string All = "all";
+        public const string Id = "{id}";
+        public const string Answers = "{questionId}/answers";
+        public const string AnswerById = "{questionId}/answers/{answerId}";
     }
 
     public static class Answers
     {
-        public const string SET_ANSWER = "answer/";
-        // public const string ANSWER_BY_ID = "{questionId}/answers/{answerId}";
+        public const string Set = "answer/";
     }
 
     public static class Authentication
     {
-        public const string LOGIN = "login";
-        public const string REGISTER = "registration";
-        public const string IDENTITY_BY_ID = "{identityUserId}";
-        public const string CURRENT_USER = "currentuser";
+        public const string Login = "login";
+        public const string Register = "registration";
+        public const string Identity = "{identityUserId}";
+        public const string Current = "currentuser";
     }
 }

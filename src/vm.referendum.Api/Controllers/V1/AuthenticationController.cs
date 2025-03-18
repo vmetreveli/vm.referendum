@@ -13,11 +13,11 @@ using vm.referendum.Infrastructure.Authentication;
 namespace vm.referendum.Api.Controllers.V1;
 
 [ApiVersion("1.0")]
-[Route(ApiRoutes.BASE_ROUTE)]
+[Route(ApiRoutes.BaseRoute)]
 public sealed class AuthenticationController(IDispatcher dispatcher) : ApiController(dispatcher)
 {
     [AllowAnonymous]
-    [HttpPost(ApiRoutes.Authentication.LOGIN)]
+    [HttpPost(ApiRoutes.Authentication.Login)]
     [ApiSuccessResponse(StatusCodes.Status200OK)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
     [EnableRateLimiting(PolicyNames.AuthenticatedUserPolicy)]
@@ -31,7 +31,7 @@ public sealed class AuthenticationController(IDispatcher dispatcher) : ApiContro
 
 
     [AllowAnonymous]
-    [HttpPost(ApiRoutes.Authentication.REGISTER)]
+    [HttpPost(ApiRoutes.Authentication.Register)]
     [ApiSuccessResponse(StatusCodes.Status200OK)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
     public async Task<IActionResult> Create(

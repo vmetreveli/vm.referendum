@@ -1,15 +1,21 @@
 ﻿using Framework.Abstractions.Dispatchers;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace vm.referendum.Api.Infrastructure;
 
+[Authorize]
 [ApiController]
-//[Authorize]
+[ApiErrorResponse(500, "Internal Server Error")]
 public class ApiController : ControllerBase
 {
+    protected IDispatcher Dispatcher { get; }
+
     protected ApiController(IDispatcher dispatcher)
     {
         Dispatcher = dispatcher;
     }
 
-    protected IDispatcher Dispatcher { get; }
+    [NonAction]
+    protected ObjectResult CreatedResult([ActionResultObjectValue] object value)
+        => new(value) { StatusCode = StatusCodes.Status201Created };
 }

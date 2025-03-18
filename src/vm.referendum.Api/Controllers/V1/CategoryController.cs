@@ -12,7 +12,7 @@ using vm.referendum.Infrastructure.Authentication;
 namespace vm.referendum.Api.Controllers.V1;
 
 [ApiVersion("1.0")]
-[Route(ApiRoutes.BASE_ROUTE)]
+[Route(ApiRoutes.BaseRoute)]
 public class CategoryController : ApiController
 {
     protected CategoryController(IDispatcher dispatcher) : base(dispatcher)

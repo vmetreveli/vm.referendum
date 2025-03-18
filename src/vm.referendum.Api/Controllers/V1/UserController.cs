@@ -13,7 +13,7 @@ using vm.referendum.Infrastructure.Authentication;
 namespace vm.referendum.Api.Controllers.V1;
 
 [ApiVersion("1.0")]
-[Route(ApiRoutes.BASE_ROUTE)]
+[Route(ApiRoutes.BaseRoute)]
 public class UserController(IDispatcher dispatcher) : ApiController(dispatcher)
 {
     [HasPermission(nameof(Permission.ReadMember))]
@@ -29,7 +29,7 @@ public class UserController(IDispatcher dispatcher) : ApiController(dispatcher)
 
 
     [HasPermission(nameof(Permission.ReadMember))]
-    [Route(ApiRoutes.UserProfiles.ID_ROUTE)]
+    [Route(ApiRoutes.UserProfiles.IdRoute)]
     [HttpGet]
     [ApiSuccessResponse(StatusCodes.Status200OK)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
@@ -43,7 +43,7 @@ public class UserController(IDispatcher dispatcher) : ApiController(dispatcher)
 
     [HasPermission(nameof(Permission.UpdateMember))]
     [HttpPut]
-    [Route(ApiRoutes.UserProfiles.ID_ROUTE)]
+    [Route(ApiRoutes.UserProfiles.IdRoute)]
     [ApiSuccessResponse(StatusCodes.Status204NoContent)]
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
     public async Task<IActionResult> UpdateUserProfile(
