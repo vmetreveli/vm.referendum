@@ -9,7 +9,7 @@ public class PasswordChangeCommandHandler(
     IPasswordHasher passwordHasher)
     : ICommandHandler<PasswordChangeCommand>
 {
-    public async Task Handle(PasswordChangeCommand request, CancellationToken cancellationToken)
+    public async Task Handle(PasswordChangeCommand request, CancellationToken cancellationToken = default)
     {
         var user = await userRepository.GetByIdAsync(request.UserId, cancellationToken);
 
