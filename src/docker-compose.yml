@@ -70,7 +70,7 @@ services:
       - referendumdb
       - rabbitmq
     ports:
-      - "80:80"
+      - "8181:8181"
 
 volumes:
   postgres_data:
