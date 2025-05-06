@@ -39,11 +39,11 @@ internal sealed class PasswordHasher : IPasswordHasher, IPasswordHashChecker, ID
 
         if (providedPassword is null) throw new ArgumentNullException(nameof(providedPassword));
 
-        var decodedHashedPassword = Convert.FromBase64String(passwordHash);
+        byte[] decodedHashedPassword = Convert.FromBase64String(passwordHash);
 
         if (decodedHashedPassword.Length == 0) return false;
 
-        var verified = VerifyPasswordHashInternal(decodedHashedPassword, providedPassword);
+        bool verified = VerifyPasswordHashInternal(decodedHashedPassword, providedPassword);
 
         return verified;
     }
@@ -53,7 +53,7 @@ internal sealed class PasswordHasher : IPasswordHasher, IPasswordHashChecker, ID
     {
         if (password is null) throw new ArgumentNullException(nameof(password));
 
-        var hashedPassword = Convert.ToBase64String(HashPasswordInternal(password));
+        string hashedPassword = Convert.ToBase64String(HashPasswordInternal(password));
 
         return hashedPassword;
     }
@@ -65,11 +65,11 @@ internal sealed class PasswordHasher : IPasswordHasher, IPasswordHashChecker, ID
     /// <returns>The bytes of the hash for the specified password.</returns>
     private byte[] HashPasswordInternal(string password)
     {
-        var salt = GetRandomSalt();
+        byte[] salt = GetRandomSalt();
 
-        var subKey = KeyDerivation.Pbkdf2(password, salt, PRF, ITERATION_COUNT, NUMBER_OF_BYTES_REQUESTED);
+        byte[] subKey = KeyDerivation.Pbkdf2(password, salt, PRF, ITERATION_COUNT, NUMBER_OF_BYTES_REQUESTED);
 
-        var outputBytes = new byte[salt.Length + subKey.Length];
+        byte[] outputBytes = new byte[salt.Length + subKey.Length];
 
         Buffer.BlockCopy(salt, 0, outputBytes, 0, salt.Length);
 
@@ -84,7 +84,7 @@ internal sealed class PasswordHasher : IPasswordHasher, IPasswordHashChecker, ID
     /// <returns>The randomly generated salt.</returns>
     private byte[] GetRandomSalt()
     {
-        var salt = new byte[SALT_SIZE];
+        byte[] salt = new byte[SALT_SIZE];
 
         _rng.GetBytes(salt);
 
@@ -101,19 +101,19 @@ internal sealed class PasswordHasher : IPasswordHasher, IPasswordHashChecker, ID
     {
         try
         {
-            var salt = new byte[SALT_SIZE];
+            byte[] salt = new byte[SALT_SIZE];
 
             Buffer.BlockCopy(hashedPassword, 0, salt, 0, salt.Length);
 
-            var subKeyLength = hashedPassword.Length - salt.Length;
+            int subKeyLength = hashedPassword.Length - salt.Length;
 
             if (subKeyLength < SALT_SIZE) return false;
 
-            var expectedSubKey = new byte[subKeyLength];
+            byte[] expectedSubKey = new byte[subKeyLength];
 
             Buffer.BlockCopy(hashedPassword, salt.Length, expectedSubKey, 0, expectedSubKey.Length);
 
-            var actualSubKey = KeyDerivation.Pbkdf2(password, salt, PRF, ITERATION_COUNT, subKeyLength);
+            byte[] actualSubKey = KeyDerivation.Pbkdf2(password, salt, PRF, ITERATION_COUNT, subKeyLength);
 
             return ByteArraysEqual(actualSubKey, expectedSubKey);
         }
@@ -135,9 +135,12 @@ internal sealed class PasswordHasher : IPasswordHasher, IPasswordHashChecker, ID
 
         if (a is null || b is null || a.Length != b.Length) return false;
 
-        var areSame = true;
+        bool areSame = true;
 
-        for (var i = 0; i < a.Length; i++) areSame &= a[i] == b[i];
+        for (int i = 0; i < a.Length; i++)
+        {
+            areSame &= a[i] == b[i];
+        }
 
         return areSame;
     }

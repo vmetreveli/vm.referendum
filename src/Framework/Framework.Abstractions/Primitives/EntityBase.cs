@@ -39,7 +39,6 @@ public abstract class EntityBase<TId> : IEqualityComparer<EntityBase<TId>>
     }
 
 
-
     /// <summary>
     ///     Determines whether the specified object is equal to the current <see cref="EntityBase{TId}" />.
     /// </summary>

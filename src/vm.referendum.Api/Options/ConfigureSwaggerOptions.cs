@@ -6,23 +6,24 @@ public class ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider) : 
 {
     public void Configure(SwaggerGenOptions options)
     {
-        foreach (var description in provider.ApiVersionDescriptions)
+        foreach (ApiVersionDescription description in provider.ApiVersionDescriptions)
+        {
             options.SwaggerDoc(description.GroupName, CreateVersionInfo(description));
+        }
 
-        var scheme = GetJwtSecurityScheme();
+        OpenApiSecurityScheme scheme = GetJwtSecurityScheme();
         options.AddSecurityDefinition(scheme.Reference.Id, scheme);
         options.AddSecurityRequirement(new OpenApiSecurityRequirement
         {
             {
-                scheme,
-                Array.Empty<string>()
+                scheme, Array.Empty<string>()
             }
         });
     }
 
     private static OpenApiInfo CreateVersionInfo(ApiVersionDescription description)
     {
-        var info = new OpenApiInfo
+        OpenApiInfo info = new()
         {
             Title = $"Referendum v{description.ApiVersion}",
             Version = description.ApiVersion.ToString()

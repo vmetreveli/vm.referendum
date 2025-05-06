@@ -14,13 +14,13 @@ public sealed class GetQuestionByIdQueryHandler(
     public async Task<QuestionResponse> Handle(GetQuestionByIdQuery request,
         CancellationToken cancellationToken = default)
     {
-        var question =
+        Domain.Entities.Question.Question? question =
             await questionRepository.GetByIdWithAnswersAsync(request.QuestionId, cancellationToken);
 
         if (question is null)
-           throw new ObjectNotFoundException(typeof(QuestionResponse).ToString(),request.QuestionId.ToString());
+            throw new ObjectNotFoundException(typeof(QuestionResponse).ToString(), request.QuestionId.ToString());
 
-        var mapped = mapper.Map<QuestionResponse>(question);
+        QuestionResponse? mapped = mapper.Map<QuestionResponse>(question);
 
         return mapped;
     }

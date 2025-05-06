@@ -7,17 +7,17 @@ namespace Framework.Infrastructure;
 
 public static class MigrationExtensions
 {
-    public static  WebApplication ApplyMigration(this WebApplication app)
+    public static WebApplication ApplyMigration(this WebApplication app)
     {
         // Create a scope to retrieve services
-        using var scope = app.Services.CreateScope();
-        var services = scope.ServiceProvider;
-        var logger = services.GetRequiredService<ILogger<MigrationExtensionsLogger>>();
+        using IServiceScope scope = app.Services.CreateScope();
+        IServiceProvider services = scope.ServiceProvider;
+        ILogger<MigrationExtensionsLogger> logger = services.GetRequiredService<ILogger<MigrationExtensionsLogger>>();
 
         // Find all DbContext types implementing IDbContext
-        var dbContextTypes = FindDbContexts();
+        IEnumerable<Type> dbContextTypes = FindDbContexts();
 
-        foreach (var dbContextType in dbContextTypes)
+        foreach (Type dbContextType in dbContextTypes)
         {
             try
             {
@@ -25,7 +25,7 @@ public static class MigrationExtensions
 
                 // Resolve the DbContext and apply migrations
 
-                var context = (DbContext)services.GetRequiredService(dbContextType);
+                DbContext context = (DbContext)services.GetRequiredService(dbContextType);
                 // if (context.Database.GetPendingMigrations().Any())
                 //  {
                 //      context.Database.Migrate();
@@ -33,10 +33,10 @@ public static class MigrationExtensions
 
                 if (context.Database.IsNpgsql())
                 {
-                    var pendingMigrations =  context.Database.GetPendingMigrations();
+                    IEnumerable<string> pendingMigrations = context.Database.GetPendingMigrations();
                     if (pendingMigrations.Any())
                     {
-                         context.Database.Migrate();
+                        context.Database.Migrate();
                     }
                 }
 
@@ -55,11 +55,11 @@ public static class MigrationExtensions
     private static IEnumerable<Type> FindDbContexts()
     {
         // IDbContext is used to identify relevant DbContext types
-        var dbContextInterface = typeof(IDbContext);
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+        Type dbContextInterface = typeof(IDbContext);
+        Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
         // Retrieve all classes that implement IDbContext and are DbContext
-        var dbContexts = assemblies
+        IEnumerable<Type> dbContexts = assemblies
             .SelectMany(assembly => assembly.GetTypes())
             .Where(type => !type.IsAbstract && typeof(DbContext).IsAssignableFrom(type))
             .Where(type => type.GetInterfaces().Contains(dbContextInterface));

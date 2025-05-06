@@ -17,21 +17,21 @@ internal class CreateQuestionCommandHandler(
         CreateQuestionCommand request,
         CancellationToken cancellationToken = default)
     {
-        if (!TryParse(request.UserId, out var userId)) throw new InflowException("Invalid user id.");
+        if (!TryParse(request.UserId, out Guid userId)) throw new InflowException("Invalid user id.");
 
 
-        var user = await userRepository
+        Domain.Entities.User.User? user = await userRepository
             .GetByIdAsync(userId, cancellationToken);
         if (user is null) throw new InflowException("Invalid user id.");
 
 
-        var checkQuestion =
+        IEnumerable<Domain.Entities.Question.Question> checkQuestion =
             await questionRepository
                 .FindAsync(i => i.TextContent == request.TextContent, cancellationToken);
         if (checkQuestion.Any()) throw new InflowException("Question already exists.");
 
 
-        var question = Domain.Entities.Question.Question.CreateQuestion(
+        Domain.Entities.Question.Question question = Domain.Entities.Question.Question.CreateQuestion(
             userId,
             request.CategoryId,
             request.TextContent);

@@ -91,7 +91,7 @@ public sealed class User : AggregateRoot<Guid>, IAuditableEntity, IDeletableEnti
 
         _passwordHash = passwordHash;
 
-        var sendEmail = new SendEmailDto
+        SendEmailDto sendEmail = new()
         {
             Subject = "Referendum recovery",
             Html =
@@ -99,7 +99,7 @@ public sealed class User : AggregateRoot<Guid>, IAuditableEntity, IDeletableEnti
             To = Email
         };
         //AddDomainEvent(new PasswordResetDomainEvent(sendEmail));
-        
+
     }
 
     public void ChangeName(FirstName firstName, LastName lastName)

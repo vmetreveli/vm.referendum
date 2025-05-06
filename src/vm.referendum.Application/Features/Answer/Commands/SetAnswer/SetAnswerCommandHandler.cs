@@ -10,11 +10,11 @@ public sealed class SetAnswerCommandHandler(IQuestionRepository questionReposito
     public async Task Handle(SetAnswerCommand request, CancellationToken cancellationToken)
     {
         //TODO NotWorking Version
-        var question = await questionRepository.GetByIdWithAnswersAsync(request.QuestionId, cancellationToken);
+        Domain.Entities.Question.Question? question = await questionRepository.GetByIdWithAnswersAsync(request.QuestionId, cancellationToken);
 
         if (question is null) throw new QuestionNotFoundException(request.QuestionId.ToString());
 
-        var answer = question.Answers.FirstOrDefault(i => i.Id == request.AnswerId);
+        Domain.Entities.Answer.Answer? answer = question.Answers.FirstOrDefault(i => i.Id == request.AnswerId);
 
         if (answer is null) throw new AnswerNotFoundException(request.AnswerId.ToString());
 

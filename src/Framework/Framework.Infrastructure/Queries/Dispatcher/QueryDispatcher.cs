@@ -17,22 +17,25 @@ public sealed class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDi
         CancellationToken cancellationToken = default)
     {
         // Create a scope for resolving dependencies.
-        using var scope = serviceProvider.CreateScope();
+        using IServiceScope scope = serviceProvider.CreateScope();
 
         // Get the type of the query handler that handles this specific query type and result.
-        var handlerType = typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResult));
+        Type handlerType = typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResult));
 
         // Resolve the query handler from the service provider.
-        var handler = scope.ServiceProvider.GetRequiredService(handlerType);
+        object handler = scope.ServiceProvider.GetRequiredService(handlerType);
 
         // Retrieve the Handle method from the query handler for this specific query.
-        var method = handlerType.GetMethod(nameof(IQueryHandler<IQuery<TResult>, TResult>.Handle));
+        MethodInfo? method = handlerType.GetMethod(nameof(IQueryHandler<IQuery<TResult>, TResult>.Handle));
 
         // If no method is found, throw an exception indicating an invalid handler.
         if (method is null)
             throw new InvalidOperationException($"Query handler for '{typeof(TResult).Name}' is invalid.");
 
         // Invoke the Handle method on the query handler to process the query and return the result.
-        return await ((Task<TResult>)method.Invoke(handler, new object[] { query, cancellationToken })!)!;
+        return await ((Task<TResult>)method.Invoke(handler, new object[]
+        {
+            query, cancellationToken
+        })!)!;
     }
 }

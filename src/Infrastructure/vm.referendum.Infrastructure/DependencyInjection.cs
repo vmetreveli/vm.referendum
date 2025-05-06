@@ -34,7 +34,7 @@ public static class DependencyInjection
         services
             .AddDbContext<DbContext, DataContext>((sp, options) =>
                 {
-                    var auditableInterceptor = sp.GetService<UpdateAuditableEntitiesInterceptor>();
+                    UpdateAuditableEntitiesInterceptor? auditableInterceptor = sp.GetService<UpdateAuditableEntitiesInterceptor>();
                     options.UseNpgsql(
                             configuration.GetConnectionString("DefaultConnection"))
                         .UseSnakeCaseNamingConvention()

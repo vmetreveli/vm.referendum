@@ -27,15 +27,15 @@ public class EventDispatcher(
         CancellationToken cancellationToken = default)
         where TEvent : IDomainEvent
     {
-        using var scope = serviceProvider.CreateScope();
+        using IServiceScope scope = serviceProvider.CreateScope();
 
         // Resolves all registered event handlers for the event type.
-        var handlers = scope.ServiceProvider.GetServices<IEventHandler<IEvent>>();
+        IEnumerable<IEventHandler<IEvent>> handlers = scope.ServiceProvider.GetServices<IEventHandler<IEvent>>();
 
         // If there are any handlers, execute them asynchronously.
         if (handlers.Any())
         {
-            var tasks = handlers.Select(handler => handler.HandleAsync(@event, cancellationToken));
+            IEnumerable<Task> tasks = handlers.Select(handler => handler.HandleAsync(@event, cancellationToken));
             await Task.WhenAll(tasks); // Execute all handler tasks concurrently.
         }
     }
@@ -63,7 +63,7 @@ public class EventDispatcher(
         catch (Exception ex)
         {
             // In case of failure, store the event in the outbox for retrying.
-            var outboxMessage = new OutboxMessage(@event, @event.Id, @event.CreationDate);
+            OutboxMessage outboxMessage = new(@event, @event.Id, @event.CreationDate);
             repository.CreateOutboxMessage(outboxMessage);
         }
         finally

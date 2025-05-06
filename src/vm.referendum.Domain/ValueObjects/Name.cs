@@ -19,7 +19,7 @@ public sealed class Name : ValueObject
     {
         if (string.IsNullOrWhiteSpace(Name))
             throw new InflowException("Name is required");
-            
+
         return new Name(Name);
     }
 

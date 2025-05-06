@@ -10,8 +10,8 @@ internal sealed class DeleteUserCommandHandler(IUserRepository userRepository, I
     /// <inheritdoc />
     public async Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
-        var emailResult = Email.Create(request.Email);
-        var user = await userRepository.GetByEmailAsync(emailResult, cancellationToken);
+        Email emailResult = Email.Create(request.Email);
+        Domain.Entities.User.User? user = await userRepository.GetByEmailAsync(emailResult, cancellationToken);
 
         if (user is not null)
         {

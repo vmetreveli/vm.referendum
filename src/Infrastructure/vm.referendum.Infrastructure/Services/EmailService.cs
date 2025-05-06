@@ -16,17 +16,23 @@ public sealed class EmailService(IOptions<EmailConfiguration> emailConfig, ILogg
 
     public async Task SendEmailAsync(SendEmailDto emailDto, CancellationToken cancellationToken)
     {
-        var email = new MimeMessage
+        MimeMessage email = new()
         {
             Subject = emailDto.Subject,
-            To = { MailboxAddress.Parse(emailDto.To) },
+            To =
+            {
+                MailboxAddress.Parse(emailDto.To)
+            },
             Body = new TextPart(TextFormat.Html)
             {
                 Text = emailDto.Html
             },
-            From = { MailboxAddress.Parse(_emailConfig.From) }
+            From =
+            {
+                MailboxAddress.Parse(_emailConfig.From)
+            }
         };
-        using var smtp = new SmtpClient();
+        using SmtpClient smtp = new();
         await smtp.ConnectAsync(_emailConfig.Host, _emailConfig.Port, true,
             cancellationToken);
         smtp.AuthenticationMechanisms.Remove("XOAUTH2");

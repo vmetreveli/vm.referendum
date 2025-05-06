@@ -4,7 +4,7 @@ public class InMemoryDbContextFixture : IDisposable
 {
     public InMemoryDbContextFixture()
     {
-        var options = new DbContextOptionsBuilder<BaseDbContext>()
+        DbContextOptions<BaseDbContext> options = new DbContextOptionsBuilder<BaseDbContext>()
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .EnableSensitiveDataLogging()
             .Options;

@@ -24,11 +24,11 @@ internal sealed class GetUserByIdQueryHandler : IQueryHandler<GetUserByIdQuery, 
     /// <inheritdoc />
     public async Task<UserResponse> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetByIdAsync(request.UserId, cancellationToken);
+        Domain.Entities.User.User? user = await _userRepository.GetByIdAsync(request.UserId, cancellationToken);
 
         if (user is null)
             throw new ObjectNotFoundException(typeof(UserResponse).ToString(), "request.UserId");
-        var response = new UserResponse
+        UserResponse response = new()
         {
             Id = user.Id,
             Email = user.Email.Value,

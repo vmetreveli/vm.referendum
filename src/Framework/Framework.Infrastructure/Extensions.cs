@@ -34,7 +34,7 @@ public static class Extensions
         services.AddScoped<IDispatcher, Dispatcher>();
         services.AddErrorHandling();
 
-       // services.AddScoped<IOutboxRepository, OutboxRepository>();
+        // services.AddScoped<IOutboxRepository, OutboxRepository>();
 
         // Configure the database context with PostgreSQL settings
         services
@@ -61,22 +61,25 @@ public static class Extensions
         services.AddScoped<ICommandDispatcher, CommandDispatcher>();
 
         // Get all types that implement ICommandHandler<>
-        var commandHandlerTypes = assembly.GetTypes()
+        IEnumerable<Type> commandHandlerTypes = assembly.GetTypes()
             .Where(t => t.IsClass && !t.IsAbstract && t.GetInterfaces()
                 .Any(i => i.IsGenericType
                           && (i.GetGenericTypeDefinition() == typeof(ICommandHandler<,>)
                               || i.GetGenericTypeDefinition() == typeof(ICommandHandler<>))));
 
         // Register each command handler as scoped
-        foreach (var type in commandHandlerTypes)
+        foreach (Type type in commandHandlerTypes)
         {
-            var interfaces = type.GetInterfaces()
+            IEnumerable<Type> interfaces = type.GetInterfaces()
                 .Where(i =>
                     i.IsGenericType &&
                     (i.GetGenericTypeDefinition() == typeof(ICommandHandler<>)
                      || i.GetGenericTypeDefinition() == typeof(ICommandHandler<,>)));
 
-            foreach (var interfaceType in interfaces) services.AddScoped(interfaceType, type);
+            foreach (Type interfaceType in interfaces)
+            {
+                services.AddScoped(interfaceType, type);
+            }
         }
 
         return services;
@@ -94,17 +97,20 @@ public static class Extensions
         services.AddScoped<IQueryDispatcher, QueryDispatcher>();
 
         // Get all types implementing IQueryHandler<,>
-        var queryHandlerTypes = assembly.GetTypes()
+        IEnumerable<Type> queryHandlerTypes = assembly.GetTypes()
             .Where(t => t.IsClass && !t.IsAbstract && t.GetInterfaces()
                 .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IQueryHandler<,>)));
 
         // Register each query handler as scoped
-        foreach (var type in queryHandlerTypes)
+        foreach (Type type in queryHandlerTypes)
         {
-            var interfaces = type.GetInterfaces()
+            IEnumerable<Type> interfaces = type.GetInterfaces()
                 .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IQueryHandler<,>));
 
-            foreach (var interfaceType in interfaces) services.AddScoped(interfaceType, type);
+            foreach (Type interfaceType in interfaces)
+            {
+                services.AddScoped(interfaceType, type);
+            }
         }
 
         return services;
@@ -122,17 +128,20 @@ public static class Extensions
         services.AddScoped<IEventDispatcher, EventDispatcher>();
 
         // Get all types implementing IEventHandler<>
-        var eventHandlerTypes = assembly.GetTypes()
+        IEnumerable<Type> eventHandlerTypes = assembly.GetTypes()
             .Where(t => t.IsClass && !t.IsAbstract && t.GetInterfaces()
                 .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEventHandler<>)));
 
         // Register each event handler as scoped
-        foreach (var type in eventHandlerTypes)
+        foreach (Type type in eventHandlerTypes)
         {
-            var interfaces = type.GetInterfaces()
+            IEnumerable<Type> interfaces = type.GetInterfaces()
                 .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEventHandler<>));
 
-            foreach (var interfaceType in interfaces) services.AddScoped(interfaceType, type);
+            foreach (Type interfaceType in interfaces)
+            {
+                services.AddScoped(interfaceType, type);
+            }
         }
 
         return services;
@@ -174,7 +183,7 @@ public static class Extensions
     private static IServiceCollection AddEventBus(this IServiceCollection services,
         IConfiguration configuration)
     {
-        var config = configuration.GetSection("AppConfiguration:RabbitMQ").Get<RabbitMqOptions>();
+        RabbitMqOptions? config = configuration.GetSection("AppConfiguration:RabbitMQ").Get<RabbitMqOptions>();
 
         // Add the required Quartz.NET services
         services.AddQuartz(q =>
@@ -186,10 +195,12 @@ public static class Extensions
 
         services.AddMassTransit(configurator =>
         {
-            var eventConsumer = FindConsumers().ToList(); // Find all event consumers
+            List<Type> eventConsumer = FindConsumers().ToList(); // Find all event consumers
 
-            foreach (var consumer in eventConsumer)
+            foreach (Type consumer in eventConsumer)
+            {
                 configurator.AddConsumer(consumer); // Register each consumer
+            }
 
             configurator.UsingRabbitMq((context, cfg) =>
             {
@@ -200,8 +211,10 @@ public static class Extensions
                 });
 
                 // Register each EventConsumer with a receive endpoint
-                foreach (var type in eventConsumer)
+                foreach (Type type in eventConsumer)
+                {
                     cfg.ReceiveEndpoint($"{type.FullName}", c => { c.ConfigureConsumer(context, type); });
+                }
             });
         });
 
@@ -214,12 +227,13 @@ public static class Extensions
     /// <returns>A collection of consumer types implementing <see cref="IEventConsumer{TEvent}" />.</returns>
     private static IEnumerable<Type> FindConsumers()
     {
-        var consumerInterfaceType = typeof(IEventConsumer<>);
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-        var consumer = new List<Type>();
+        Type consumerInterfaceType = typeof(IEventConsumer<>);
+        Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+        List<Type> consumer = new();
 
         // Search for classes implementing IEventConsumer<> in loaded assemblies
-        foreach (var assembly in assemblies)
+        foreach (Assembly assembly in assemblies)
+        {
             consumer.AddRange(assembly.GetTypes()
                 .Where(type => type.IsClass && !type.IsAbstract)
                 .Where(type => type.GetInterfaces()
@@ -227,6 +241,7 @@ public static class Extensions
                     .Exists(interfaceType =>
                         interfaceType.IsGenericType &&
                         interfaceType.GetGenericTypeDefinition() == consumerInterfaceType)));
+        }
 
         return consumer;
     }
@@ -243,15 +258,15 @@ public static class Extensions
         IConfiguration config)
         where T : IJob
     {
-        var jobName = typeof(T).Name;
-        var configKey = $"AppConfiguration:Quartz:{jobName}";
-        var cronSchedule = config[configKey];
+        string jobName = typeof(T).Name;
+        string configKey = $"AppConfiguration:Quartz:{jobName}";
+        string? cronSchedule = config[configKey];
 
         // Validate that the cron schedule exists
         if (string.IsNullOrEmpty(cronSchedule))
             throw new FrameworkException($"No Quartz.NET Cron schedule found for job in configuration at {configKey}");
 
-        var jobKey = new JobKey(jobName);
+        JobKey jobKey = new(jobName);
 
         // Register the job and trigger using the cron schedule from configuration
         quartz.AddJob<T>(opts => opts.WithIdentity(jobKey));

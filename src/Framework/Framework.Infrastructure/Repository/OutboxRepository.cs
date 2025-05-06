@@ -26,7 +26,7 @@ public class OutboxRepository(BaseDbContext context)
     public async void CreateOutboxMessage(OutboxMessage outboxMessage)
     {
         // Check if an outbox message with the same EventId already exists
-        var message = await _context
+        OutboxMessage? message = await _context
             .OutboxMessages
             .FirstOrDefaultAsync(x =>
                 x.EventId == outboxMessage.EventId);
@@ -43,7 +43,7 @@ public class OutboxRepository(BaseDbContext context)
     public async Task UpdateOutboxMessageState(Guid eventId, OutboxMessageState state)
     {
         // Find the outbox message by its event ID
-        var outbox = await _context.OutboxMessages
+        OutboxMessage? outbox = await _context.OutboxMessages
             .FirstOrDefaultAsync(m => m.EventId == eventId);
 
         // If the outbox message exists, change its state

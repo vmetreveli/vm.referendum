@@ -9,7 +9,7 @@ internal sealed class PermissionConfig : IEntityTypeConfiguration<Permission>
     {
         builder.HasKey(p => p.Value)
             .HasName("Id");
-        
+
         builder.Property(p => p.Value)
             .ValueGeneratedOnAdd();
 
@@ -17,8 +17,8 @@ internal sealed class PermissionConfig : IEntityTypeConfiguration<Permission>
         // var permissions = Enum.GetValues<Domain.Enums.Permission>()
         //     .Select((p, index) =>
         //         new Permission(index + 1, p.ToString())); // Ensure unique Ids starting from 1
-       
-        
+
+
         builder.HasData(Permission.GetValues());
 
         builder.Property(p => p.Name)

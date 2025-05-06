@@ -10,7 +10,10 @@ public class AggregateId<T> : IEquatable<AggregateId<T>>
     ///     Initializes a new instance of the <see cref="AggregateId{T}" /> class.
     /// </summary>
     /// <param name="value">The unique identifier value.</param>
-    public AggregateId(T value) => Value = value;
+    public AggregateId(T value)
+    {
+        Value = value;
+    }
 
     /// <summary>
     ///     Gets the identifier value.

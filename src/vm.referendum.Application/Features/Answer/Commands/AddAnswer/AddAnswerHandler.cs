@@ -9,14 +9,14 @@ public sealed class AddAnswerHandler(IUnitOfWork unitOfWork, IMapper mapper, IQu
 {
     public async Task<AnswerResponse> Handle(AddAnswerCommand request, CancellationToken cancellationToken = default)
     {
-        var question =
+        Domain.Entities.Question.Question? question =
             await questionRepository
                 .GetByIdAsync(request.QuestionId, cancellationToken);
 
         if (question is null)
             throw new QuestionNotFoundException(request.QuestionId.ToString());
 
-        var answer = Domain.Entities.Answer.Answer.CreateAnswer(request.QuestionId, request.Text, request.UserProfileId);
+        Domain.Entities.Answer.Answer answer = Domain.Entities.Answer.Answer.CreateAnswer(request.QuestionId, request.Text, request.UserProfileId);
 
         question.AddAnswer(answer);
 

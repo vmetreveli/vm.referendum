@@ -23,12 +23,12 @@ public sealed class Email : ValueObject
             throw new EmailException(EmailErrors.NullOrEmpty.Code, EmailErrors.NullOrEmpty.Name);
 
 
-        var trimMail = email.Trim();
+        string trimMail = email.Trim();
 
         if (trimMail.Length > 150)
             throw new EmailException(EmailErrors.LongerThanAllowed.Code, EmailErrors.LongerThanAllowed.Name);
 
-        var isValid = Regex.IsMatch(trimMail, @"^(.+)@(.+)$");
+        bool isValid = Regex.IsMatch(trimMail, @"^(.+)@(.+)$");
 
         if (!isValid)
             throw new EmailException(EmailErrors.InvalidFormat.Code, EmailErrors.InvalidFormat.Name);

@@ -22,17 +22,19 @@ public class OutboxJob(
     public async Task Execute(IJobExecutionContext context)
     {
         // Create a scope for resolving dependencies (outbox repository).
-        using var scope = serviceProvider.CreateScope();
+        using IServiceScope scope = serviceProvider.CreateScope();
 
         // Get the IOutboxRepository instance to interact with the outbox messages.
-        var requiredService = scope.ServiceProvider.GetRequiredService<IOutboxRepository>();
+        IOutboxRepository requiredService = scope.ServiceProvider.GetRequiredService<IOutboxRepository>();
 
         // Retrieve all messages that are ready to be sent.
-        var readyToSendItems = await requiredService.GetAllReadyToSend();
+        List<OutboxMessage> readyToSendItems = await requiredService.GetAllReadyToSend();
 
         // Recreate the integration event from each outbox message and publish it using the event dispatcher.
-        foreach (var eventMessage in readyToSendItems.Select(item => item.RecreateMessage()))
+        foreach (dynamic? eventMessage in readyToSendItems.Select(item => item.RecreateMessage()))
             // Publish the recreated integration event asynchronously.
+        {
             await messagePublisher.PublishIntegrationEventAsync(eventMessage);
+        }
     }
 }

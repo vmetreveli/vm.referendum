@@ -11,7 +11,7 @@ using vm.referendum.Domain.Entities.UserRole;
 
 namespace vm.referendum.Infrastructure.Context;
 
-public sealed class DataContext(DbContextOptions options) : DbContext(options),IDbContext
+public sealed class DataContext(DbContextOptions options) : DbContext(options), IDbContext
 {
     /// <inheritdoc />
     protected override void OnModelCreating(ModelBuilder modelBuilder)

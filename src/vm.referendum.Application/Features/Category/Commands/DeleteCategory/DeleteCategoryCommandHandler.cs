@@ -8,7 +8,7 @@ public sealed class DeleteCategoryCommandHandler(ICategoryRepository categoryRep
 {
     public async Task Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
     {
-        var category = await categoryRepository.GetByIdAsync(request.CategoryId, cancellationToken);
+        Domain.Entities.Category.Category? category = await categoryRepository.GetByIdAsync(request.CategoryId, cancellationToken);
 
         if (category is null)
             throw new ObjectNotFoundException(typeof(Domain.Entities.Category.Category).ToString(),

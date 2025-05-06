@@ -11,14 +11,14 @@ public class AuthenticatedUserPolicy : IRateLimiterPolicy<string>
     {
         const int nonAuthPermitLimit = 40; // 40 requests per minute
         const int authenticatedPermitLimit = 400; // 400 requests per minute
-        var window = TimeSpan.FromMinutes(1);
+        TimeSpan window = TimeSpan.FromMinutes(1);
 
-        var isAuthenticated = httpContext.User.Identity?.IsAuthenticated == true;
+        bool isAuthenticated = httpContext.User.Identity?.IsAuthenticated == true;
 
         // Authenticated requests
         if (isAuthenticated)
         {
-            var identityName = httpContext.User.Identity?.Name!;
+            string identityName = httpContext.User.Identity?.Name!;
 
             return RateLimitPartition.GetFixedWindowLimiter(
                 identityName!,

@@ -31,9 +31,9 @@ public sealed class Answer : AggregateRoot<Guid>, IAuditableEntity, IDeletableEn
     public void SetAnswer(Question.Question question)
     {
         IsSelected = true;
-        var res = Statistic.Create(this, question);
+        Statistic? res = Statistic.Create(this, question);
         Statistic = res ?? throw new InflowException("The answer has already been selected.");
-       
+
     }
 
     public static Answer CreateAnswer(Guid questionId, string text, Guid userId)

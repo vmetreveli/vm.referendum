@@ -1,4 +1,5 @@
 using Framework.Abstractions.Primitives;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Framework.Infrastructure.Interceptors;
 
@@ -36,14 +37,14 @@ public sealed class UpdateDeletableEntitiesInterceptor : SaveChangesInterceptor
     /// <param name="context">The <see cref="DbContext" /> instance to update.</param>
     private static void UpdateDeletableEntities(DbContext context)
     {
-        var utcNow = DateTime.UtcNow;
+        DateTime utcNow = DateTime.UtcNow;
 
         // Retrieve entries that are marked as deleted
-        var entries = context.ChangeTracker
+        IEnumerable<EntityEntry<IDeletableEntity>> entries = context.ChangeTracker
             .Entries<IDeletableEntity>()
             .Where(e => e.State == EntityState.Deleted);
 
-        foreach (var entityEntry in entries)
+        foreach (EntityEntry<IDeletableEntity> entityEntry in entries)
         {
             // Change the entity state from Deleted to Modified to perform a soft delete
             entityEntry.State = EntityState.Modified;

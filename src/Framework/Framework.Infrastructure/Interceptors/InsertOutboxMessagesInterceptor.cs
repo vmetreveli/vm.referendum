@@ -1,3 +1,4 @@
+using Framework.Abstractions.Events;
 using Framework.Abstractions.Primitives.Types;
 using Newtonsoft.Json;
 
@@ -19,12 +20,12 @@ public sealed class InsertOutboxMessagesInterceptor : SaveChangesInterceptor
 
     private static async Task<Task> ConvertDomainEventsToOutboxMessages(DbContext context)
     {
-        var outboxMessages = context.ChangeTracker
+        List<OutboxMessage> outboxMessages = context.ChangeTracker
             .Entries<IAggregateRoot>()
             .Select(x => x.Entity)
             .SelectMany(aggregateRoot =>
             {
-                var domainEvents = aggregateRoot.GetDomainEvents();
+                IReadOnlyCollection<IDomainEvent> domainEvents = aggregateRoot.GetDomainEvents();
 
                 aggregateRoot.ClearDomainEvents();
 

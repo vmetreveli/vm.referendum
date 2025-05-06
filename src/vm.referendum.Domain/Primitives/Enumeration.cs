@@ -69,8 +69,8 @@ public abstract class Enumeration<TEnum>(Guid value, string name) : IEquatable<E
 
     private static Dictionary<Guid, TEnum> CreateEnumerations()
     {
-        var enumerationType = typeof(TEnum);
-        var fieldForType = enumerationType.GetFields(
+        Type enumerationType = typeof(TEnum);
+        IEnumerable<TEnum> fieldForType = enumerationType.GetFields(
                 BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
             .Where(fieldInfo => enumerationType.IsAssignableFrom(fieldInfo.FieldType))
             .Select(fieldInfo => (TEnum)fieldInfo.GetValue(default)!);

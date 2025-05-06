@@ -10,11 +10,11 @@ public sealed class GetAllCategoryQueryHandler(ICategoryRepository categoryRepos
     public async Task<IReadOnlyList<CategoryResponse>> Handle(GetAllCategoryQuery request,
         CancellationToken cancellationToken)
     {
-        var result = await categoryRepository.GetAllAsync(cancellationToken);
+        IEnumerable<Domain.Entities.Category.Category> result = await categoryRepository.GetAllAsync(cancellationToken);
 
         if (!result.Any())
             throw new ObjectNotFoundException(typeof(Domain.Entities.Category.Category).ToString(), string.Empty);
-        var categories = result.Select(i => new CategoryResponse
+        CategoryResponse[] categories = result.Select(i => new CategoryResponse
             {
                 Name = i.Name!
             })

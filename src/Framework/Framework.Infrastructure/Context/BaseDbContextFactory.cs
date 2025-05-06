@@ -6,7 +6,7 @@ public class BaseDbContextFactory : IDesignTimeDbContextFactory<BaseDbContext>
 {
     public BaseDbContext CreateDbContext(string[] args)
     {
-        var optionsBuilder = new DbContextOptionsBuilder<BaseDbContext>();
+        DbContextOptionsBuilder<BaseDbContext> optionsBuilder = new();
         optionsBuilder
             .UseNpgsql("DefaultConnection")
             .UseSnakeCaseNamingConvention();

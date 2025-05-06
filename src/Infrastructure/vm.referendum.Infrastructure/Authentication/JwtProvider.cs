@@ -21,24 +21,27 @@ public sealed class JwtProvider(IOptions<JwtSettings> jwtOptions, IPermissionSer
     /// <inheritdoc />
     public async Task<string> GenerateAsync(User user)
     {
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecurityKey));
+        SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_jwtSettings.SecurityKey));
 
-        var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+        SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
 
-        var claims = new List<Claim>
+        List<Claim> claims = new()
         {
-            new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new(JwtRegisteredClaimNames.Email, user.Email.Value),
-            new(JwtRegisteredClaimNames.Name, user.FullName)
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email.Value),
+            new Claim(JwtRegisteredClaimNames.Name, user.FullName)
         };
 
-        var permissions = await permissionService.GetPermissionsAsync(user.Id);
+        HashSet<string> permissions = await permissionService.GetPermissionsAsync(user.Id);
 
-        foreach (var permission in permissions) claims.Add(new Claim(CustomClaims.PERMISSIONS, permission));
+        foreach (string permission in permissions)
+        {
+            claims.Add(new Claim(CustomClaims.PERMISSIONS, permission));
+        }
 
-        var tokenExpirationTime = DateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes);
+        DateTime tokenExpirationTime = DateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes);
 
-        var token = new JwtSecurityToken(
+        JwtSecurityToken token = new(
             _jwtSettings.Issuer,
             _jwtSettings.Audience,
             claims,
@@ -46,7 +49,7 @@ public sealed class JwtProvider(IOptions<JwtSettings> jwtOptions, IPermissionSer
             tokenExpirationTime,
             signingCredentials);
 
-        var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
+        string? tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
 
         return tokenValue;
     }

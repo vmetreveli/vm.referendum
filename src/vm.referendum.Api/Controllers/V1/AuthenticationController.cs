@@ -25,8 +25,8 @@ public sealed class AuthenticationController(IDispatcher dispatcher) : ApiContro
         LoginCommand loginRequest,
         CancellationToken cancellationToken)
     {
-        var res=await Dispatcher.SendAsync(loginRequest, cancellationToken);
-       return Ok(res);
+        string res = await Dispatcher.SendAsync(loginRequest, cancellationToken);
+        return Ok(res);
     }
 
 
@@ -38,7 +38,7 @@ public sealed class AuthenticationController(IDispatcher dispatcher) : ApiContro
         CreateUserCommand createUserCommand,
         CancellationToken cancellationToken)
     {
-        var res = await Dispatcher.SendAsync(createUserCommand, cancellationToken);
+        Guid res = await Dispatcher.SendAsync(createUserCommand, cancellationToken);
 
         return Ok(res);
     }
@@ -70,9 +70,9 @@ public sealed class AuthenticationController(IDispatcher dispatcher) : ApiContro
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
     public async Task<IActionResult> ForgotPassword(PasswordResetCommand command, CancellationToken cancellationToken)
     {
-        var recovery =
+        string recovery =
             await Dispatcher.SendAsync(command, cancellationToken);
 
-      return  Ok(recovery);
+        return Ok(recovery);
     }
 }

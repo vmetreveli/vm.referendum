@@ -8,16 +8,16 @@ namespace vm.referendum.Application.Features.Answer.Commands.UpdateAnswer;
 public class UpdateAnswerCommandHandler(
     IUnitOfWork unitOfWork,
     IQuestionRepository questionRepository
-    ) : ICommandHandler<UpdateAnswerCommand>
+) : ICommandHandler<UpdateAnswerCommand>
 {
     public async Task Handle(UpdateAnswerCommand request, CancellationToken cancellationToken)
     {
-        var question = await questionRepository.GetByIdWithAnswersAsync(request.QuestionId, cancellationToken);
+        Domain.Entities.Question.Question? question = await questionRepository.GetByIdWithAnswersAsync(request.QuestionId, cancellationToken);
 
         if (question is null)
             throw new QuestionNotFoundException(request.QuestionId.ToString());
 
-        var answer = question.Answers.FirstOrDefault(a => a.Id == request.AnswerId);
+        Domain.Entities.Answer.Answer? answer = question.Answers.FirstOrDefault(a => a.Id == request.AnswerId);
         if (answer is null)
             throw new AnswerNotFoundException(request.AnswerId.ToString());
 
