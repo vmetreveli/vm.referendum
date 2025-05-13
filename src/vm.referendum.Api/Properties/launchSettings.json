@@ -20,9 +20,9 @@
     "Referendum.Api_Dev_Local": {
       "commandName": "Project",
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:8181",
+      "applicationUrl": "http://localhost:8282",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Local"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Referendum.Api_Dev_Debug": {
