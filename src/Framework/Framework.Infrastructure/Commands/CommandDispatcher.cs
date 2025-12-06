@@ -28,10 +28,9 @@ public sealed class CommandDispatcher(IServiceProvider serviceProvider) : IComma
     }
 
     /// <summary>
-    ///     Dispatches a command of type <typeparamref name="TCommand" /> and returns a result of type
+    ///     Dispatches a command of type <typeparamref /> and returns a result of type
     ///     <typeparamref name="TResult" />.
     /// </summary>
-    /// <typeparam name="TCommand">The type of the command to dispatch.</typeparam>
     /// <typeparam name="TResult">The type of the result returned by the handler.</typeparam>
     /// <param name="command">The command instance to be handled.</param>
     /// <param name="cancellationToken">A token to cancel the asynchronous operation.</param>
@@ -57,9 +56,6 @@ public sealed class CommandDispatcher(IServiceProvider serviceProvider) : IComma
 
         // Invokes the handler's Handle method and returns the result
         // ReSharper disable once PossibleNullReferenceException
-        return await (Task<TResult>)method.Invoke(handler, new object[]
-        {
-            command, cancellationToken
-        });
+        return await ((Task<TResult>)method.Invoke(handler, [command, cancellationToken])!);
     }
 }
