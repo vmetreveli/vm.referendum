@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 WORKDIR /app
 # Use non-root user for security
 USER app
@@ -6,7 +6,7 @@ ENV ASPNETCORE_HTTP_PORTS=8181
 ENV ASPNETCORE_URLS=http://+:8181
 EXPOSE 8181
 
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 # Copy only project files first to optimize layer caching
 COPY ["src/vm.referendum.Api/vm.referendum.Api.csproj", "vm.referendum.Api/"]

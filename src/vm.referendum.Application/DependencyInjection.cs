@@ -9,7 +9,7 @@ public static class DependencyInjection
     public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddFramework(configuration, typeof(DependencyInjection).Assembly);
-        services.AddAutoMapper(typeof(DependencyInjection).Assembly);
+        services.AddAutoMapper(cfg => {}, typeof(DependencyInjection).Assembly);
 
 
         //  services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly, includeInternalTypes: true);
