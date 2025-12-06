@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 WORKDIR /app
+# Create non-root user for improved security
+RUN addgroup --system app && adduser --system --ingroup app app
 # Use non-root user for security
 USER app
 ENV ASPNETCORE_HTTP_PORTS=8181
