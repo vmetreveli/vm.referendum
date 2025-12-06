@@ -4,7 +4,7 @@ using vm.referendum.Domain.Repository;
 
 namespace vm.referendum.Application.Features.Answer.Commands.AddAnswer;
 
-public sealed class AddAnswerHandler(IUnitOfWork unitOfWork, IMapper mapper, IQuestionRepository questionRepository)
+public sealed class AddAnswerCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IQuestionRepository questionRepository)
     : ICommandHandler<AddAnswerCommand, AnswerResponse>
 {
     public async Task<AnswerResponse> Handle(AddAnswerCommand request, CancellationToken cancellationToken = default)
