@@ -1,5 +1,3 @@
-using Framework.Abstractions.Exceptions;
-
 namespace vm.referendum.Domain.ValueObjects;
 
 public sealed class Name : ValueObject

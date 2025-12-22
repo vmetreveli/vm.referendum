@@ -1,3 +1,5 @@
+using Meadow_Framework.Framework.Abstractions.Primitives;
+
 namespace vm.referendum.Domain.Entities.RolePermission;
 
 public sealed class RolePermission : AggregateRoot<Guid>

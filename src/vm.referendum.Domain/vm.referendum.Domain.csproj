@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Meadow_Framework" Version="1.0.20" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
         <PackageReference Include="Throw" Version="1.4.0"/>
@@ -15,10 +16,6 @@
 
     <ItemGroup>
         <Folder Include="Events\"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\Framework\Framework.Infrastructure\Framework.Infrastructure.csproj"/>
     </ItemGroup>
 
 

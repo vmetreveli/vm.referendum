@@ -1,4 +1,3 @@
-using Framework.Infrastructure.Exceptions;
 using vm.referendum.Domain.Repository;
 using vm.referendum.Domain.ValueObjects;
 

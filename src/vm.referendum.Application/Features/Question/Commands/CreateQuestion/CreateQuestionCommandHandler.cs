@@ -1,5 +1,4 @@
-﻿using Framework.Abstractions.Exceptions;
-using vm.referendum.Application.Contracts;
+﻿using vm.referendum.Application.Contracts;
 using vm.referendum.Domain.Abstractions;
 using vm.referendum.Domain.Repository;
 using static System.Guid;

@@ -1,5 +1,4 @@
-﻿using Framework.Infrastructure.Exceptions;
-using vm.referendum.Application.Contracts;
+﻿using vm.referendum.Application.Contracts;
 using vm.referendum.Domain.Repository;
 
 namespace vm.referendum.Application.Features.User.Queries.GetUserById;

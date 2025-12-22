@@ -1,5 +1,4 @@
-﻿using Framework.Abstractions.Exceptions;
-using vm.referendum.Domain.Abstractions;
+﻿using vm.referendum.Domain.Abstractions;
 using vm.referendum.Domain.Repository;
 
 namespace vm.referendum.Application.Features.Question.Commands.UpdateQuestion;

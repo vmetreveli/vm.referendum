@@ -1,5 +1,3 @@
-using Framework.Infrastructure.Repository;
-using vm.referendum.Domain.Entities;
 using vm.referendum.Domain.Entities.Question;
 using vm.referendum.Domain.Repository;
 using vm.referendum.Infrastructure.Specifications;

@@ -1,4 +1,5 @@
-﻿using Framework.Abstractions.Exceptions;
+﻿using Meadow_Framework.Framework.Abstractions.Exceptions;
+using Meadow_Framework.Framework.Abstractions.Primitives;
 
 namespace vm.referendum.Domain.Entities.Question;
 

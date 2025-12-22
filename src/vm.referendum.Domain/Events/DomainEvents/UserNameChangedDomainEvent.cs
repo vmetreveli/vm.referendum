@@ -1,6 +1,4 @@
-﻿using Framework.Abstractions.Events;
-using vm.referendum.Domain.Entities;
-using vm.referendum.Domain.Entities.User;
+﻿using vm.referendum.Domain.Entities.User;
 
 namespace vm.referendum.Domain.Events.DomainEvents;
 

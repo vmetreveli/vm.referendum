@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using Framework.Abstractions;
-using vm.referendum.Domain.Entities;
 using vm.referendum.Domain.Entities.Answer;
 using vm.referendum.Domain.Entities.Category;
 using vm.referendum.Domain.Entities.Permission;

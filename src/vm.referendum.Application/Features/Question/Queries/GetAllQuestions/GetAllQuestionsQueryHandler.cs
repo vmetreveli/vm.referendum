@@ -1,5 +1,4 @@
 ﻿using AutoMapper.QueryableExtensions;
-using Framework.Infrastructure.Exceptions;
 using vm.referendum.Application.Contracts;
 using vm.referendum.Domain.Repository;
 

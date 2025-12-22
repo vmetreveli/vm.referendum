@@ -1,4 +1,3 @@
-using Framework.Abstractions.Exceptions;
 using Microsoft.Extensions.Logging;
 
 namespace vm.referendum.Domain.Exception.User;

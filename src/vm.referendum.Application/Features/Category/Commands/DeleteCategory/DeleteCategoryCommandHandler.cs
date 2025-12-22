@@ -1,4 +1,3 @@
-using Framework.Infrastructure.Exceptions;
 using vm.referendum.Domain.Repository;
 
 namespace vm.referendum.Application.Features.Category.Commands.DeleteCategory;
