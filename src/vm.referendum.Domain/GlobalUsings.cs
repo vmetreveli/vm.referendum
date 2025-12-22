@@ -3,4 +3,7 @@ global using System.Linq;
 global using System.Threading;
 global using System.Threading.Tasks;
 global using System;
-global using Framework.Abstractions.Primitives;
+global using Meadow_Framework.Framework.Abstractions.Primitives;
+global using Meadow_Framework.Framework.Abstractions.Exceptions;
+global using Meadow_Framework.Framework.Abstractions.Repository;
+global using Meadow_Framework.Framework.Abstractions.Events;

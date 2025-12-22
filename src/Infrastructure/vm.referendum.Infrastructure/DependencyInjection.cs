@@ -1,8 +1,5 @@
 ﻿using System.Text;
 using Asp.Versioning;
-using Framework.Abstractions.Repository;
-using Framework.Infrastructure.Interceptors;
-using Framework.Infrastructure.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;

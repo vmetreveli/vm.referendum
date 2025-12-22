@@ -1,6 +1,4 @@
-﻿using Framework.Infrastructure.Repository;
-using vm.referendum.Domain.Entities;
-using vm.referendum.Domain.Entities.User;
+﻿using vm.referendum.Domain.Entities.User;
 using vm.referendum.Domain.Repository;
 using vm.referendum.Domain.ValueObjects;
 using vm.referendum.Infrastructure.Specifications;

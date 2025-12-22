@@ -1,5 +1,3 @@
-using Framework.Abstractions.Events;
-
 namespace vm.referendum.Domain.Repository;
 
 /// <summary>

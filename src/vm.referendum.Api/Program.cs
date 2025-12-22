@@ -1,5 +1,4 @@
 using Asp.Versioning.ApiExplorer;
-using Framework.Infrastructure;
 using Serilog;
 using vm.referendum.Api;
 using vm.referendum.Api.Constants;
