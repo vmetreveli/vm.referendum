@@ -1,23 +1,27 @@
+using System.Reflection;
 namespace vm.referendum.Application.Contracts.Common.Mappings;
 
 public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+        IEnumerable<Assembly> assemblies = AppDomain.CurrentDomain.GetAssemblies()
             .Where(assembly => !assembly.IsDynamic &&
                                !assembly.FullName.StartsWith("System") &&
                                !assembly.FullName.StartsWith("Microsoft"));
 
-        foreach (var assembly in assemblies)
+        foreach (Assembly assembly in assemblies)
         {
-            var types = assembly.GetExportedTypes()
+            List<Type> types = assembly.GetExportedTypes()
                 .Where(type => Array.Exists(type.GetInterfaces(), tp => tp == typeof(IMap))).ToList();
 
-            foreach (var type in types)
+            foreach (Type type in types)
             {
-                var methodInfo = type.GetMethod(nameof(IMap.Mapping));
-                methodInfo?.Invoke(Activator.CreateInstance(type), new object[] { this });
+                MethodInfo? methodInfo = type.GetMethod(nameof(IMap.Mapping));
+                methodInfo?.Invoke(Activator.CreateInstance(type), new object[]
+                {
+                    this
+                });
             }
         }
     }

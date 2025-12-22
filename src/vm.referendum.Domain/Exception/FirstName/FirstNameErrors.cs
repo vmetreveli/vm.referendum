@@ -1,6 +1,6 @@
 using vm.referendum.Domain.Abstractions;
 
-namespace vm.referendum.Domain.Exception.FirstNameErrors;
+namespace vm.referendum.Domain.Exception.FirstName;
 
 public static class FirstNameErrors
 {

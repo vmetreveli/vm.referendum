@@ -5,3 +5,5 @@ global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.Extensions.Options;
 global using Swashbuckle.AspNetCore.SwaggerGen;
 global using System.Security.Claims;
+global using Meadow_Framework.Framework.Abstractions.Dispatchers;
+global using Meadow_Framework.Framework.Infrastructure;

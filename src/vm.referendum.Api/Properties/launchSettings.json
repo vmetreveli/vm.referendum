@@ -12,23 +12,23 @@
     "Referendum.Api_Dev": {
       "commandName": "Project",
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:80",
+      "applicationUrl": "http://localhost:8181",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    },  
+    },
     "Referendum.Api_Dev_Local": {
       "commandName": "Project",
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:8080",
+      "applicationUrl": "http://localhost:8282",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Local"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-      "Referendum.Api_Dev_Debug": {
+    "Referendum.Api_Dev_Debug": {
       "commandName": "Project",
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:8080",
+      "applicationUrl": "http://localhost:8181",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -36,7 +36,7 @@
     "Referendum.Api_Release": {
       "commandName": "Project",
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:80",
+      "applicationUrl": "http://localhost:8181",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Release"
       }

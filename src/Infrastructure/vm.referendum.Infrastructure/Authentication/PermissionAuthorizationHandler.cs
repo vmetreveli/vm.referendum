@@ -12,7 +12,7 @@ public class PermissionAuthorizationHandler
         if (context.User.Identity is not { IsAuthenticated: true }) return;
         //   string identityId = context.User.GetIdentityId();
 
-        var permissions = context
+        HashSet<string> permissions = context
             .User
             .Claims
             .Where(i => i.Type == CustomClaims.PERMISSIONS)

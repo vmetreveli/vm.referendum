@@ -1,6 +1,6 @@
 using Asp.Versioning;
-using Framework.Abstractions.Dispatchers;
 using vm.referendum.Api.Infrastructure;
+using vm.referendum.Application.Contracts;
 using vm.referendum.Application.Features.Category.Commands.CreateCategory;
 using vm.referendum.Application.Features.Category.Commands.DeleteCategory;
 using vm.referendum.Application.Features.Category.Commands.UpdateCategory;
@@ -56,7 +56,7 @@ public class CategoryController : ApiController
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
     public async Task<IActionResult> GetAllCategory(GetAllCategoryQuery query, CancellationToken cancellationToken)
     {
-        var result = await Dispatcher.QueryAsync(query, cancellationToken);
+        IReadOnlyList<CategoryResponse> result = await Dispatcher.QueryAsync(query, cancellationToken);
 
         return Ok(result);
     }

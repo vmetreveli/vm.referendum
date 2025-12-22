@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using Framework.Abstractions;
-using vm.referendum.Domain.Entities;
 using vm.referendum.Domain.Entities.Answer;
 using vm.referendum.Domain.Entities.Category;
 using vm.referendum.Domain.Entities.Permission;
@@ -11,7 +9,7 @@ using vm.referendum.Domain.Entities.UserRole;
 
 namespace vm.referendum.Infrastructure.Context;
 
-public sealed class DataContext(DbContextOptions options) : DbContext(options),IDbContext
+public sealed class DataContext(DbContextOptions options) : DbContext(options), IDbContext
 {
     /// <inheritdoc />
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning;
-using Framework.Abstractions.Dispatchers;
 using vm.referendum.Api.Constants;
 using vm.referendum.Api.Infrastructure;
+using vm.referendum.Application.Contracts;
 using vm.referendum.Application.Features.Answer.Commands.AddAnswer;
 using vm.referendum.Application.Features.Answer.Commands.RemoveAnswer;
 using vm.referendum.Application.Features.Answer.Commands.UpdateAnswer;
@@ -32,9 +32,9 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
     {
         //  var result = await Mediator.Send(new GetAllQuestionsQuery(), cancellationToken);
         // return result.IsSuccess ? Ok(result.Value) : NotFound();
-        var query = new GetAllQuestionsQuery();
+        GetAllQuestionsQuery query = new();
 
-        var res = await Dispatcher.QueryAsync(query, cancellationToken);
+        IReadOnlyList<QuestionResponse> res = await Dispatcher.QueryAsync(query, cancellationToken);
 
         return Ok(res);
     }
@@ -45,9 +45,12 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
-        var postId = id;
-        var query = new GetQuestionByIdQuery { QuestionId = postId };
-        var res = await Dispatcher.QueryAsync(query, cancellationToken);
+        Guid postId = id;
+        GetQuestionByIdQuery query = new()
+        {
+            QuestionId = postId
+        };
+        QuestionResponse res = await Dispatcher.QueryAsync(query, cancellationToken);
         return Ok(res);
     }
 
@@ -59,8 +62,8 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
         [FromBody] CreateQuestionRequest createQuestionRequest,
         CancellationToken cancellationToken)
     {
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var command = new CreateQuestionCommand
+        string? userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        CreateQuestionCommand command = new()
         {
             UserId = userId,
             TextContent = createQuestionRequest.TextContent
@@ -77,9 +80,9 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
         [FromBody] UpdateQuestionRequest updateQuestionRequest,
         CancellationToken cancellationToken)
     {
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        string userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
 
-        var command = new UpdateQuestionCommand
+        UpdateQuestionCommand command = new()
         {
             UserId = Guid.Parse(userId),
             TextContent = updateQuestionRequest.TextContent,
@@ -99,8 +102,12 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
         Guid questionId,
         CancellationToken cancellationToken)
     {
-        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-        var command = new DeleteQuestionCommand { QuestionId = questionId, UserId = userId };
+        Guid userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+        DeleteQuestionCommand command = new()
+        {
+            QuestionId = questionId,
+            UserId = userId
+        };
 
         await Dispatcher.SendAsync(command, cancellationToken);
 
@@ -116,8 +123,8 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
         Guid questionId,
         CancellationToken cancellationToken)
     {
-        var query = new GetAnswersQuery(questionId);
-        var result = await Dispatcher.QueryAsync(query, cancellationToken);
+        GetAnswersQuery query = new(questionId);
+        IReadOnlyList<AnswerResponse> result = await Dispatcher.QueryAsync(query, cancellationToken);
 
         return Ok(result);
     }
@@ -131,15 +138,14 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
         CancellationToken cancellationToken)
     {
         //@TODO
-        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-        var command = new AddAnswerCommand
-        (
+        Guid userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+        AddAnswerCommand command = new(
             questionId,
             userId,
             answerText
         );
 
-        var result = await Dispatcher.SendAsync(command, cancellationToken);
+        AnswerResponse result = await Dispatcher.SendAsync(command, cancellationToken);
 
         return Ok(result);
     }
@@ -151,8 +157,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
         RemoveAnswerRequest request,
         CancellationToken cancellationToken)
     {
-        var command = new RemoveAnswerCommand
-        (
+        RemoveAnswerCommand command = new(
             Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value),
             request.AnswerId,
             request.QuestionId
@@ -168,15 +173,14 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
         UpdateAnswerRequest request,
         CancellationToken cancellationToken)
     {
-        var command=new UpdateAnswerCommand
-            (
-                Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value),
-                request.QuestionId,
-                request.AnswerId,
-                request.Text
-            );
-           await Dispatcher.SendAsync(command, cancellationToken);
-          return NoContent();
+        UpdateAnswerCommand command = new(
+            Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value),
+            request.QuestionId,
+            request.AnswerId,
+            request.Text
+        );
+        await Dispatcher.SendAsync(command, cancellationToken);
+        return NoContent();
     }
 
     // [HttpPost]

@@ -16,12 +16,12 @@ public sealed class AddDumpDataCommandHandler(
 {
     public async Task Handle(AddDumpDataCommand request, CancellationToken cancellationToken = default)
     {
-        var resUserProfile = await userRepository.GetAllAsync(cancellationToken);
+        IEnumerable<Domain.Entities.User.User> resUserProfile = await userRepository.GetAllAsync(cancellationToken);
 
 
         if (!resUserProfile.Any())
         {
-            var hash = passwordHasher.HashPassword("123");
+            string hash = passwordHasher.HashPassword("123");
 
             await userRepository
                 .AddRangeAsync(new List<Domain.Entities.User.User>
@@ -35,7 +35,7 @@ public sealed class AddDumpDataCommandHandler(
         }
 
 
-        var resQuestion = await questionRepository.GetAllAsync(cancellationToken);
+        IEnumerable<Domain.Entities.Question.Question> resQuestion = await questionRepository.GetAllAsync(cancellationToken);
         if (!resQuestion.Any())
             await questionRepository
                 .AddRangeAsync(new List<Domain.Entities.Question.Question>
@@ -46,7 +46,7 @@ public sealed class AddDumpDataCommandHandler(
                 }, cancellationToken);
 
 
-        var resAnswer = await answerRepository.GetAllAsync(cancellationToken);
+        IEnumerable<Domain.Entities.Answer.Answer> resAnswer = await answerRepository.GetAllAsync(cancellationToken);
         if (!resAnswer.Any())
             await answerRepository
                 .AddRangeAsync(new List<Domain.Entities.Answer.Answer>
@@ -67,7 +67,7 @@ public sealed class AddDumpDataCommandHandler(
         //         }, cancellationToken);
 
 
-        var resCategory = await categoryRepository.GetAllAsync(cancellationToken);
+        IEnumerable<Domain.Entities.Category.Category> resCategory = await categoryRepository.GetAllAsync(cancellationToken);
         if (!resCategory.Any())
             await categoryRepository
                 .AddRangeAsync(new List<Domain.Entities.Category.Category>
@@ -80,5 +80,5 @@ public sealed class AddDumpDataCommandHandler(
 
         await unitOfWork.CompleteAsync(cancellationToken);
 
-     }
+    }
 }

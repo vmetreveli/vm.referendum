@@ -1,5 +1,3 @@
-using Framework.Abstractions.Repository;
-using vm.referendum.Domain.Entities;
 using vm.referendum.Domain.Entities.User;
 using vm.referendum.Domain.ValueObjects;
 

@@ -1,5 +1,3 @@
-using Framework.Abstractions.Outbox;
-
 namespace vm.referendum.Infrastructure.Context.Configurations;
 
 public class OutboxMessageConfig : IEntityTypeConfiguration<OutboxMessage>

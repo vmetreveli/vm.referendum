@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
-using Framework.Abstractions.Dispatchers;
 using vm.referendum.Api.Infrastructure;
+using vm.referendum.Application.Contracts;
 using vm.referendum.Application.Features.User.Commands.DeleteUser;
 using vm.referendum.Application.Features.User.Commands.PasswordChange;
 using vm.referendum.Application.Features.User.Commands.UpdateUser;
@@ -22,8 +22,8 @@ public class UserController(IDispatcher dispatcher) : ApiController(dispatcher)
     [ApiErrorResponse(StatusCodes.Status400BadRequest, "Bad Request")]
     public async Task<IActionResult> GetAllProfiles(CancellationToken cancellationToken)
     {
-        var query = new GetAllUsersQuery();
-        var res = await Dispatcher.QueryAsync(query, cancellationToken);
+        GetAllUsersQuery query = new();
+        IReadOnlyList<UserResponse> res = await Dispatcher.QueryAsync(query, cancellationToken);
         return Ok(res);
     }
 
@@ -37,7 +37,7 @@ public class UserController(IDispatcher dispatcher) : ApiController(dispatcher)
         GetUserByIdQuery query,
         CancellationToken cancellationToken)
     {
-        var res = await Dispatcher.QueryAsync(query, cancellationToken);
+        UserResponse res = await Dispatcher.QueryAsync(query, cancellationToken);
         return Ok(res);
     }
 

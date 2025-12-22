@@ -17,18 +17,18 @@ internal sealed class CreateUserCommandHandler(
     /// <inheritdoc />
     public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken = default)
     {
-        var passwordResult = request.Password;
-        var firstNameResult = FirstName.Create(request.FirstName);
-        var lastNameResult = LastName.Create(request.LastName);
-        var emailResult = Email.Create(request.Email);
+        string passwordResult = request.Password;
+        FirstName firstNameResult = FirstName.Create(request.FirstName);
+        LastName lastNameResult = LastName.Create(request.LastName);
+        Email emailResult = Email.Create(request.Email);
 
 
         if (!await userRepository.IsEmailUniqueAsync(emailResult, cancellationToken))
             throw new DuplicateEmailException();
 
-        var passwordHash = passwordHasher.HashPassword(passwordResult);
+        string passwordHash = passwordHasher.HashPassword(passwordResult);
 
-        var user = Domain.Entities.User.User.Create(
+        Domain.Entities.User.User user = Domain.Entities.User.User.Create(
             firstNameResult,
             lastNameResult,
             emailResult,

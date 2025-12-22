@@ -1,5 +1,4 @@
-using Framework.Infrastructure;
-using Framework.Infrastructure.Exceptions;
+using Asp.Versioning.ApiExplorer;
 using Serilog;
 using vm.referendum.Api;
 using vm.referendum.Api.Constants;
@@ -8,7 +7,7 @@ using vm.referendum.Api.Policies;
 using vm.referendum.Application;
 using vm.referendum.Infrastructure;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRateLimiter(options =>
 {
@@ -37,7 +36,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Logging.AddSerilog();
-var app = builder.Build();
+WebApplication app = builder.Build();
 //app.MapHealthChecks("_health");
 // Apply the CORS policy globally
 
@@ -53,16 +52,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        foreach (var description in app.DescribeApiVersions())
+        foreach (ApiVersionDescription description in app.DescribeApiVersions())
         {
-            var url = $"/swagger/{description.GroupName}/swagger.json";
-            var name = description.GroupName.ToUpperInvariant();
+            string url = $"/swagger/{description.GroupName}/swagger.json";
+            string name = description.GroupName.ToUpperInvariant();
             options.SwaggerEndpoint(url, name);
         }
     });
-  
 
-    
+
     app.ApplyMigration();
     app.UseDeveloperExceptionPage();
 }

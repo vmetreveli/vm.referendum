@@ -1,5 +1,3 @@
-using Framework.Abstractions.Exceptions;
-
 namespace vm.referendum.Domain.Exception.User;
 
 public sealed class DuplicateEmailException()

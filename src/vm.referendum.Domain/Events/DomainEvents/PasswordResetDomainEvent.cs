@@ -1,5 +1,4 @@
-﻿using Framework.Abstractions.Events;
-using vm.referendum.Domain.Primitives;
+﻿using vm.referendum.Domain.Primitives;
 
 namespace vm.referendum.Domain.Events.DomainEvents;
 

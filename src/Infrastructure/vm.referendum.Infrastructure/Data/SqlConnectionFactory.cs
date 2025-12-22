@@ -7,7 +7,7 @@ internal sealed class SqlConnectionFactory(string connectionString) : ISqlConnec
 {
     public IDbConnection CreateConnection()
     {
-        var connection = new NpgsqlConnection(connectionString);
+        NpgsqlConnection connection = new(connectionString);
         connection.Open();
 
         return connection;

@@ -7,7 +7,11 @@ internal sealed class UserRoleConfig : IEntityTypeConfiguration<UserRole>
 {
     public void Configure(EntityTypeBuilder<UserRole> builder)
     {
-        builder.HasKey(x => new { x.RoleId, x.UserId });
+        builder.HasKey(x => new
+        {
+            x.RoleId,
+            x.UserId
+        });
 
         builder.Property(c => c.CreatedOn).IsRequired();
         builder.Property(c => c.ModifiedOn);

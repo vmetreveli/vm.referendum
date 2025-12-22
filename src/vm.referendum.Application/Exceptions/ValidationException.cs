@@ -17,3 +17,4 @@
 //
 //     public IReadOnlyCollection<Error> Errors { get; }
 // }
+

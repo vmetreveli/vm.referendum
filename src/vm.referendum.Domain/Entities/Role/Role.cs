@@ -26,7 +26,10 @@ public sealed class Role : Enumeration<Role>, IEnumerable<Role>
 
     public IEnumerator<Role> GetEnumerator()
     {
-        return (IEnumerator<Role>)new[] { SuperAdmin, Admin, Moderator, Basic }.GetEnumerator();
+        return (IEnumerator<Role>)new[]
+        {
+            SuperAdmin, Admin, Moderator, Basic
+        }.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()

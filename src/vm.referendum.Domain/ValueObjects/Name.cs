@@ -1,5 +1,3 @@
-using Framework.Abstractions.Exceptions;
-
 namespace vm.referendum.Domain.ValueObjects;
 
 public sealed class Name : ValueObject
@@ -19,7 +17,7 @@ public sealed class Name : ValueObject
     {
         if (string.IsNullOrWhiteSpace(Name))
             throw new InflowException("Name is required");
-            
+
         return new Name(Name);
     }
 

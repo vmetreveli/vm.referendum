@@ -18,13 +18,13 @@ public class PasswordResetCommandHandler(
 
     public async Task<string> Handle(PasswordResetCommand request, CancellationToken cancellationToken)
     {
-        var mailResult = Email.Create(request.Email);
-        var user = await userRepository.GetByEmailAsync(mailResult, cancellationToken);
+        Email mailResult = Email.Create(request.Email);
+        Domain.Entities.User.User? user = await userRepository.GetByEmailAsync(mailResult, cancellationToken);
 
         if (user is not null)
         {
-            var password = passwordGenerator.GeneratePassword();
-            var hashPassword = passwordHasher.HashPassword(password);
+            string password = passwordGenerator.GeneratePassword();
+            string hashPassword = passwordHasher.HashPassword(password);
             user.ChangePassword(password, hashPassword);
 
             await unitOfWork.CompleteAsync(cancellationToken);

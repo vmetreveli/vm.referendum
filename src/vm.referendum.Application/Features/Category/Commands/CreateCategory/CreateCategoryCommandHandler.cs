@@ -1,4 +1,3 @@
-using Framework.Abstractions.Exceptions;
 using vm.referendum.Domain.Repository;
 using vm.referendum.Domain.ValueObjects;
 
@@ -9,9 +8,9 @@ public class CreateCategoryCommandHandler(ICategoryRepository categoryRepository
 {
     public async Task Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
     {
-        var categoryName = Name.Create(request.Name);
+        Name categoryName = Name.Create(request.Name);
 
-        var category = Domain.Entities.Category.Category.CreateCategory(categoryName);
+        Domain.Entities.Category.Category category = Domain.Entities.Category.Category.CreateCategory(categoryName);
 
         await categoryRepository.AddAsync(category, cancellationToken);
 

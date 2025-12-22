@@ -1,5 +1,4 @@
-﻿using Framework.Abstractions.Dispatchers;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
+﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace vm.referendum.Api.Infrastructure;
 
@@ -17,5 +16,10 @@ public class ApiController : ControllerBase
 
     [NonAction]
     protected ObjectResult CreatedResult([ActionResultObjectValue] object value)
-        => new(value) { StatusCode = StatusCodes.Status201Created };
+    {
+        return new ObjectResult(value)
+        {
+            StatusCode = StatusCodes.Status201Created
+        };
+    }
 }

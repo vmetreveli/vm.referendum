@@ -13,15 +13,18 @@ public class PasswordGenerator : IPasswordGenerator
 
     public string GeneratePassword()
     {
-        var randomBytes = new byte[passwordLength];
-        using (var rng = RandomNumberGenerator.Create())
+        byte[] randomBytes = new byte[passwordLength];
+        using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
         {
             rng.GetBytes(randomBytes);
         }
 
-        var password = new StringBuilder(passwordLength);
+        StringBuilder password = new(passwordLength);
 
-        foreach (var b in randomBytes) password.Append(AllowedChars[b % AllowedChars.Length]);
+        foreach (byte b in randomBytes)
+        {
+            password.Append(AllowedChars[b % AllowedChars.Length]);
+        }
 
         return password.ToString();
     }

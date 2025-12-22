@@ -1,4 +1,3 @@
-using Framework.Abstractions.Exceptions;
 using vm.referendum.Domain.Repository;
 using vm.referendum.Domain.Services;
 using vm.referendum.Domain.ValueObjects;
@@ -15,24 +14,24 @@ public sealed class LoginCommandHandler(
     public async Task<string> Handle(LoginCommand request,
         CancellationToken cancellationToken)
     {
-        var email = Email.Create(request.Email);
+        Email email = Email.Create(request.Email);
         // if (email.IsFailure) return Result.Failure<string>(email.Error);
 
-        var user = await userRepository
+        Domain.Entities.User.User? user = await userRepository
             .GetByEmailAsync(email, cancellationToken);
 
         if (user is null)
             throw new InflowException("User not found");
-            //return Result.Failure<string>(AuthenticationErrors.InvalidEmailOrPassword);
+        //return Result.Failure<string>(AuthenticationErrors.InvalidEmailOrPassword);
 
 
-        var passwordValid = user.VerifyPasswordHash(request.Password, passwordHashChecker);
+        bool passwordValid = user.VerifyPasswordHash(request.Password, passwordHashChecker);
 
-        if (!passwordValid) 
+        if (!passwordValid)
             throw new InflowException("Invalid password");
-            //return Result.Failure<string>(AuthenticationErrors.InvalidEmailOrPassword);
+        //return Result.Failure<string>(AuthenticationErrors.InvalidEmailOrPassword);
 
-        var token = await jwtProvider.GenerateAsync(user);
+        string token = await jwtProvider.GenerateAsync(user);
 
         return token;
     }

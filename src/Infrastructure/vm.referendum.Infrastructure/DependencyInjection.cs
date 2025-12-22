@@ -1,11 +1,7 @@
 ﻿using System.Text;
 using Asp.Versioning;
-using Framework.Abstractions.Repository;
-using Framework.Infrastructure.Interceptors;
-using Framework.Infrastructure.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -34,7 +30,7 @@ public static class DependencyInjection
         services
             .AddDbContext<DbContext, DataContext>((sp, options) =>
                 {
-                    var auditableInterceptor = sp.GetService<UpdateAuditableEntitiesInterceptor>();
+                    UpdateAuditableEntitiesInterceptor? auditableInterceptor = sp.GetService<UpdateAuditableEntitiesInterceptor>();
                     options.UseNpgsql(
                             configuration.GetConnectionString("DefaultConnection"))
                         .UseSnakeCaseNamingConvention()

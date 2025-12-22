@@ -1,5 +1,3 @@
-using Framework.Abstractions.Exceptions;
-
 namespace vm.referendum.Domain.Exception.Question;
 
 public class QuestionNotFoundException(string question)

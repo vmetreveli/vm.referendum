@@ -1,5 +1,4 @@
 ﻿using AutoMapper.QueryableExtensions;
-using Framework.Infrastructure.Exceptions;
 using vm.referendum.Application.Contracts;
 using vm.referendum.Domain.Repository;
 
@@ -11,12 +10,12 @@ public sealed class GetAllQuestionsQueryHandler(IQuestionRepository questionRepo
     public async Task<IReadOnlyList<QuestionResponse>> Handle(GetAllQuestionsQuery request,
         CancellationToken cancellationToken)
     {
-        var questions = await questionRepository.GetAllAsync(cancellationToken);
-        var enumerable = questions.ToList();
+        IEnumerable<Domain.Entities.Question.Question> questions = await questionRepository.GetAllAsync(cancellationToken);
+        List<Domain.Entities.Question.Question> enumerable = questions.ToList();
         if (!enumerable.Any())
-            throw new ObjectNotFoundException(typeof(QuestionResponse).ToString(),string.Empty);
+            throw new ObjectNotFoundException(typeof(QuestionResponse).ToString(), string.Empty);
 
-        var res = enumerable.AsQueryable().ProjectTo<QuestionResponse>(mapper.ConfigurationProvider);
+        IQueryable<QuestionResponse>? res = enumerable.AsQueryable().ProjectTo<QuestionResponse>(mapper.ConfigurationProvider);
         return res.ToList();
     }
 }

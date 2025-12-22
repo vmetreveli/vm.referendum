@@ -10,14 +10,14 @@ public class PrivateSetterContractResolver : DefaultContractResolver
         MemberInfo member,
         MemberSerialization memberSerialization)
     {
-        var prop = base.CreateProperty(member, memberSerialization);
+        JsonProperty prop = base.CreateProperty(member, memberSerialization);
 
         if (!prop.Writable)
         {
-            var property = member as PropertyInfo;
+            PropertyInfo? property = member as PropertyInfo;
             if (property != null)
             {
-                var hasPrivateSetter = property.GetSetMethod(true) != null;
+                bool hasPrivateSetter = property.GetSetMethod(true) != null;
                 prop.Writable = hasPrivateSetter;
             }
         }

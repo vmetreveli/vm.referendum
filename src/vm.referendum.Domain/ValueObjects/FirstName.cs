@@ -1,5 +1,5 @@
 using vm.referendum.Domain.Exception;
-using vm.referendum.Domain.Exception.FirstNameErrors;
+using vm.referendum.Domain.Exception.FirstName;
 
 namespace vm.referendum.Domain.ValueObjects;
 

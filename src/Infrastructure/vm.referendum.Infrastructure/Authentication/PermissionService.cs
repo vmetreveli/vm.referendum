@@ -1,4 +1,5 @@
 using vm.referendum.Domain.Entities;
+using vm.referendum.Domain.Entities.Role;
 using vm.referendum.Domain.Entities.User;
 using vm.referendum.Infrastructure.Context;
 
@@ -8,7 +9,7 @@ public class PermissionService(DataContext context) : IPermissionService
 {
     public async Task<HashSet<string>> GetPermissionsAsync(Guid memberId)
     {
-        var roles = await context.Set<User>()
+        Role?[] roles = await context.Set<User>()
             .Include(x => x.Role)
             .ThenInclude(x => x.Permissions)
             .Where(x => x.Id == memberId)

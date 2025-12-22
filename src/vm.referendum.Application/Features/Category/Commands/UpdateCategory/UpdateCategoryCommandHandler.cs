@@ -1,4 +1,3 @@
-using Framework.Infrastructure.Exceptions;
 using vm.referendum.Domain.Repository;
 using vm.referendum.Domain.ValueObjects;
 
@@ -9,9 +8,9 @@ public sealed class UpdateCategoryCommandHandler(ICategoryRepository categoryRep
 {
     public async Task Handle(UpdateCategoryCommand request, CancellationToken cancellationToken = default)
     {
-        var getName = Name.Create(request.Name);
+        Name getName = Name.Create(request.Name);
 
-        var category = await categoryRepository.GetByIdAsync(request.CategoryId, cancellationToken);
+        Domain.Entities.Category.Category? category = await categoryRepository.GetByIdAsync(request.CategoryId, cancellationToken);
 
         if (category is null)
             throw new ObjectNotFoundException(typeof(Domain.Entities.Category.Category).ToString(),

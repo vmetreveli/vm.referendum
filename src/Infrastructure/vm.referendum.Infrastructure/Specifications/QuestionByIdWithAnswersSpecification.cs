@@ -1,5 +1,3 @@
-using Framework.Abstractions.Specifications;
-using vm.referendum.Domain.Entities;
 using vm.referendum.Domain.Entities.Question;
 
 namespace vm.referendum.Infrastructure.Specifications;

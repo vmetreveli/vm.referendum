@@ -29,11 +29,11 @@ namespace vm.referendum.Domain.Entities.Permission;
 public sealed class Permission : Enumeration<Permission>
 {
     // Predefined Permissions
-    public static readonly Permission ReadMember = new ( new Guid("80a0d8c0-8a64-426a-9331-71c4bbbe0547"), "ReadMember");
+    public static readonly Permission ReadMember = new(new Guid("80a0d8c0-8a64-426a-9331-71c4bbbe0547"), "ReadMember");
 
-    public static readonly Permission WriteMember = new ( new Guid("8f22e919-4c82-4bdc-a04a-b29a901e1f1a"), "WriteMember");
+    public static readonly Permission WriteMember = new(new Guid("8f22e919-4c82-4bdc-a04a-b29a901e1f1a"), "WriteMember");
 
-    public static readonly Permission UpdateMember = new ( new Guid("bd7f8542-13b7-4e20-8651-d8ea4f25d8a3"), "UpdateMember");
+    public static readonly Permission UpdateMember = new(new Guid("bd7f8542-13b7-4e20-8651-d8ea4f25d8a3"), "UpdateMember");
 
     // Backing collection for enumeration
     private static readonly List<Permission> _allPermissions;
@@ -51,7 +51,7 @@ public sealed class Permission : Enumeration<Permission>
 
     public Permission()
     {
-        
+
     }
 
     // Constructor
@@ -63,7 +63,10 @@ public sealed class Permission : Enumeration<Permission>
     public static IReadOnlyCollection<Permission> AllPermissions => _allPermissions.AsReadOnly();
 
     // Override ToString for convenience
-    public override string ToString() => Name;
+    public override string ToString()
+    {
+        return Name;
+    }
 }
 
 

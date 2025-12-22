@@ -1,4 +1,3 @@
-using Framework.Abstractions.Events;
 using Microsoft.Extensions.Logging;
 using vm.referendum.Domain.Events.DomainEvents;
 using vm.referendum.Domain.Services;
