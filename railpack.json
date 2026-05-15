@@ -1,14 +1,19 @@
 {
   "$schema": "https://schema.railpack.com",
-  "provider": "dotnet",
+  "providers": {
+    "dotnet": {
+      "version": "10.0"
+    }
+  },
   "steps": {
     "build": {
       "commands": [
+        "dotnet --info",
         "dotnet publish src/vm.referendum.Api/vm.referendum.Api.csproj -c Release -o out"
       ]
     }
   },
   "deploy": {
-    "startCommand": "dotnet out/vm.referendum.api.dll"
+    "startCommand": "dotnet out/vm.referendum.Api.dll"
   }
 }
