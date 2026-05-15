@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Meadow_Framework.Core" Version="1.0.76"/>
-        <PackageReference Include="Meadow_Framework.Analyzer" Version="1.0.76"/>
+        <PackageReference Include="Meadow_Framework.Core" Version="1.0.77"/>
+        <PackageReference Include="Meadow_Framework.Analyzer" Version="1.0.77"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
         <PackageReference Include="Throw" Version="1.4.0"/>
     </ItemGroup>
