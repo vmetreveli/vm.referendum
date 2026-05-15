@@ -30,7 +30,7 @@ COPY ["src/vm.referendum.Domain/vm.referendum.Domain.csproj", "src/vm.referendum
 COPY ["src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructure.csproj", "src/Infrastructure/vm.referendum.Infrastructure/"]
 
 # 👇 IMPORTANT FIX: copy NuGet config into Docker
-COPY NuGet.config /root/.nuget/NuGet/NuGet.Config
+COPY NuGet.Config /root/.nuget/NuGet/NuGet.Config
 
 # 👇 IMPORTANT FIX: force restore to use it
 RUN dotnet restore "src/vm.referendum.Api/vm.referendum.Api.csproj" \
