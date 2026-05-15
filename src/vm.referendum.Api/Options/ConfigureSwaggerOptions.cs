@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning.ApiExplorer;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi;
 
 namespace vm.referendum.Api.Options;
 
