@@ -4,13 +4,20 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-# Copy everything
+# Pass GitHub token securely at build time
+ARG GITHUB_TOKEN
+ENV GITHUB_TOKEN=$GITHUB_TOKEN
+
+# Copy solution + all projects
 COPY . .
 
-# Restore dependencies (solution-aware, avoids path issues)
+# Ensure NuGet config is available
+COPY NuGet.config .
+
+# Restore dependencies (GitHub + nuget.org)
 RUN dotnet restore src/vm.referendum.Api/vm.referendum.Api.csproj
 
-# Publish API
+# Publish release build
 RUN dotnet publish src/vm.referendum.Api/vm.referendum.Api.csproj \
     -c Release \
     -o /app/publish \
@@ -25,7 +32,6 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
-# Railway / cloud port
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
