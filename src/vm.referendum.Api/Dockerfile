@@ -47,7 +47,7 @@ RUN test -n "$GITHUB_TOKEN"
 # ============================================================
 # Configure GitHub Packages and restore dependencies
 # ============================================================
-RUN dotnet nuget add source "https://nuget.pkg.github.com/vmetreveli/index.json" \
+RUN dotnet nuget update source "https://nuget.pkg.github.com/vmetreveli/index.json" \
     --name github \
     --username vmetreveli \
     --password "$GITHUB_TOKEN" \
