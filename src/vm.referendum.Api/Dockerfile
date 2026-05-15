@@ -22,20 +22,11 @@ USER appuser
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-# ============================================================
-# Install GitHub Packages auth securely (BuildKit secret)
-# ============================================================
-# Requires: docker build --secret id=github_token,env=GITHUB_TOKEN
-RUN --mount=type=secret,id=github_token \
-    export GITHUB_TOKEN=$(cat /run/secrets/github_token) && \
-    dotnet nuget add source "https://nuget.pkg.github.com/vmetreveli/index.json" \
-      --name github \
-      --username vmetreveli \
-      --password "$GITHUB_TOKEN" \
-      --store-password-in-clear-text
+# GitHub token passed from CI
+ARG GITHUB_TOKEN
 
 # ============================================================
-# Copy project files (cache-friendly)
+# Copy project files first (cache layer)
 # ============================================================
 COPY src/vm.referendum.Api/vm.referendum.Api.csproj src/vm.referendum.Api/
 COPY src/vm.referendum.Application/vm.referendum.Application.csproj src/vm.referendum.Application/
@@ -44,7 +35,16 @@ COPY src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructur
 COPY src/NuGet.config ./
 
 # ============================================================
-# Restore dependencies (IMPORTANT: before full copy)
+# Configure GitHub Packages feed (WORKING APPROACH)
+# ============================================================
+RUN dotnet nuget add source "https://nuget.pkg.github.com/vmetreveli/index.json" \
+    --name github \
+    --username vmetreveli \
+    --password "$GITHUB_TOKEN" \
+    --store-password-in-clear-text
+
+# ============================================================
+# Restore
 # ============================================================
 RUN dotnet restore "src/vm.referendum.Api/vm.referendum.Api.csproj"
 
@@ -80,7 +80,6 @@ WORKDIR /app
 
 COPY --from=publish /app/publish .
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
-    CMD curl --fail http://localhost:8181/health || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:8181/health || exit 1
 
 ENTRYPOINT ["dotnet", "vm.referendum.Api.dll"]
