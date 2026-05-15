@@ -6,20 +6,22 @@
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 WORKDIR /app
 
-# Create non-root user
-RUN addgroup --system app && adduser --system --ingroup app app
+# Create non-root user (Debian-based images use groupadd/useradd)
+USER root
+RUN groupadd --system app \
+    && useradd --system --gid app --create-home --home-dir /home/app app
 
-# Railway provides PORT dynamically. Default to 8181 for local runs.
+# Railway provides PORT dynamically; default to 8181 for local runs
 ENV PORT=8181
 ENV ASPNETCORE_URLS=http://+:${PORT}
 EXPOSE 8181
 
-# Healthcheck support (curl is not guaranteed to be installed in the
-# ASP.NET runtime image, so install it explicitly)
-USER root
+# Install curl for HEALTHCHECK
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl \
     && rm -rf /var/lib/apt/lists/*
+
+# Drop privileges
 USER app
 
 # ============================================================
