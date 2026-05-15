@@ -66,7 +66,7 @@ WORKDIR /src/src/vm.referendum.Api
 # ============================================================
 # Build
 # ============================================================
-RUN dotnet build "vm.referendum.Api.csproj" \
+RUN dotnet build "src\vm.referendum.Api\vm.referendum.Api.csproj" \
     -c Release \
     -o /app/build \
     --no-restore
@@ -76,7 +76,7 @@ RUN dotnet build "vm.referendum.Api.csproj" \
 # ============================================================
 FROM build AS publish
 
-RUN dotnet publish "vm.referendum.Api.csproj" \
+RUN dotnet publish "src\vm.referendum.Api\vm.referendum.Api.csproj" \
     -c Release \
     -o /app/publish \
     --no-build \
