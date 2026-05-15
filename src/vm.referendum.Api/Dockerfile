@@ -39,7 +39,7 @@ COPY src/vm.referendum.Domain/vm.referendum.Domain.csproj src/vm.referendum.Doma
 COPY src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructure.csproj src/Infrastructure/vm.referendum.Infrastructure/
 
 # Copy NuGet configuration
-COPY src/NuGet.Config ./
+COPY src/NuGet.config ./
 
 # Optional sanity check (fails if Railway variable is missing)
 RUN test -n "$GITHUB_TOKEN"
@@ -53,7 +53,7 @@ RUN dotnet nuget add source "https://nuget.pkg.github.com/vmetreveli/index.json"
     --password "$GITHUB_TOKEN" \
     --store-password-in-clear-text \
     && dotnet restore "src/vm.referendum.Api/vm.referendum.Api.csproj" \
-    --configfile ./NuGet.Config \
+    --configfile ./NuGet.config \
     && dotnet nuget remove source github
 
 # ============================================================
