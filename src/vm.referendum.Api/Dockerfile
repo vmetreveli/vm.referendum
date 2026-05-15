@@ -14,8 +14,6 @@ WORKDIR /src
 COPY ["src/vm.referendum.Api/vm.referendum.Api.csproj", "vm.referendum.Api/"]
 COPY ["src/vm.referendum.Application/vm.referendum.Application.csproj", "vm.referendum.Application/"]
 COPY ["src/vm.referendum.Domain/vm.referendum.Domain.csproj", "vm.referendum.Domain/"]
-COPY ["src/Framework/Framework.Infrastructure/Framework.Infrastructure.csproj", "Framework/Framework.Infrastructure/"]
-COPY ["src/Framework/Framework.Abstractions/Framework.Abstractions.csproj", "Framework/Framework.Abstractions/"]
 COPY ["src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructure.csproj", "Infrastructure/vm.referendum.Infrastructure/"]
 RUN dotnet restore "vm.referendum.Api/vm.referendum.Api.csproj"
 
