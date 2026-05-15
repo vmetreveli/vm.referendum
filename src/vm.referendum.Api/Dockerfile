@@ -47,14 +47,14 @@ RUN test -n "$GITHUB_TOKEN"
 # ============================================================
 # Configure GitHub Packages and restore dependencies
 # ============================================================
-RUN dotnet nuget update source "https://nuget.pkg.github.com/vmetreveli/index.json" \
-    --name github \
-    --username vmetreveli \
-    --password "$GITHUB_TOKEN" \
-    --store-password-in-clear-text \
-    && dotnet restore "src/vm.referendum.Api/vm.referendum.Api.csproj" \
-    --configfile ./NuGet.config \
-    && dotnet nuget remove source github
+#RUN dotnet nuget add source "https://nuget.pkg.github.com/vmetreveli/index.json" \
+#    --name github \
+#    --username vmetreveli \
+#    --password "$GITHUB_TOKEN" \
+#    --store-password-in-clear-text \
+#    && dotnet restore "src/vm.referendum.Api/vm.referendum.Api.csproj" \
+#    --configfile ./NuGet.config \
+#    && dotnet nuget remove source github
 
 # ============================================================
 # Copy the full source tree
