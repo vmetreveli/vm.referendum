@@ -4,19 +4,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-# Copy only project files first (better caching)
-COPY src/vm.referendum.Api/*.csproj src/vm.referendum.Api/
-COPY src/vm.referendum.Application/*.csproj src/vm.referendum.Application/
-COPY src/vm.referendum.Domain/*.csproj src/vm.referendum.Domain/
-COPY src/vm.referendum.Infrastructure/*.csproj src/vm.referendum.Infrastructure/
-
-# Restore dependencies (SAFE path)
-RUN dotnet restore src/vm.referendum.Api/vm.referendum.Api.csproj
-
-# Copy everything else
+# Copy everything
 COPY . .
 
-# Publish
+# Restore dependencies (solution-aware, avoids path issues)
+RUN dotnet restore src/vm.referendum.Api/vm.referendum.Api.csproj
+
+# Publish API
 RUN dotnet publish src/vm.referendum.Api/vm.referendum.Api.csproj \
     -c Release \
     -o /app/publish \
@@ -31,7 +25,7 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
-# Railway / cloud port binding
+# Railway / cloud port
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
