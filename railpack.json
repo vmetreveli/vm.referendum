@@ -1,8 +1,10 @@
 {
-  "projectPath": "src",
-  "projectType": "dotnet",
-  "solutionFile": "vm.referendum.sln",
-  "buildCommand": "dotnet build src/vm.referendum.sln",
-  "startCommand": "dotnet run --project src/vm.referendum.Api/vm.referendum.Api.csproj"
+  "$schema": "https://railpack.com/schema.json",
+  "provider": "dotnet",
+  "build": {
+    "command": "dotnet restore vm.referendum.sln && dotnet publish vm.referendum.sln -c Release -o out"
+  },
+  "start": {
+    "command": "dotnet out/referendum.api.dll"
+  }
 }
-
