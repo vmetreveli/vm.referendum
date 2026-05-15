@@ -4,11 +4,11 @@
   "steps": {
     "build": {
       "commands": [
-        "dotnet publish src/referendum.api/referendum.api.csproj -c Release -o out"
+        "dotnet publish src/vm.referendum.Api/vm.referendum.Api.csproj -c Release -o out"
       ]
     }
   },
   "deploy": {
-    "startCommand": "dotnet out/referendum.api.dll"
+    "startCommand": "dotnet out/vm.referendum.api.dll"
   }
 }
