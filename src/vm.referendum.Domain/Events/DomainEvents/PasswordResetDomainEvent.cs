@@ -1,4 +1,5 @@
-﻿using vm.referendum.Domain.Primitives;
+﻿using Meadow_Framework.Core.Abstractions.Events;
+using vm.referendum.Domain.Primitives;
 
 namespace vm.referendum.Domain.Events.DomainEvents;
 

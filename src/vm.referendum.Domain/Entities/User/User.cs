@@ -1,3 +1,4 @@
+using Meadow_Framework.Core.Abstractions.Primitives;
 using vm.referendum.Domain.Exception.User;
 using vm.referendum.Domain.Primitives;
 using vm.referendum.Domain.Services;

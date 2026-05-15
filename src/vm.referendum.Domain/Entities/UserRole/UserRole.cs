@@ -1,3 +1,5 @@
+using Meadow_Framework.Core.Abstractions.Primitives;
+
 namespace vm.referendum.Domain.Entities.UserRole;
 
 public sealed class UserRole : AggregateRoot<Guid>, IAuditableEntity, IDeletableEntity

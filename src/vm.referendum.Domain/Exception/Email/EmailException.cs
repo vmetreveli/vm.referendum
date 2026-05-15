@@ -1,3 +1,5 @@
+using Meadow_Framework.Core.Abstractions.Exceptions;
+
 namespace vm.referendum.Domain.Exception.Email;
 
 // public class NullOrEmptyException() : InflowException("FirstName.NullOrEmpty", "The first name is required.");

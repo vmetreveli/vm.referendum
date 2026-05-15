@@ -1,3 +1,5 @@
+using Meadow_Framework.Core.Abstractions.Exceptions;
+
 namespace vm.referendum.Domain.Exception.Question;
 
 public class QuestionNotFoundException(string question)

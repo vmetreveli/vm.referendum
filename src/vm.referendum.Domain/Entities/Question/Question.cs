@@ -1,5 +1,5 @@
-﻿using Meadow_Framework.Framework.Abstractions.Exceptions;
-using Meadow_Framework.Framework.Abstractions.Primitives;
+﻿using Meadow_Framework.Core.Abstractions.Exceptions;
+using Meadow_Framework.Core.Abstractions.Primitives;
 
 namespace vm.referendum.Domain.Entities.Question;
 

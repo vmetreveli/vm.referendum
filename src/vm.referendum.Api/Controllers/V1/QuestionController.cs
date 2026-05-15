@@ -65,7 +65,7 @@ public sealed class QuestionController(IDispatcher dispatcher) : ApiController(d
         string? userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         CreateQuestionCommand command = new()
         {
-            UserId = userId,
+            UserId = userId ?? string.Empty,
             TextContent = createQuestionRequest.TextContent
         };
         await Dispatcher.SendAsync(command, cancellationToken);

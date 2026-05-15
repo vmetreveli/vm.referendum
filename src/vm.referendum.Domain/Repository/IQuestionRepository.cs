@@ -1,3 +1,4 @@
+using Meadow_Framework.Core.Abstractions.Repository;
 using vm.referendum.Domain.Entities.Question;
 
 namespace vm.referendum.Domain.Repository;

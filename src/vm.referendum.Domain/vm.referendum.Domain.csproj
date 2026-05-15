@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Meadow_Framework" Version="1.0.20" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.11" />
+        <PackageReference Include="Meadow_Framework.Core" Version="1.0.76"/>
+        <PackageReference Include="Meadow_Framework.Analyzer" Version="1.0.76"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
         <PackageReference Include="Throw" Version="1.4.0"/>
     </ItemGroup>

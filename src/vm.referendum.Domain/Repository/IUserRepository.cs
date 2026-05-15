@@ -1,3 +1,4 @@
+using Meadow_Framework.Core.Abstractions.Repository;
 using vm.referendum.Domain.Entities.User;
 using vm.referendum.Domain.ValueObjects;
 

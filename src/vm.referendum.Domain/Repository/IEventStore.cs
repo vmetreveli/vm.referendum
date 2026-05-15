@@ -1,3 +1,5 @@
+using Meadow_Framework.Core.Abstractions.Events;
+
 namespace vm.referendum.Domain.Repository;
 
 /// <summary>

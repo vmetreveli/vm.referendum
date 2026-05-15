@@ -1,4 +1,4 @@
-using Meadow_Framework.Framework.Abstractions.Primitives;
+using Meadow_Framework.Core.Abstractions.Primitives;
 using vm.referendum.Domain.ValueObjects;
 
 namespace vm.referendum.Domain.Entities.Category;

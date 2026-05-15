@@ -1,4 +1,5 @@
-﻿using vm.referendum.Domain.Entities.User;
+﻿using Meadow_Framework.Core.Abstractions.Events;
+using vm.referendum.Domain.Entities.User;
 
 namespace vm.referendum.Domain.Events.DomainEvents;
 

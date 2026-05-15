@@ -4,5 +4,5 @@ public sealed class UpdateAnswerRequest
 {
     public Guid QuestionId { get; set; }
     public Guid AnswerId { get; set; }
-    public string Text { get; set; }
+    public required string Text { get; set; }
 }
