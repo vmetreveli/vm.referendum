@@ -1,10 +1,14 @@
 {
-  "$schema": "https://railpack.com/schema.json",
+  "$schema": "https://schema.railpack.com",
   "provider": "dotnet",
-  "build": {
-    "cmd": "dotnet publish src/referendum.api/referendum.api.csproj -c Release -o out"
+  "steps": {
+    "build": {
+      "commands": [
+        "dotnet publish src/referendum.api/referendum.api.csproj -c Release -o out"
+      ]
+    }
   },
   "deploy": {
-    "cmd": "dotnet out/referendum.api.dll"
+    "startCommand": "dotnet out/referendum.api.dll"
   }
 }
