@@ -1,34 +1,33 @@
-FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
-WORKDIR /app
-# Create non-root user for improved security
-RUN addgroup --system app && adduser --system --ingroup app app
-# Use non-root user for security
-USER app
-ENV ASPNETCORE_HTTP_PORTS=8181
-ENV ASPNETCORE_URLS=http://+:8181
-EXPOSE 8181
-
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+# =========================
+# BUILD STAGE
+# =========================
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-# Copy only project files first to optimize layer caching
-COPY ["src/vm.referendum.Api/vm.referendum.Api.csproj", "vm.referendum.Api/"]
-COPY ["src/vm.referendum.Application/vm.referendum.Application.csproj", "vm.referendum.Application/"]
-COPY ["src/vm.referendum.Domain/vm.referendum.Domain.csproj", "vm.referendum.Domain/"]
-COPY ["src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructure.csproj", "Infrastructure/vm.referendum.Infrastructure/"]
-RUN dotnet restore "vm.referendum.Api/vm.referendum.Api.csproj"
 
-# Copy everything else
+# Copy entire solution (prevents missing csproj issues)
 COPY . .
-WORKDIR "/src/vm.referendum.Api"
-# Use Release configuration consistently
-RUN dotnet build "vm.referendum.Api.csproj" -c Release -o /app/build
 
-FROM build AS publish
-RUN dotnet publish "vm.referendum.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+# Restore dependencies
+RUN dotnet restore src/vm.referendum.Api/vm.referendum.Api.csproj
 
-FROM base AS final
+# Publish release build
+RUN dotnet publish src/vm.referendum.Api/vm.referendum.Api.csproj \
+    -c Release \
+    -o /app/publish \
+    /p:UseAppHost=false
+
+# =========================
+# RUNTIME STAGE
+# =========================
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
-# Add health check
-HEALTHCHECK CMD curl --fail http://localhost:8181/health || exit
+
+# Copy published output
+COPY --from=build /app/publish .
+
+# Railway provides PORT dynamically (important)
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
+
+# Start application
 ENTRYPOINT ["dotnet", "vm.referendum.Api.dll"]
