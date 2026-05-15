@@ -12,7 +12,7 @@ ENV GITHUB_TOKEN=$GITHUB_TOKEN
 COPY . .
 
 # Ensure NuGet config is available
-COPY NuGet.config .
+COPY src/vm.referendum.Api/NuGet.Config .
 
 # Restore dependencies (GitHub + nuget.org)
 RUN dotnet restore src/vm.referendum.Api/vm.referendum.Api.csproj
