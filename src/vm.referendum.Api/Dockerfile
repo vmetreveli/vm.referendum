@@ -4,17 +4,23 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-# Pass GitHub token securely at build time
+# GitHub token (build-time only)
 ARG GITHUB_TOKEN
-ENV GITHUB_TOKEN=$GITHUB_TOKEN
 
-# Copy solution + all projects
+# Copy solution first (better cache)
 COPY . .
 
-# Ensure NuGet config is available
-COPY src/vm.referendum.Api/NuGet.Config .
+# =========================
+# Configure GitHub Packages securely (BuildKit-friendly)
+# =========================
+RUN dotnet nuget add source \
+    https://nuget.pkg.github.com/vmetreveli/index.json \
+    --name GitHub \
+    --username vmetreveli \
+    --password $GITHUB_TOKEN \
+    --store-password-in-clear-text
 
-# Restore dependencies (GitHub + nuget.org)
+# Restore dependencies
 RUN dotnet restore src/vm.referendum.Api/vm.referendum.Api.csproj
 
 # Publish release build
