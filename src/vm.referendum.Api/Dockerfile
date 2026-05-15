@@ -43,10 +43,15 @@ COPY /src/NuGet.Config .
 # ============================================================
 # Restore (GitHub Packages auth via secret)
 # ============================================================
-RUN --mount=type=secret,id=github_token \
-    dotnet restore "src/vm.referendum.Api/vm.referendum.Api.csproj" \
-    --configfile NuGet.Config \
-    /p:ContinuousIntegrationBuild=true
+ARG GITHUB_TOKEN
+
+RUN dotnet nuget add source "https://nuget.pkg.github.com/vmetreveli/index.json" \
+    --name github \
+    --username vmetreveli \
+    --password "$GITHUB_TOKEN" \
+    --store-password-in-clear-text && \
+    dotnet restore src/vm.referendum.Api/vm.referendum.Api.csproj && \
+    dotnet nuget remove source github
 
 # ============================================================
 # Copy full source
