@@ -19,7 +19,7 @@ RUN dotnet publish src/vm.referendum.Api/vm.referendum.Api.csproj \
 # =========================
 # RUNTIME STAGE
 # =========================
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
 
 # Copy published output
