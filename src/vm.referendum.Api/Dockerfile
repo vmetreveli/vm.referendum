@@ -77,6 +77,6 @@ WORKDIR /app
 
 COPY --from=publish /app/publish .
 
-HEALTHCHECK CMD curl --fail http://localhost:8181/health || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:80/health || exit 1
 
 ENTRYPOINT ["dotnet", "vm.referendum.Api.dll"]
