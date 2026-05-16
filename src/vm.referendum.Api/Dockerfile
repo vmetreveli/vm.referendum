@@ -22,9 +22,6 @@ USER appuser
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-# GitHub token passed from CI
-ARG GITHUB_TOKEN
-
 # ============================================================
 # Copy project files first (cache layer)
 # ============================================================
@@ -35,12 +32,14 @@ COPY src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructur
 COPY src/NuGet.config ./
 
 # ============================================================
-# Configure GitHub Packages feed (WORKING APPROACH)
+# Configure GitHub Packages feed using secret
+# Railway supports secret mounts, but only with type=cache syntax.
 # ============================================================
-RUN dotnet nuget add source "https://nuget.pkg.github.com/vmetreveli/index.json" \
+RUN --mount=type=secret,id=github_token,target=/run/secrets/github_token \
+    dotnet nuget add source "https://nuget.pkg.github.com/vmetreveli/index.json" \
     --name github \
     --username vmetreveli \
-    --password "$GITHUB_TOKEN" \
+    --password "$(cat /run/secrets/github_token)" \
     --store-password-in-clear-text
 
 # ============================================================
