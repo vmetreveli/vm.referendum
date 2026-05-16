@@ -47,7 +47,7 @@ app.UseCors(options =>
         .AllowAnyMethod();
 });
 
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
