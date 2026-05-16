@@ -67,8 +67,7 @@ FROM build AS publish
 RUN dotnet publish "src/vm.referendum.Api/vm.referendum.Api.csproj" \
     -c Release \
     -o /app/publish \
-    --no-build \
-    /p:UseAppHost=false
+     /p:UseAppHost=false
 
 # ============================================================
 # Final runtime
