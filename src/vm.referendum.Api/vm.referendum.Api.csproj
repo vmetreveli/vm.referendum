@@ -10,6 +10,7 @@
 
     <ItemGroup>
         <!-- API Versioning -->
+        <PackageReference Include="AutoMapper" Version="16.1.1" />
         <PackageReference Include="Humanizer.Core" Version="3.0.10" />
         <PackageReference Include="KubernetesClient" Version="19.0.2" />
         <PackageReference Include="Microsoft.OpenApi" Version="1.6.14" />
