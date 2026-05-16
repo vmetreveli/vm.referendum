@@ -44,7 +44,7 @@ RUN sed -i "s|%GITHUB_TOKEN%|${GITHUB_TOKEN}|g" NuGet.config
 # Restore dependencies
 # ============================================================
 RUN dotnet restore "src/vm.referendum.Api/vm.referendum.Api.csproj" \
-    --configfile src/NuGet.config
+    --configfile NuGet.config
 
 # ============================================================
 # Copy full source
