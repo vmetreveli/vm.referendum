@@ -39,7 +39,7 @@ RUN --mount=type=secret,id=github_token,target=/run/secrets/github_token \
     dotnet nuget add source "https://nuget.pkg.github.com/vmetreveli/index.json" \
     --name github \
     --username vmetreveli \
-    --password "$(cat /run/secrets/github_token)" \
+    --password "$GITHUB_TOKEN" \
     --store-password-in-clear-text
 
 # ============================================================
