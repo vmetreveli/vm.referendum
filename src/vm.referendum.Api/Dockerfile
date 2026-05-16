@@ -6,8 +6,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 WORKDIR /app
 
-ENV ASPNETCORE_URLS=http://+:8181
-EXPOSE 8181
+ENV ASPNETCORE_URLS=http://+:80
+EXPOSE 80
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl \
