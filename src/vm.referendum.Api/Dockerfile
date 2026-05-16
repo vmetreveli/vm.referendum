@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.6
+# syntax=docker/dockerfile:1
 
 # ============================================================
 # Base runtime
@@ -22,6 +22,9 @@ USER appuser
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
+# Build argument for GitHub Packages authentication
+ARG GITHUB_TOKEN
+
 # ============================================================
 # Copy project files first (cache layer)
 # ============================================================
@@ -32,20 +35,16 @@ COPY src/Infrastructure/vm.referendum.Infrastructure/vm.referendum.Infrastructur
 COPY src/NuGet.config ./
 
 # ============================================================
-# Configure GitHub Packages feed using secret
-# Railway supports secret mounts, but only with type=cache syntax.
+# Inject GitHub token into NuGet.config
+# Replace %GITHUB_TOKEN% placeholder in NuGet.config
 # ============================================================
-RUN --mount=type=secret,id=github_token,target=/run/secrets/github_token \
-    dotnet nuget add source "https://nuget.pkg.github.com/vmetreveli/index.json" \
-    --name github \
-    --username vmetreveli \
-    --password "$GITHUB_TOKEN" \
-    --store-password-in-clear-text
+RUN sed -i "s|%GITHUB_TOKEN%|${GITHUB_TOKEN}|g" NuGet.config
 
 # ============================================================
-# Restore
+# Restore dependencies
 # ============================================================
-RUN dotnet restore "src/vm.referendum.Api/vm.referendum.Api.csproj"
+RUN dotnet restore "src/vm.referendum.Api/vm.referendum.Api.csproj" \
+    --configfile NuGet.config
 
 # ============================================================
 # Copy full source
